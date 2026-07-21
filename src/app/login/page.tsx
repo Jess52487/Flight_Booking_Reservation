@@ -42,7 +42,7 @@ export default function LoginPage() {
                 <input
                   type="email"
                   className="bg-transparent border-none focus:ring-0 text-[var(--color-on-surface)] w-full py-[var(--spacing-md)] px-3 font-inter placeholder:text-white/20 outline-none"
-                  placeholder="voyager@aetherair.galactic"
+                  placeholder="voyager@aerohub.galactic"
                 />
               </div>
             </div>

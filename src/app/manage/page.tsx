@@ -110,7 +110,7 @@ export default function ManagePage() {
             <div className="relative z-10">
               <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)] mb-[var(--spacing-xs)]">Need to cancel?</h3>
               <p className="font-inter text-base text-[var(--color-on-surface-variant)] mb-[var(--spacing-sm)]">
-                List your unused tickets on the Aether Marketplace to recover funds.
+                List your unused tickets on the AeroHub Marketplace to recover funds.
               </p>
               <Link href="/marketplace" className="text-[var(--color-tertiary)] font-inter text-sm font-bold flex items-center gap-[var(--spacing-xs)] hover:gap-[var(--spacing-md)] transition-all uppercase tracking-widest">
                 Go to Marketplace <span className="material-symbols-outlined">arrow_forward</span>

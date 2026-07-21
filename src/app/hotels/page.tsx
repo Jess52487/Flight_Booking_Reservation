@@ -84,7 +84,7 @@ export default function HotelsPage() {
               Discover <span className="text-white">Extraordinary</span> Stays
             </h1>
             <p className="text-[var(--color-on-surface-variant)] font-inter text-lg max-w-2xl mx-auto">
-              From lunar craters to atmospheric skylofts, find your sanctuary among the stars with AetherAir's curated orbital escapes.
+              From lunar craters to atmospheric skylofts, find your sanctuary among the stars with AeroHub's curated orbital escapes.
             </p>
           </div>
 
@@ -232,10 +232,10 @@ export default function HotelsPage() {
           <div className="flex flex-col md:flex-row justify-between items-center px-[var(--spacing-xl)] py-[var(--spacing-lg)] max-w-[var(--spacing-container-max)] mx-auto">
             <div className="mb-[var(--spacing-md)] md:mb-0 text-center md:text-left">
               <div className="font-outfit text-2xl font-bold text-[var(--color-tertiary)] mb-[var(--spacing-xs)]">
-                AetherAir
+                AeroHub
               </div>
               <p className="font-inter text-base text-[var(--color-on-surface-variant)] opacity-80">
-                © 2026 AetherAir Galactic. All rights reserved.
+                © 2026 AeroHub Galactic. All rights reserved.
               </p>
             </div>
           </div>

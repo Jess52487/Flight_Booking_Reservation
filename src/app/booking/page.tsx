@@ -89,7 +89,7 @@ export default function BookingSeatSelectionPage() {
             {/* Seat Map Selection (Left Side) */}
             <GlassCard className="xl:col-span-7 rounded-[24px] p-[var(--spacing-md)] flex flex-col border border-white/10">
               <div className="flex justify-between items-center mb-[var(--spacing-md)]">
-                <h2 className="font-outfit text-xl font-bold text-[var(--color-secondary)]">Aether Liner 777</h2>
+                <h2 className="font-outfit text-xl font-bold text-[var(--color-secondary)]">AeroHub Liner 777</h2>
                 <div className="flex flex-wrap gap-[var(--spacing-md)]">
                   <div className="flex items-center gap-[var(--spacing-xs)]">
                     <div className="w-3 h-3 rounded-full bg-[var(--color-secondary)] shadow-[0_0_10px_rgba(137,208,237,0.8)]"></div>
@@ -241,8 +241,8 @@ export default function BookingSeatSelectionPage() {
       {/* Footer */}
       <footer className="bg-[var(--color-surface-container-lowest)]/40 backdrop-blur-md border-t border-white/10 w-full mt-auto">
         <div className="flex flex-col md:flex-row justify-between items-center px-[var(--spacing-xl)] py-[var(--spacing-md)] max-w-[var(--spacing-container-max)] mx-auto gap-[var(--spacing-md)]">
-          <span className="font-outfit text-2xl font-bold text-[var(--color-tertiary)]">AetherAir</span>
-          <p className="font-inter text-xs text-[var(--color-on-surface-variant)]">© 2026 AetherAir Galactic. All rights reserved.</p>
+          <span className="font-outfit text-2xl font-bold text-[var(--color-tertiary)]">AeroHub</span>
+          <p className="font-inter text-xs text-[var(--color-on-surface-variant)]">© 2026 AeroHub Galactic. All rights reserved.</p>
         </div>
       </footer>
     </div>

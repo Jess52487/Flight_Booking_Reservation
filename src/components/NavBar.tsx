@@ -18,7 +18,7 @@ export function NavBar() {
     <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/20 shadow-[0px_20px_40px_rgba(0,0,0,0.3)]">
       <div className="flex justify-between items-center px-[var(--spacing-md)] py-[var(--spacing-sm)] max-w-[var(--spacing-container-max)] mx-auto">
         <Link href="/" className="text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
-          AetherAir
+          AeroHub
         </Link>
         <nav className="hidden md:flex gap-[var(--spacing-md)] items-center">
           {navLinks.map((link) => {

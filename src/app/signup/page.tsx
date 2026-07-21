@@ -78,7 +78,7 @@ export default function SignupPage() {
                   <input
                     type="email"
                     className="bg-transparent border-none focus:ring-0 text-[var(--color-on-surface)] w-full py-3 px-3 font-inter placeholder:text-white/20 outline-none"
-                    placeholder="voyager@aetherair.galactic"
+                    placeholder="voyager@aerohub.galactic"
                   />
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function SignupPage() {
           
           {/* Footer Links */}
           <footer className="mt-[var(--spacing-lg)] flex justify-between items-center px-[var(--spacing-xs)]">
-            <span className="font-inter text-xs text-[var(--color-on-surface-variant)]/50">© 2026 AetherAir Galactic</span>
+            <span className="font-inter text-xs text-[var(--color-on-surface-variant)]/50">© 2026 AeroHub Galactic</span>
             <div className="flex gap-[var(--spacing-md)]">
               <Link href="#" className="font-inter text-xs text-[var(--color-on-surface-variant)]/50 hover:text-[var(--color-on-surface)] transition-colors">Privacy</Link>
               <Link href="#" className="font-inter text-xs text-[var(--color-on-surface-variant)]/50 hover:text-[var(--color-on-surface)] transition-colors">Security</Link>

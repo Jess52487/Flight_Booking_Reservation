@@ -33,7 +33,7 @@ export default function OnboardingWelcomePage() {
             </h1>
             
             <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto lg:mx-0">
-              Your journey through the aether is ready. We've synchronized your preferences and calibrated the vessel for your upcoming expedition to the outer rims.
+              Your journey through the aerohub is ready. We've synchronized your preferences and calibrated the vessel for your upcoming expedition to the outer rims.
             </p>
             
             <div className="mt-[var(--spacing-md)] flex flex-col sm:flex-row gap-[var(--spacing-sm)] justify-center lg:justify-start">
@@ -105,7 +105,7 @@ export default function OnboardingWelcomePage() {
                 <div className="bg-white/5 backdrop-blur-md rounded-2xl p-[var(--spacing-sm)] border border-white/10 relative overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
                   <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1 font-semibold">Loyalty</p>
-                  <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">42.5k Aether Creds</p>
+                  <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">42.5k AeroHub Creds</p>
                 </div>
                 
                 <div className="col-span-2 bg-white/5 backdrop-blur-md rounded-2xl p-[var(--spacing-sm)] flex items-center justify-between border border-white/10 relative overflow-hidden group">
@@ -145,8 +145,8 @@ export default function OnboardingWelcomePage() {
       <footer className="relative z-10 w-full bg-[var(--color-surface-container-lowest)]/40 backdrop-blur-md border-t border-white/10 mt-auto">
         <div className="max-w-[var(--spacing-container-max)] mx-auto flex flex-col md:flex-row justify-between items-center px-[var(--spacing-xl)] py-[var(--spacing-lg)] gap-[var(--spacing-md)]">
           <div className="flex flex-col gap-[var(--spacing-xs)] items-center md:items-start">
-            <span className="font-outfit text-2xl text-[var(--color-tertiary)] font-bold tracking-tight">AetherAir</span>
-            <p className="font-inter text-xs text-[var(--color-on-surface-variant)]">© 2026 AetherAir Galactic. All rights reserved.</p>
+            <span className="font-outfit text-2xl text-[var(--color-tertiary)] font-bold tracking-tight">AeroHub</span>
+            <p className="font-inter text-xs text-[var(--color-on-surface-variant)]">© 2026 AeroHub Galactic. All rights reserved.</p>
           </div>
           <div className="flex gap-[var(--spacing-md)]">
             <Link href="#" className="font-inter text-xs font-semibold text-[var(--color-on-surface-variant)] hover:text-[var(--color-secondary)] transition-transform hover:-translate-y-[2px] uppercase tracking-widest">Privacy Policy</Link>

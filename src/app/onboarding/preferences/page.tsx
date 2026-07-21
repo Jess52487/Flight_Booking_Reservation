@@ -171,8 +171,8 @@ export default function OnboardingPreferencesPage() {
       {/* Simple Footer */}
       <footer className="w-full mt-auto bg-[var(--color-surface-container-lowest)]/40 backdrop-blur-md border-t border-white/10">
         <div className="flex flex-col md:flex-row justify-between items-center px-[var(--spacing-xl)] py-[var(--spacing-lg)] max-w-[var(--spacing-container-max)] mx-auto gap-[var(--spacing-sm)]">
-          <div className="font-outfit text-xl font-bold text-[var(--color-tertiary)]">AetherAir</div>
-          <p className="font-inter text-xs text-[var(--color-on-surface-variant)]">© 2026 AetherAir Galactic. All rights reserved.</p>
+          <div className="font-outfit text-xl font-bold text-[var(--color-tertiary)]">AeroHub</div>
+          <p className="font-inter text-xs text-[var(--color-on-surface-variant)]">© 2026 AeroHub Galactic. All rights reserved.</p>
           <div className="flex gap-[var(--spacing-md)]">
             <Link href="#" className="font-inter text-xs font-semibold text-[var(--color-on-surface-variant)] hover:text-[var(--color-secondary)] transition-colors uppercase tracking-widest">Privacy Policy</Link>
             <Link href="#" className="font-inter text-xs font-semibold text-[var(--color-on-surface-variant)] hover:text-[var(--color-secondary)] transition-colors uppercase tracking-widest">Terms of Service</Link>

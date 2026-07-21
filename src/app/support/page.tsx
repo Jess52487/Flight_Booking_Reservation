@@ -20,7 +20,7 @@ export default function SupportPage() {
     {
       id: "1",
       sender: "ai",
-      text: "Hello Commander. I am the Aether Support Core. How can I assist you with your travel, account, or Galactic rewards today?",
+      text: "Hello Commander. I am the AeroHub Support Core. How can I assist you with your travel, account, or Galactic rewards today?",
       time: "10:15",
     },
     {
@@ -100,7 +100,7 @@ export default function SupportPage() {
                 </span>
               </div>
               <div>
-                <h2 className="font-outfit text-2xl font-bold text-[var(--color-secondary)] leading-tight">Aether Support</h2>
+                <h2 className="font-outfit text-2xl font-bold text-[var(--color-secondary)] leading-tight">AeroHub Support</h2>
                 <p className="font-inter text-xs font-semibold text-[var(--color-on-surface-variant)] flex items-center gap-1 uppercase tracking-widest mt-1">
                   <span className="w-2 h-2 rounded-full bg-[var(--color-tertiary)] animate-pulse"></span>
                   Systems Online
@@ -202,7 +202,7 @@ export default function SupportPage() {
             </div>
             <div className="mt-[var(--spacing-sm)] flex justify-center">
               <p className="font-inter text-[10px] font-semibold text-[var(--color-on-surface-variant)]/50 uppercase tracking-[0.2em]">
-                Aether Support Systems - 24/7 Galactic Coverage
+                AeroHub Support Systems - 24/7 Galactic Coverage
               </p>
             </div>
           </form>

@@ -160,7 +160,7 @@ export default function MarketplacePage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-[var(--spacing-sm)]">
             <div>
               <h1 className="font-outfit text-4xl font-bold text-[var(--color-on-surface)]">Available Resales</h1>
-              <p className="font-inter text-base text-[var(--color-on-surface-variant)]">Verified tickets from other AetherAir travelers.</p>
+              <p className="font-inter text-base text-[var(--color-on-surface-variant)]">Verified tickets from other AeroHub travelers.</p>
             </div>
             <div className="flex gap-[var(--spacing-xs)]">
               <span className="px-[var(--spacing-sm)] py-[var(--spacing-xs)] bg-white/5 border border-white/20 rounded-full font-inter text-xs text-[var(--color-secondary)] flex items-center gap-[var(--spacing-xs)] uppercase tracking-widest font-bold">

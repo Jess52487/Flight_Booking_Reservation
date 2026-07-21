@@ -14,7 +14,7 @@ export default function NotificationsPage() {
           Flight Alerts
         </h1>
         <p className="font-inter text-lg text-[var(--color-on-surface-variant)]">
-          You currently have no new alerts from the AetherAir network.
+          You currently have no new alerts from the AeroHub network.
         </p>
       </GlassCard>
     </div>

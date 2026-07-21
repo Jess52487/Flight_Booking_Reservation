@@ -14,7 +14,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "AetherAir | Flight Booking",
+  title: "AeroHub | Flight Booking",
   description: "Advanced flight booking system with Liquid Glass design",
 };
 

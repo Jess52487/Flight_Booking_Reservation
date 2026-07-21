@@ -62,7 +62,7 @@ export default function AssistantPage() {
       const newAiMsg: Message = {
         id: (Date.now() + 1).toString(),
         sender: "ai",
-        text: "I have processed your request. My quantum algorithms are currently scanning the aether for the best possible outcome...",
+        text: "I have processed your request. My quantum algorithms are currently scanning the aerohub for the best possible outcome...",
         time: aiTimeString,
       };
       setMessages(prev => [...prev, newAiMsg]);
@@ -85,7 +85,7 @@ export default function AssistantPage() {
                 </span>
               </div>
               <div>
-                <h2 className="font-outfit text-2xl font-bold text-[var(--color-secondary)] leading-tight">Aether</h2>
+                <h2 className="font-outfit text-2xl font-bold text-[var(--color-secondary)] leading-tight">AeroHub</h2>
                 <p className="font-inter text-xs font-semibold text-[var(--color-on-surface-variant)] flex items-center gap-1 uppercase tracking-widest mt-1">
                   <span className="w-2 h-2 rounded-full bg-[var(--color-tertiary)] animate-pulse"></span>
                   Quantum Reasoning Active
@@ -192,7 +192,7 @@ export default function AssistantPage() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 className="w-full h-16 bg-white/5 backdrop-blur-xl border border-white/20 rounded-full pl-24 pr-20 text-[var(--color-on-surface)] focus:ring-2 focus:ring-[var(--color-secondary)]/50 focus:border-[var(--color-secondary)]/50 outline-none transition-all placeholder:text-[var(--color-on-surface-variant)]/40 group-focus-within:scale-[1.01]"
-                placeholder="Command Aether to find your next horizon..."
+                placeholder="Command AeroHub to find your next horizon..."
               />
               <button type="submit" className="absolute right-2 w-12 h-12 bg-[var(--color-secondary)] text-[var(--color-on-secondary)] rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-[var(--color-secondary)]/20 z-10">
                 <span className="material-symbols-outlined">send</span>
@@ -200,7 +200,7 @@ export default function AssistantPage() {
             </div>
             <div className="mt-[var(--spacing-sm)] flex justify-center">
               <p className="font-inter text-[10px] font-semibold text-[var(--color-on-surface-variant)]/50 uppercase tracking-[0.2em]">
-                Aether Intelligence v4.0.2 - Real-time Orbital Processing
+                AeroHub Intelligence v4.0.2 - Real-time Orbital Processing
               </p>
             </div>
           </form>

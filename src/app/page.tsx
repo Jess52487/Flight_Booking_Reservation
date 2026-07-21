@@ -161,7 +161,7 @@ export default function LandingPage() {
               <span className="material-symbols-outlined text-[48px] text-[var(--color-secondary)] mb-[var(--spacing-sm)] group-hover:rotate-12 transition-transform">
                 rocket_launch
               </span>
-              <h3 className="font-outfit text-2xl font-bold text-[var(--color-secondary)]">Aether Elite</h3>
+              <h3 className="font-outfit text-2xl font-bold text-[var(--color-secondary)]">AeroHub Elite</h3>
               <p className="font-inter text-sm text-[var(--color-on-surface-variant)] mt-2">
                 Membership for the frequent star-voyager.
               </p>
@@ -185,10 +185,10 @@ export default function LandingPage() {
         <div className="flex flex-col md:flex-row justify-between items-center px-[var(--spacing-xl)] py-[var(--spacing-lg)] max-w-[var(--spacing-container-max)] mx-auto">
           <div className="mb-[var(--spacing-md)] md:mb-0 text-center md:text-left">
             <div className="font-outfit text-2xl font-bold text-[var(--color-tertiary)] mb-[var(--spacing-xs)]">
-              AetherAir
+              AeroHub
             </div>
             <p className="font-inter text-base text-[var(--color-on-surface-variant)] opacity-80">
-              © 2026 AetherAir Galactic. All rights reserved.
+              © 2026 AeroHub Galactic. All rights reserved.
             </p>
           </div>
           <nav className="flex flex-wrap justify-center gap-[var(--spacing-md)]">
