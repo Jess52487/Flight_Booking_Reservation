@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AetherAir | Resale Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary": "#402d00",
+                "primary-fixed-dim": "#b3c5ff",
+                "primary-fixed": "#dbe1ff",
+                "surface-tint": "#b3c5ff",
+                "primary-container": "#002366",
+                "surface": "#111415",
+                "on-secondary-container": "#94dbf8",
+                "tertiary-fixed-dim": "#fbbc00",
+                "on-secondary": "#003544",
+                "surface-container-lowest": "#0c0f10",
+                "error-container": "#93000a",
+                "on-secondary-fixed-variant": "#004d62",
+                "tertiary-container": "#362600",
+                "surface-container": "#1d2021",
+                "outline": "#8e909c",
+                "on-surface-variant": "#c5c6d2",
+                "secondary-fixed-dim": "#89d0ed",
+                "secondary-fixed": "#baeaff",
+                "secondary": "#89d0ed",
+                "on-primary-container": "#758dd5",
+                "on-error": "#690005",
+                "on-secondary-fixed": "#001f29",
+                "on-background": "#e1e3e4",
+                "surface-dim": "#111415",
+                "on-tertiary-fixed": "#261a00",
+                "error": "#ffb4ab",
+                "surface-container-highest": "#323536",
+                "background": "#111415",
+                "on-tertiary-fixed-variant": "#5c4300",
+                "on-surface": "#e1e3e4",
+                "on-primary": "#0d2c6e",
+                "outline-variant": "#444650",
+                "secondary-container": "#00627b",
+                "inverse-on-surface": "#2e3132",
+                "surface-container-low": "#191c1d",
+                "tertiary": "#fbbc00",
+                "on-primary-fixed": "#00174a",
+                "primary": "#b3c5ff",
+                "on-error-container": "#ffdad6",
+                "surface-container-high": "#282a2b",
+                "inverse-surface": "#e1e3e4",
+                "inverse-primary": "#435b9f",
+                "surface-variant": "#323536",
+                "on-tertiary-container": "#b78800",
+                "on-primary-fixed-variant": "#2a4386",
+                "tertiary-fixed": "#ffdfa0",
+                "surface-bright": "#373a3b"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "lg": "40px",
+                "base": "4px",
+                "sm": "16px",
+                "xs": "8px",
+                "gutter": "24px",
+                "xl": "64px",
+                "container-max": "1280px",
+                "md": "24px"
+            },
+            "fontFamily": {
+                "headline-lg": ["Outfit"],
+                "display-lg-mobile": ["Outfit"],
+                "headline-md": ["Outfit"],
+                "label-sm": ["Inter"],
+                "display-lg": ["Outfit"],
+                "body-lg": ["Inter"],
+                "body-md": ["Inter"],
+                "label-md": ["Inter"]
+            },
+            "fontSize": {
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #111415;
+            color: #e1e3e4;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(137, 208, 237, 0.4);
+            box-shadow: 0px 0px 25px rgba(137, 208, 237, 0.15);
+        }
+
+        .liquid-bg {
+            background: radial-gradient(circle at 50% 50%, #002366 0%, #111415 100%);
+        }
+
+        .glow-amber {
+            box-shadow: 0 0 20px rgba(251, 188, 0, 0.3);
+        }
+
+        .glow-amber:hover {
+            box-shadow: 0 0 30px rgba(251, 188, 0, 0.5);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .ticket-path-line {
+            background: linear-gradient(90deg, transparent 0%, #89d0ed 50%, transparent 100%);
+            height: 1px;
+            width: 100%;
+        }
+
+        /* Micro-interactions */
+        .btn-active-state:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md liquid-bg min-h-screen">
+<!-- Background Atmospheric Shader -->
+
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/20 shadow-[0px_20px_40px_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center px-md py-sm max-w-container-max mx-auto">
+<div class="text-headline-md font-headline-lg font-bold text-secondary tracking-tight">AetherAir</div>
+<div class="hidden md:flex gap-lg items-center">
+<a class="font-label-md text-label-md text-on-surface/80 hover:text-secondary transition-colors" href="#">Flights</a>
+<a class="font-label-md text-label-md text-on-surface/80 hover:text-secondary transition-colors" href="#">Hotels</a>
+<a class="font-label-md text-label-md text-tertiary border-b-2 border-tertiary pb-1" href="#">Manage</a>
+<a class="font-label-md text-label-md text-on-surface/80 hover:text-secondary transition-colors" href="#">Support</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-secondary scale-95 active:scale-90 transition-transform">notifications</button>
+<button class="material-symbols-outlined text-secondary scale-95 active:scale-90 transition-transform">account_circle</button>
+</div>
+</div>
+</nav>
+<!-- Sidebar & Content Wrapper -->
+<main class="pt-xl pb-xl px-sm md:px-xl max-w-container-max mx-auto flex flex-col md:flex-row gap-lg mt-12">
+<!-- Filters Sidebar -->
+<aside class="w-full md:w-80 space-y-md shrink-0">
+<div class="glass-panel p-md rounded-xl">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-tertiary">tune</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Filters</h2>
+</div>
+<div class="space-y-sm">
+<!-- Search -->
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block">Destination</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-white/5 border border-white/20 rounded-lg pl-10 pr-sm py-xs text-on-surface focus:border-secondary transition-all outline-none" placeholder="Where to?" type="text"/>
+</div>
+</div>
+<!-- Date Range -->
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block">Date Range</label>
+<div class="grid grid-cols-2 gap-xs">
+<input class="bg-white/5 border border-white/20 rounded-lg px-xs py-xs text-xs text-on-surface outline-none focus:border-secondary" type="date"/>
+<input class="bg-white/5 border border-white/20 rounded-lg px-xs py-xs text-xs text-on-surface outline-none focus:border-secondary" type="date"/>
+</div>
+</div>
+<!-- Price Range -->
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block">Max Price</label>
+<input class="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-tertiary" type="range"/>
+<div class="flex justify-between text-label-sm text-label-sm text-on-surface-variant mt-1">
+<span>$100</span>
+<span>$5000</span>
+</div>
+</div>
+<!-- Sort -->
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block">Sort By</label>
+<select class="w-full bg-white/5 border border-white/20 rounded-lg px-sm py-xs text-on-surface outline-none focus:border-secondary appearance-none">
+<option>Cheapest First</option>
+<option>Closest Date</option>
+<option>Trending</option>
+</select>
+</div>
+<button class="w-full py-sm bg-tertiary text-on-tertiary font-label-md text-label-md rounded-lg font-bold glow-amber btn-active-state transition-all mt-md">Apply Filters</button>
+</div>
+</div>
+<!-- Promotion Card -->
+<div class="glass-panel p-md rounded-xl relative overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-110 transition-transform duration-700" data-alt="A cinematic low-angle shot of a futuristic AetherAir spacecraft ascending through a nebula of deep blue and violet stardust. The ship reflects soft amber light from a nearby star, emphasizing its sleek metallic hull. Professional travel photography style with extreme high-end digital cockpit aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDe4EgLEyK396EQsf8C0c7jHrna8OAVcRUjvLrs9Hd76jJWgf4sSVsUwbZxYxe7vnosgN8e8T_K2Uk3dkinyJSmz1WJXrSdHZymR24uGTGT_TKSfDFyq0bRqYr3BKYSb-H-jgSimOdY8l7daRH_ldsY2lDhZrIzagjlR5jqhRbdW-ZU12jtv7U1H7eM9lsYKUCp8gDOrdiyJiJZcu1fv0m7pJ010zMT12k83CK5dlSP3cfdkg3vQpj9TwdXyjjcWzlmN6aDFg-spGVH')"></div>
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md text-secondary mb-xs">Elite Voyager?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-sm">Resell your tickets with 0% commission as a Gold Member.</p>
+<button class="text-tertiary font-label-md text-label-md flex items-center gap-xs hover:gap-md transition-all">Learn More <span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+</aside>
+<!-- Marketplace Listings -->
+<section class="flex-grow space-y-md">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-sm">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Available Resales</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Verified tickets from other AetherAir travelers.</p>
+</div>
+<div class="flex gap-xs">
+<span class="px-sm py-xs bg-white/5 border border-white/20 rounded-full text-label-sm text-label-sm text-secondary flex items-center gap-xs">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span> 242 Listings
+                    </span>
+</div>
+</div>
+<!-- Bento-ish Grid for Listings -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-md">
+<!-- Ticket Listing Card 1 -->
+<div class="glass-panel p-md rounded-xl flex flex-col justify-between group transition-all">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">flight_takeoff</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface flex items-center gap-xs">
+                                    LHR <span class="material-symbols-outlined text-secondary text-sm">arrow_forward</span> JFK
+                                </div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">March 24, 2024 • 09:30 AM</div>
+</div>
+</div>
+<div class="bg-secondary-container/30 border border-secondary/20 px-sm py-1 rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Verified Seller</span>
+</div>
+</div>
+<div class="ticket-path-line my-sm"></div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<div class="font-label-sm text-label-sm text-on-surface-variant line-through">Orig: $1,250</div>
+<div class="font-headline-md text-headline-md text-tertiary">$840</div>
+</div>
+<button class="px-lg py-sm bg-tertiary text-on-tertiary font-label-md text-label-md rounded-lg font-bold glow-amber btn-active-state transition-all">Buy Ticket</button>
+</div>
+</div>
+<!-- Ticket Listing Card 2 -->
+<div class="glass-panel p-md rounded-xl flex flex-col justify-between group transition-all border-tertiary/30">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">rocket_launch</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface flex items-center gap-xs">
+                                    DXB <span class="material-symbols-outlined text-secondary text-sm">arrow_forward</span> HND
+                                </div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">April 02, 2024 • 11:15 PM</div>
+</div>
+</div>
+<div class="bg-secondary-container/30 border border-secondary/20 px-sm py-1 rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Verified Seller</span>
+</div>
+</div>
+<div class="ticket-path-line my-sm"></div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<div class="font-label-sm text-label-sm text-on-surface-variant line-through">Orig: $2,100</div>
+<div class="font-headline-md text-headline-md text-tertiary">$1,450</div>
+</div>
+<button class="px-lg py-sm bg-tertiary text-on-tertiary font-label-md text-label-md rounded-lg font-bold glow-amber btn-active-state transition-all">Buy Ticket</button>
+</div>
+</div>
+<!-- Ticket Listing Card 3 -->
+<div class="glass-panel p-md rounded-xl flex flex-col justify-between group transition-all">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">flight_takeoff</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface flex items-center gap-xs">
+                                    CDG <span class="material-symbols-outlined text-secondary text-sm">arrow_forward</span> SFO
+                                </div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">May 15, 2024 • 02:20 PM</div>
+</div>
+</div>
+<div class="bg-secondary-container/30 border border-secondary/20 px-sm py-1 rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Verified Seller</span>
+</div>
+</div>
+<div class="ticket-path-line my-sm"></div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<div class="font-label-sm text-label-sm text-on-surface-variant line-through">Orig: $1,800</div>
+<div class="font-headline-md text-headline-md text-tertiary">$1,100</div>
+</div>
+<button class="px-lg py-sm bg-tertiary text-on-tertiary font-label-md text-label-md rounded-lg font-bold glow-amber btn-active-state transition-all">Buy Ticket</button>
+</div>
+</div>
+<!-- Ticket Listing Card 4 -->
+<div class="glass-panel p-md rounded-xl flex flex-col justify-between group transition-all border-secondary/40">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">flight_takeoff</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface flex items-center gap-xs">
+                                    SIN <span class="material-symbols-outlined text-secondary text-sm">arrow_forward</span> SYD
+                                </div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">June 10, 2024 • 08:00 AM</div>
+</div>
+</div>
+<div class="bg-secondary-container/30 border border-secondary/20 px-sm py-1 rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Verified Seller</span>
+</div>
+</div>
+<div class="ticket-path-line my-sm"></div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<div class="font-label-sm text-label-sm text-on-surface-variant line-through">Orig: $980</div>
+<div class="font-headline-md text-headline-md text-tertiary">$620</div>
+</div>
+<button class="px-lg py-sm bg-tertiary text-on-tertiary font-label-md text-label-md rounded-lg font-bold glow-amber btn-active-state transition-all">Buy Ticket</button>
+</div>
+</div>
+</div>
+<!-- Empty State / Load More -->
+<div class="flex justify-center pt-lg">
+<button class="px-xl py-sm glass-panel border-white/20 rounded-full text-secondary font-label-md text-label-md flex items-center gap-sm hover:bg-white/10 transition-all active:scale-95">
+                    Load More Listings
+                    <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full mt-auto border-t border-white/10 bg-surface-container-lowest/40 backdrop-blur-md">
+<div class="flex flex-col md:flex-row justify-between items-center px-xl py-lg max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md text-tertiary mb-sm md:mb-0">AetherAir</div>
+<div class="flex gap-md mb-sm md:mb-0">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Sustainability</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Global Lounges</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant opacity-80">
+                © 2024 AetherAir Galactic. All rights reserved.
+            </div>
+</div>
+</footer>
+<!-- Interactive Layer: Liquid Light Sweep -->
+<script>
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 50%)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.background = 'rgba(255, 255, 255, 0.08)';
+            });
+        });
+    </script>
+</body></html>
