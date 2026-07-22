@@ -53,18 +53,20 @@ export default function LoginPage() {
       <div className="fixed -top-32 -right-32 w-96 h-96 bg-[var(--color-tertiary)]/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
       {/* Simplified Header */}
-      <header className="fixed top-0 w-full z-50 flex justify-between items-center px-[var(--spacing-md)] py-[var(--spacing-sm)] bg-white/5 backdrop-blur-xl border-b border-white/10">
-        <Link href="/" className="text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
-          AeroHub
-        </Link>
-        <div className="hidden md:flex gap-[var(--spacing-md)]">
-          <Link href="#" className="font-inter text-sm font-semibold text-[var(--color-on-surface-variant)] hover:text-[var(--color-secondary)] transition-colors">Support</Link>
-          <Link href="#" className="font-inter text-sm font-semibold text-[var(--color-on-surface-variant)] hover:text-[var(--color-secondary)] transition-colors">Safety</Link>
+      <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10">
+        <div className="max-w-[1600px] mx-auto w-full flex justify-between items-center px-[var(--spacing-md)] py-[var(--spacing-sm)]">
+          <Link href="/" className="text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
+            AeroHub
+          </Link>
+          <div className="hidden md:flex gap-[var(--spacing-md)]">
+            <Link href="#" className="font-inter text-sm font-semibold text-[var(--color-on-surface-variant)] hover:text-[var(--color-secondary)] transition-colors">Support</Link>
+            <Link href="#" className="font-inter text-sm font-semibold text-[var(--color-on-surface-variant)] hover:text-[var(--color-secondary)] transition-colors">Safety</Link>
+          </div>
         </div>
       </header>
 
       {/* Glass Card */}
-      <div className="w-full max-w-lg z-10 mt-16">
+      <div className="w-full max-w-[560px] z-10 mt-16">
         <GlassCard className="p-[var(--spacing-lg)] rounded-[32px] flex flex-col gap-[var(--spacing-lg)] border-white/20 relative overflow-hidden bg-[rgba(255,255,255,0.08)] backdrop-blur-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
           <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
           

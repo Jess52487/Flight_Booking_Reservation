@@ -45,9 +45,8 @@ export default function SignupPage() {
 
   return (
     <div className="relative min-h-screen bg-[var(--color-background)] overflow-x-hidden text-[var(--color-on-surface)] select-none">
-      {/* Header / Branding */}
       <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 px-[var(--spacing-md)] py-[var(--spacing-sm)]">
-        <div className="max-w-[var(--spacing-container-max)] mx-auto flex justify-between items-center">
+        <div className="max-w-[1600px] mx-auto flex justify-between items-center">
           <Link href="/" className="text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
             AeroHub
           </Link>

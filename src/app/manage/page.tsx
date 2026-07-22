@@ -77,7 +77,7 @@ export default function ManagePage() {
       {/* Background Atmospheric Shader */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-[var(--color-primary-container)]/30 via-[var(--color-surface)] to-[var(--color-secondary-container)]/20"></div>
 
-      <div className="max-w-[var(--spacing-container-max)] mx-auto flex flex-col lg:flex-row gap-[var(--spacing-lg)] pt-24 px-[var(--spacing-md)] md:px-[var(--spacing-xl)]">
+      <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-[var(--spacing-lg)] pt-24 px-[var(--spacing-md)] md:px-[var(--spacing-xl)]">
         {/* Filters Sidebar */}
         <aside className="w-full lg:w-80 space-y-[var(--spacing-md)] shrink-0 z-10">
           <GlassCard className="p-[var(--spacing-md)] rounded-xl border border-white/10">

@@ -16,7 +16,7 @@ export function NavBar() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/20 shadow-[0px_20px_40px_rgba(0,0,0,0.3)]">
-      <div className="flex justify-between items-center px-[var(--spacing-md)] py-[var(--spacing-sm)] max-w-[var(--spacing-container-max)] mx-auto">
+      <div className="flex justify-between items-center px-[var(--spacing-md)] py-[var(--spacing-sm)] max-w-[1600px] mx-auto">
         <Link href="/" className="text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
           AeroHub
         </Link>
