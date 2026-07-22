@@ -32,7 +32,7 @@ export default function WelcomeOnboardingPage() {
       </div>
 
       {/* Content Canvas */}
-      <section className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full max-w-[1400px] mx-auto">
+      <section className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full max-w-[1600px] mx-auto">
         <div className="w-full flex flex-col md:grid md:grid-cols-12 gap-10 items-center">
           {/* Left Content: Welcome*/}
           <div className="md:col-span-7 flex flex-col gap-6 text-center md:text-left w-full min-w-0">
