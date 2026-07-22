@@ -38,7 +38,7 @@ export default function PreferencesOnboardingPage() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow flex items-center justify-center pt-28 pb-[var(--spacing-lg)] px-[var(--spacing-sm)] md:px-[var(--spacing-xl)] z-10">
+      <main className="flex-grow flex flex-col items-center justify-center pt-28 pb-10 px-4 md:px-8 z-10 w-full">
         <div className="w-full max-w-4xl space-y-[var(--spacing-lg)]">
           {/* Progress Indicator */}
           <div className="flex items-center justify-between gap-[var(--spacing-xs)] max-w-md mx-auto mb-[var(--spacing-lg)]">

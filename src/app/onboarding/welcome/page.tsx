@@ -32,10 +32,10 @@ export default function WelcomeOnboardingPage() {
       </div>
 
       {/* Content Canvas */}
-      <main className="relative z-10 flex-grow flex items-center justify-center px-[var(--spacing-sm)] md:px-[var(--spacing-xl)] py-[var(--spacing-lg)] mt-16">
+      <main className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full">
         <div className="max-w-[var(--spacing-container-max)] w-full grid grid-cols-1 lg:grid-cols-12 gap-[var(--spacing-lg)] items-center">
           {/* Left Content: Welcome*/}
-          <div className="lg:col-span-7 flex flex-col gap-[var(--spacing-md)] text-center lg:text-left">
+          <div className="lg:col-span-7 flex flex-col gap-[var(--spacing-md)] text-center lg:text-left w-full">
             <div className="inline-flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-sm)] py-1 bg-[var(--color-secondary-container)]/20 border border-[var(--color-secondary)]/30 rounded-full w-fit mx-auto lg:mx-0">
               <span className="material-symbols-outlined text-[var(--color-secondary)] text-[18px]">verified</span>
               <span className="font-inter text-[12px] font-bold text-[var(--color-secondary)] uppercase tracking-widest">Enabling Galactic Protocol</span>
