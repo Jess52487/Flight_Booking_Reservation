@@ -13,6 +13,7 @@ export default function HotelsPage() {
     setIsSearching(true);
     setTimeout(() => {
       setIsSearching(false);
+      cardsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 2000);
   };
 
