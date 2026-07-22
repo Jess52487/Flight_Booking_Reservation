@@ -7,7 +7,21 @@ import { NavBar } from "@/components/NavBar";
 
 export default function HotelsPage() {
   const [isSearching, setIsSearching] = useState(false);
+  const [selectedHotel, setSelectedHotel] = useState<any | null>(null);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
   const cardsRef = useRef<HTMLDivElement>(null);
+
+  const openHotelModal = (name: string, price: string, desc: string, img: string) => {
+    setSelectedHotel({ name, price, desc, img });
+  };
+
+  const handleBookHotel = () => {
+    setBookingSuccess(true);
+    setSelectedHotel(null);
+    setTimeout(() => {
+      setBookingSuccess(false);
+    }, 4000);
+  };
 
   const handleSearch = () => {
     setIsSearching(true);
@@ -99,10 +113,12 @@ export default function HotelsPage() {
             </li>
           </ul>
         </nav>
-        <div className="px-[var(--spacing-md)] mt-auto">
-          <button className="w-full py-4 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-bold rounded-xl shadow-[0_0_15px_rgba(251,188,0,0.4)] hover:shadow-[0_0_25px_rgba(251,188,0,0.7)] scale-95 active:scale-90 transition-all uppercase tracking-tighter text-[12px]">
-            Book New Flight
-          </button>
+        <div className="px-[var(--spacing-md)] mt-auto w-full">
+          <Link href="/booking" className="block w-full">
+            <button className="w-full py-4 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-bold rounded-xl shadow-[0_0_15px_rgba(251,188,0,0.4)] hover:shadow-[0_0_25px_rgba(251,188,0,0.7)] scale-95 active:scale-90 transition-all uppercase tracking-tighter text-[12px]">
+              Book New Flight
+            </button>
+          </Link>
         </div>
       </aside>
 
@@ -241,7 +257,10 @@ export default function HotelsPage() {
                   <p className="text-[var(--color-on-surface-variant)] font-inter text-[16px] mb-[var(--spacing-md)]">
                     Experience the silent serenity of the Shackleton Crater with earth-rise views.
                   </p>
-                  <button className="w-full py-3 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-bold rounded-xl relative overflow-hidden group-hover:shadow-[0_0_15px_rgba(251,188,0,0.4)] transition-all uppercase tracking-widest text-xs">
+                  <button 
+                    onClick={() => openHotelModal('Lunar Outposts', 'Ξ 2.4', 'Experience the silent serenity of the Shackleton Crater with earth-rise views.', 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=600')}
+                    className="w-full py-3 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-bold rounded-xl relative overflow-hidden group-hover:shadow-[0_0_15px_rgba(251,188,0,0.4)] transition-all uppercase tracking-widest text-xs"
+                  >
                     View Details
                   </button>
                 </div>
@@ -267,7 +286,10 @@ export default function HotelsPage() {
                   <p className="text-[var(--color-on-surface-variant)] font-inter text-[16px] mb-[var(--spacing-md)]">
                     Suspended in the rings of Saturn, witness the cosmos in pure weightless luxury.
                   </p>
-                  <button className="w-full py-3 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-bold rounded-xl relative overflow-hidden group-hover:shadow-[0_0_15px_rgba(251,188,0,0.4)] transition-all uppercase tracking-widest text-xs">
+                  <button 
+                    onClick={() => openHotelModal('Orbital Suites', 'Ξ 4.1', 'Suspended in the rings of Saturn, witness the cosmos in pure weightless luxury.', 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600')}
+                    className="w-full py-3 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-bold rounded-xl relative overflow-hidden group-hover:shadow-[0_0_15px_rgba(251,188,0,0.4)] transition-all uppercase tracking-widest text-xs"
+                  >
                     View Details
                   </button>
                 </div>
@@ -277,8 +299,8 @@ export default function HotelsPage() {
               <GlassCard className="rounded-[24px] overflow-hidden group cursor-pointer !p-0 glass-panel-interactive border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.08)] hover:border-white/30 hover:shadow-[0_20px_40px_rgba(137,208,237,0.15)] transition-all">
                 <div className="h-64 relative overflow-hidden">
                   <img
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    src="https://images.unsplash.com/photo-1542314831-c6a4d27ce66b?auto=format&fit=crop&q=80&w=600"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 animate-fade-in"
+                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=600"
                     alt="Skyloft Penthouses"
                   />
                   <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full font-inter text-[12px] font-bold border border-white/20 tracking-[0.1em]">
@@ -293,7 +315,10 @@ export default function HotelsPage() {
                   <p className="text-[var(--color-on-surface-variant)] font-inter text-[16px] mb-[var(--spacing-md)]">
                     Floating above Neo-Tokyo, these retreats offer the ultimate atmospheric height.
                   </p>
-                  <button className="w-full py-3 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-bold rounded-xl relative overflow-hidden group-hover:shadow-[0_0_15px_rgba(251,188,0,0.4)] transition-all uppercase tracking-widest text-xs">
+                  <button 
+                    onClick={() => openHotelModal('Skyloft Penthouses', 'Ξ 1.8', 'Floating above Neo-Tokyo, these retreats offer the ultimate atmospheric height.', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=600')}
+                    className="w-full py-3 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-bold rounded-xl relative overflow-hidden group-hover:shadow-[0_0_15px_rgba(251,188,0,0.4)] transition-all uppercase tracking-widest text-xs"
+                  >
                     View Details
                   </button>
                 </div>
@@ -312,8 +337,7 @@ export default function HotelsPage() {
                 AI Personalized Selection
               </div>
             </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[var(--spacing-md)]">
+                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-[var(--spacing-md)]">
               <GlassCard className="p-[var(--spacing-md)] rounded-xl border-l-4 border-[var(--color-secondary)] flex gap-[var(--spacing-md)] items-center animate-[pulse-sky_3s_infinite_ease-in-out]">
                 <div className="w-32 h-32 rounded-lg bg-[var(--color-surface-container)] overflow-hidden flex-shrink-0">
                   <img
@@ -330,7 +354,10 @@ export default function HotelsPage() {
                   <p className="text-[var(--color-on-surface-variant)] font-inter text-[16px] mb-2">
                     Based on your interest in "Nebula Photography" and "Silent Retreats".
                   </p>
-                  <button className="text-[var(--color-secondary)] font-bold text-[14px] flex items-center gap-1 hover:gap-3 transition-all">
+                  <button 
+                    onClick={() => openHotelModal('Andromeda Observation Deck', 'Ξ 3.2', 'Based on your interest in "Nebula Photography" and "Silent Retreats".', 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80&w=400')}
+                    className="text-[var(--color-secondary)] font-bold text-[14px] flex items-center gap-1 hover:gap-3 transition-all"
+                  >
                     Explore match <span className="material-symbols-outlined">arrow_forward</span>
                   </button>
                 </div>
@@ -352,7 +379,10 @@ export default function HotelsPage() {
                   <p className="text-[var(--color-on-surface-variant)] font-inter text-[16px] mb-2">
                     Fits your preference for "Extreme Environments" and "Bioluminescent Views".
                   </p>
-                  <button className="text-[var(--color-secondary)] font-bold text-[14px] flex items-center gap-1 hover:gap-3 transition-all">
+                  <button 
+                    onClick={() => openHotelModal('Europa Sub-Ice Lodge', 'Ξ 5.0', 'Fits your preference for "Extreme Environments" and "Bioluminescent Views".', 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=400')}
+                    className="text-[var(--color-secondary)] font-bold text-[14px] flex items-center gap-1 hover:gap-3 transition-all"
+                  >
                     Explore match <span className="material-symbols-outlined">arrow_forward</span>
                   </button>
                 </div>
@@ -378,6 +408,61 @@ export default function HotelsPage() {
             </div>
           </div>
         </footer>
+        
+        {/* Reservation Modal Overlay */}
+        {selectedHotel && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+            <div className="bg-[rgba(17,20,21,0.95)] border border-[rgba(255,255,255,0.2)] rounded-[32px] p-6 max-w-lg w-full relative overflow-hidden shadow-2xl animate-fade-in">
+              <button 
+                onClick={() => setSelectedHotel(null)}
+                className="absolute top-4 right-4 text-[var(--color-secondary)]/60 hover:text-[var(--color-secondary)] transition-colors"
+              >
+                <span className="material-symbols-outlined text-[28px]">close</span>
+              </button>
+              
+              <div className="h-48 w-full rounded-2xl overflow-hidden mb-4">
+                <img className="w-full h-full object-cover" src={selectedHotel.img} alt={selectedHotel.name} />
+              </div>
+              
+              <h3 className="font-outfit text-[28px] font-bold text-[var(--color-secondary)] mb-1">{selectedHotel.name}</h3>
+              <p className="font-inter text-sm text-[var(--color-tertiary)] font-bold mb-3">{selectedHotel.price} / night</p>
+              <p className="font-inter text-[15px] text-[var(--color-on-surface-variant)] mb-5">{selectedHotel.desc}</p>
+              
+              <div className="space-y-3 mb-6">
+                <div>
+                  <label className="font-inter text-xs text-[var(--color-secondary)] uppercase tracking-wider block mb-1">Select Dates</label>
+                  <input type="text" defaultValue="Oct 24 - Oct 31, 2026" className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-[var(--color-secondary)]" />
+                </div>
+                <div>
+                  <label className="font-inter text-xs text-[var(--color-secondary)] uppercase tracking-wider block mb-1">Guests</label>
+                  <select className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-[var(--color-secondary)]">
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                  </select>
+                </div>
+              </div>
+              
+              <button 
+                onClick={handleBookHotel}
+                className="w-full py-4 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-outfit text-md font-bold rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.4)] hover:shadow-[0_0_30px_rgba(251,188,0,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all uppercase tracking-widest"
+              >
+                Confirm Stay Reservation
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Success Toast */}
+        {bookingSuccess && (
+          <div className="fixed bottom-8 right-8 z-[110] bg-[rgba(255,255,255,0.08)] border border-[rgba(251,188,0,0.4)] backdrop-blur-[20px] rounded-2xl p-4 shadow-2xl flex items-center gap-3 animate-float max-w-sm">
+            <span className="material-symbols-outlined text-[var(--color-tertiary)] text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
+            <div>
+              <h5 className="font-outfit text-[16px] font-bold text-[var(--color-secondary)]">Stay Reserved!</h5>
+              <p className="font-inter text-xs text-[var(--color-on-surface-variant)]">Your cabin has been synced to your flight itinerary.</p>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
