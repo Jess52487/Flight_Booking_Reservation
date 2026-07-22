@@ -4,23 +4,45 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { GlassCard } from "@/components/GlassCard";
 import { NavBar } from "@/components/NavBar";
+import { supabase } from "@/lib/supabase";
+import { useAuth } from "@/components/AuthProvider";
 
 export default function HotelsPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [selectedHotel, setSelectedHotel] = useState<any | null>(null);
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const { user } = useAuth();
 
   const openHotelModal = (name: string, price: string, desc: string, img: string) => {
     setSelectedHotel({ name, price, desc, img });
   };
 
-  const handleBookHotel = () => {
-    setBookingSuccess(true);
-    setSelectedHotel(null);
-    setTimeout(() => {
-      setBookingSuccess(false);
-    }, 4000);
+  const handleBookHotel = async () => {
+    if (!user || !selectedHotel) return;
+    try {
+      const priceNumeric = parseFloat(selectedHotel.price.replace(/[^0-9.]/g, "")) || 0;
+      const { error: stayError } = await supabase.from("stays").insert({
+        user_id: user.id,
+        hotel_name: selectedHotel.name,
+        check_in: "2026-10-24",
+        check_out: "2026-10-31",
+        guests: 1,
+        price_per_night: priceNumeric,
+      });
+
+      if (stayError) {
+        console.error("Error booking stay:", stayError.message);
+      } else {
+        setBookingSuccess(true);
+        setSelectedHotel(null);
+        setTimeout(() => {
+          setBookingSuccess(false);
+        }, 4000);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleSearch = () => {

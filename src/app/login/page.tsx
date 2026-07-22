@@ -2,10 +2,40 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { GlassCard } from "@/components/GlassCard";
+import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    try {
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (signInError) {
+        setError(signInError.message);
+      } else {
+        router.push("/onboarding/welcome");
+      }
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center p-[var(--spacing-sm)] select-none">
@@ -54,7 +84,13 @@ export default function LoginPage() {
           </div>
 
           {/* Form */}
-          <form className="flex flex-col gap-[var(--spacing-md)]" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex flex-col gap-[var(--spacing-md)]" onSubmit={handleLogin}>
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/30 text-red-200 text-sm py-3 px-4 rounded-xl font-inter text-center">
+                {error}
+              </div>
+            )}
+
             <div className="flex flex-col gap-[var(--spacing-xs)]">
               <label className="font-inter text-sm font-medium text-[var(--color-on-surface)]/70 ml-1">
                 Email Terminal
@@ -63,6 +99,9 @@ export default function LoginPage() {
                 <span className="material-symbols-outlined text-[var(--color-on-surface-variant)]">alternate_email</span>
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   className="bg-transparent border-none focus:ring-0 text-[var(--color-on-surface)] w-full py-4 px-3 font-inter placeholder:text-white/20 outline-none"
                   placeholder="voyager@aerohub.galactic"
                 />
@@ -82,6 +121,9 @@ export default function LoginPage() {
                 <span className="material-symbols-outlined text-[var(--color-on-surface-variant)]">lock</span>
                 <input
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                   className="bg-transparent border-none focus:ring-0 text-[var(--color-on-surface)] w-full py-4 px-3 font-inter placeholder:text-white/20 outline-none"
                   placeholder="••••••••••••"
                 />
@@ -97,9 +139,10 @@ export default function LoginPage() {
 
             <button 
               type="submit" 
-              className="w-full py-4 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-outfit text-xl font-bold rounded-xl shadow-[0_0_15px_rgba(251,188,0,0.3)] hover:shadow-[0_0_25px_rgba(251,188,0,0.6)] active:scale-95 transition-all uppercase tracking-widest relative overflow-hidden group"
+              disabled={loading}
+              className="w-full py-4 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-outfit text-xl font-bold rounded-xl shadow-[0_0_15px_rgba(251,188,0,0.3)] hover:shadow-[0_0_25px_rgba(251,188,0,0.6)] active:scale-95 transition-all uppercase tracking-widest relative overflow-hidden group disabled:opacity-50"
             >
-              <span className="relative z-10">Initiate Sign In</span>
+              <span className="relative z-10">{loading ? "Logging in..." : "Initiate Sign In"}</span>
               <div className="absolute inset-0 bg-white/15 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             </button>
           </form>

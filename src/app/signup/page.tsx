@@ -2,10 +2,46 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { GlassCard } from "@/components/GlassCard";
+import { supabase } from "@/lib/supabase";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    try {
+      const { error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: fullname,
+          }
+        }
+      });
+
+      if (signUpError) {
+        setError(signUpError.message);
+      } else {
+        router.push("/onboarding/welcome");
+      }
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="relative min-h-screen bg-[var(--color-background)] overflow-x-hidden text-[var(--color-on-surface)] select-none">
@@ -69,13 +105,27 @@ export default function SignupPage() {
             </div>
             
             <GlassCard className="p-[var(--spacing-md)] md:p-[var(--spacing-lg)] rounded-[24px] border-white/10 flex flex-col gap-[var(--spacing-md)]">
-              <form className="space-y-[var(--spacing-md)]" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-[var(--spacing-md)]" onSubmit={handleSignup}>
+                {error && (
+                  <div className="bg-red-500/10 border border-red-500/30 text-red-200 text-sm py-3 px-4 rounded-xl font-inter text-center">
+                    {error}
+                  </div>
+                )}
+
                 {/* Full Name */}
                 <div className="space-y-[var(--spacing-xs)]">
                   <label className="block font-inter text-sm font-semibold text-[var(--color-on-surface-variant)] ml-2" htmlFor="fullname">Full Name</label>
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-on-surface-variant)] text-[20px]">person</span>
-                    <input className="w-full bg-white/5 border border-white/20 rounded-xl py-3 pl-12 pr-4 text-[var(--color-on-surface)] placeholder:text-white/20 focus:outline-none focus:border-[var(--color-secondary)] focus:ring-1 focus:ring-[var(--color-secondary)]/50 backdrop-blur-sm transition-all font-inter text-[16px]" id="fullname" placeholder="Commander Shepard" type="text"/>
+                    <input 
+                      className="w-full bg-white/5 border border-white/20 rounded-xl py-3 pl-12 pr-4 text-[var(--color-on-surface)] placeholder:text-white/20 focus:outline-none focus:border-[var(--color-secondary)] focus:ring-1 focus:ring-[var(--color-secondary)]/50 backdrop-blur-sm transition-all font-inter text-[16px]" 
+                      id="fullname" 
+                      placeholder="Commander Shepard" 
+                      type="text"
+                      value={fullname}
+                      onChange={(e) => setFullname(e.target.value)}
+                      required
+                    />
                   </div>
                 </div>
                 {/* Email */}
@@ -83,7 +133,15 @@ export default function SignupPage() {
                   <label className="block font-inter text-sm font-semibold text-[var(--color-on-surface-variant)] ml-2" htmlFor="email">Email Address</label>
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-on-surface-variant)] text-[20px]">alternate_email</span>
-                    <input className="w-full bg-white/5 border border-white/20 rounded-xl py-3 pl-12 pr-4 text-[var(--color-on-surface)] placeholder:text-white/20 focus:outline-none focus:border-[var(--color-secondary)] focus:ring-1 focus:ring-[var(--color-secondary)]/50 backdrop-blur-sm transition-all font-inter text-[16px]" id="email" placeholder="voyager@aerohub.galactic" type="email"/>
+                    <input 
+                      className="w-full bg-white/5 border border-white/20 rounded-xl py-3 pl-12 pr-4 text-[var(--color-on-surface)] placeholder:text-white/20 focus:outline-none focus:border-[var(--color-secondary)] focus:ring-1 focus:ring-[var(--color-secondary)]/50 backdrop-blur-sm transition-all font-inter text-[16px]" 
+                      id="email" 
+                      placeholder="voyager@aerohub.galactic" 
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
                   </div>
                 </div>
                 {/* Password */}
@@ -96,6 +154,9 @@ export default function SignupPage() {
                       id="password" 
                       placeholder="••••••••••••" 
                       type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
                     />
                     <button 
                       type="button" 
@@ -109,15 +170,19 @@ export default function SignupPage() {
                 {/* Terms Checkbox */}
                 <div className="flex items-start gap-[var(--spacing-sm)] pt-[var(--spacing-xs)]">
                   <div className="relative flex items-center">
-                    <input className="custom-checkbox w-5 h-5 rounded bg-white/5 border-white/30 text-[var(--color-tertiary)] focus:ring-0 focus:ring-offset-0 transition-all cursor-pointer" id="terms" type="checkbox"/>
+                    <input className="custom-checkbox w-5 h-5 rounded bg-white/5 border-white/30 text-[var(--color-tertiary)] focus:ring-0 focus:ring-offset-0 transition-all cursor-pointer" id="terms" type="checkbox" required/>
                   </div>
                   <label className="font-inter text-sm text-[var(--color-on-surface-variant)] cursor-pointer" htmlFor="terms">
                     I agree to the <Link className="text-[var(--color-secondary)] hover:underline" href="#">Galactic Terms of Service</Link> and <Link className="text-[var(--color-secondary)] hover:underline" href="#">Travel Protocols</Link>.
                   </label>
                 </div>
                 {/* CTA Button */}
-                <button className="w-full bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold py-4 rounded-xl uppercase tracking-widest shadow-xl hover:shadow-[0_0_20px_rgba(251,188,0,0.5)] transition-all duration-300 transform active:scale-[0.98] relative overflow-hidden group">
-                  <span className="relative z-10">Create Account</span>
+                <button 
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold py-4 rounded-xl uppercase tracking-widest shadow-xl hover:shadow-[0_0_20px_rgba(251,188,0,0.5)] transition-all duration-300 transform active:scale-[0.98] relative overflow-hidden group disabled:opacity-50"
+                >
+                  <span className="relative z-10">{loading ? "Registering..." : "Create Account"}</span>
                   <div className="absolute inset-0 bg-white/15 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </button>
                 <div className="text-center pt-[var(--spacing-md)] border-t border-white/10">

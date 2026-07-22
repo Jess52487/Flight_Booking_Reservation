@@ -1,48 +1,72 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/Button";
 import { NavBar } from "@/components/NavBar";
 import Link from "next/link";
+import { useAuth } from "@/components/AuthProvider";
+import { supabase } from "@/lib/supabase";
 
 export default function ManagePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("all");
+  const [dbBookings, setDbBookings] = useState<any[]>([]);
+  const [dbStays, setDbStays] = useState<any[]>([]);
+  const [dbLoading, setDbLoading] = useState(true);
+  const { user, loading: authLoading } = useAuth();
 
-  const bookings = [
-    {
-      id: 1,
-      from: "LHR",
-      to: "JFK",
-      date: "Oct 12, 2026 • 09:30 AM",
-      flightNo: "AA242",
-      status: "Upcoming",
-      class: "Ether Business",
-    },
-    {
-      id: 2,
-      from: "JFK",
-      to: "HND",
-      date: "Nov 04, 2026 • 11:15 PM",
-      flightNo: "AA908",
-      status: "Planned",
-      class: "First",
-    },
-    {
-      id: 3,
-      from: "CDG",
-      to: "SFO",
-      date: "Dec 15, 2026 • 02:20 PM",
-      flightNo: "AF301",
-      status: "Past",
-      class: "Economy",
-    },
+  useEffect(() => {
+    if (!user) return;
+    const fetchReservations = async () => {
+      try {
+        const [bookingsRes, staysRes] = await Promise.all([
+          supabase.from("bookings").select("*").eq("user_id", user.id),
+          supabase.from("stays").select("*").eq("user_id", user.id)
+        ]);
+
+        if (bookingsRes.data) setDbBookings(bookingsRes.data);
+        if (staysRes.data) setDbStays(staysRes.data);
+      } catch (err) {
+        console.error("Error fetching itineraries:", err);
+      } finally {
+        setDbLoading(false);
+      }
+    };
+    fetchReservations();
+  }, [user]);
+
+  // Merge flights and stays
+  const itineraries = [
+    ...dbBookings.map(b => ({
+      id: b.id,
+      type: "flight",
+      from: b.origin,
+      to: b.destination,
+      date: new Date(b.departure_date).toLocaleDateString("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric"
+      }) + " • 10:00 AM",
+      flightNo: b.flight_number,
+      status: b.status || "Upcoming",
+      class: "Cabin Economy",
+    })),
+    ...dbStays.map(s => ({
+      id: s.id,
+      type: "stay",
+      from: "Stay Cabin",
+      to: s.hotel_name,
+      date: `${new Date(s.check_in).toLocaleDateString("en-US", { month: "short", day: "2-digit" })} - ${new Date(s.check_out).toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}`,
+      flightNo: "Stay Reservation",
+      status: "Confirmed",
+      class: `${s.guests} Guest${s.guests > 1 ? "s" : ""} • Ξ ${s.price_per_night}/night`,
+    }))
   ];
 
-  const filteredBookings = bookings.filter(booking => {
+  const filteredBookings = itineraries.filter(booking => {
     const matchesSearch = booking.to.toLowerCase().includes(searchQuery.toLowerCase()) || booking.from.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesFilter = filterType === "all" || booking.status.toLowerCase() === filterType;
+    const matchesFilter = filterType === "all" || booking.status.toLowerCase() === filterType.toLowerCase() || (filterType.toLowerCase() === "upcoming" && booking.status.toLowerCase() === "confirmed");
     return matchesSearch && matchesFilter;
   });
 
@@ -146,14 +170,14 @@ export default function ManagePage() {
                 <GlassCard
                   key={booking.id}
                   className={`p-[var(--spacing-md)] rounded-xl flex flex-col justify-between group transition-all hover:-translate-y-1 hover:shadow-lg ${
-                    booking.status === "Upcoming" ? "border-[var(--color-tertiary)]/30" : "border-white/10"
+                    booking.status === "Upcoming" || booking.status === "Confirmed" ? "border-[var(--color-tertiary)]/30" : "border-white/10"
                   }`}
                 >
                   <div className="flex justify-between items-start mb-[var(--spacing-md)]">
                     <div className="flex items-center gap-[var(--spacing-sm)]">
-                      <div className={`w-12 h-12 rounded-lg ${booking.status === "Upcoming" ? "bg-[var(--color-tertiary)]/10" : "bg-[var(--color-secondary)]/10"} flex items-center justify-center`}>
-                        <span className={`material-symbols-outlined ${booking.status === "Upcoming" ? "text-[var(--color-tertiary)]" : "text-[var(--color-secondary)]"}`}>
-                          flight_takeoff
+                      <div className={`w-12 h-12 rounded-lg ${booking.status === "Upcoming" || booking.status === "Confirmed" ? "bg-[var(--color-tertiary)]/10" : "bg-[var(--color-secondary)]/10"} flex items-center justify-center`}>
+                        <span className={`material-symbols-outlined ${booking.status === "Upcoming" || booking.status === "Confirmed" ? "text-[var(--color-tertiary)]" : "text-[var(--color-secondary)]"}`}>
+                          {booking.type === "stay" ? "bed" : "flight_takeoff"}
                         </span>
                       </div>
                       <div>
@@ -177,7 +201,9 @@ export default function ManagePage() {
                   <div className="flex justify-between items-end">
                     <div className="space-y-1">
                       <div className="font-inter text-sm text-[var(--color-on-surface)] font-semibold">{booking.class}</div>
-                      <div className="font-inter text-xs text-[var(--color-on-surface-variant)]">Flight: {booking.flightNo}</div>
+                      <div className="font-inter text-xs text-[var(--color-on-surface-variant)]">
+                        {booking.type === "stay" ? "Stay" : "Flight"}: {booking.flightNo}
+                      </div>
                     </div>
                     <button className="px-[var(--spacing-lg)] py-[var(--spacing-sm)] bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold rounded-lg shadow-[0_0_15px_rgba(251,188,0,0.3)] hover:shadow-[0_0_25px_rgba(251,188,0,0.6)] active:scale-95 transition-all uppercase tracking-widest">
                       Manage

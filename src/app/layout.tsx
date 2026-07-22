@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Advanced flight booking system with Liquid Glass design",
 };
 
+import { AuthProvider } from "@/components/AuthProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,10 +33,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} antialiased min-h-screen bg-[var(--color-background)] text-[var(--color-on-background)]`}
       >
-        <NavBar />
-        <main className="pt-[80px]">
-          {children}
-        </main>
+        <AuthProvider>
+          <NavBar />
+          <main className="pt-[80px]">
+            {children}
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );
