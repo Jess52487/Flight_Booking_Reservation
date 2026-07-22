@@ -32,7 +32,7 @@ export default function WelcomeOnboardingPage() {
       </div>
 
       {/* Content Canvas */}
-      <main className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full max-w-7xl mx-auto">
+      <section className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full max-w-7xl mx-auto">
         <div className="w-full flex flex-col lg:grid lg:grid-cols-12 gap-10 items-center">
           {/* Left Content: Welcome*/}
           <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left w-full min-w-0">
@@ -130,7 +130,7 @@ export default function WelcomeOnboardingPage() {
             </div>
           </div>
         </div>
-      </main>
+      </section>
 
       {/* Footer */}
       <footer className="relative z-10 w-full bg-[var(--color-surface-container-lowest)]/40 backdrop-blur-md border-t border-white/10 mt-auto">
