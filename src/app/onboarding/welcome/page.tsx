@@ -72,7 +72,7 @@ export default function WelcomeOnboardingPage() {
               <div className="flex justify-between items-start mb-[var(--spacing-lg)] relative z-10">
                 <div className="flex items-center gap-[var(--spacing-md)]">
                   <div className="w-16 h-16 rounded-full border-2 border-[var(--color-tertiary)] p-1">
-                    <img alt="User Profile" className="w-full h-full rounded-full object-cover" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150" />
+                    <img alt="User Profile" className="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV" />
                   </div>
                   <div>
                     <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)]">Commander</h3>
