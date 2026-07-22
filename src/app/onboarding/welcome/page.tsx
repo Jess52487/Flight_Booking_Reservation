@@ -44,7 +44,7 @@ export default function WelcomeOnboardingPage() {
               Welcome Home,<br />
               <span className="text-[var(--color-tertiary)]">Commander.</span>
             </h1>
-            <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto lg:mx-0">
+            <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto lg:mx-0 break-normal whitespace-normal">
               Your destination starts here. Experience a faster, smarter way to book flights and plan unforgettable journeys.
             </p>
             <div className="mt-[var(--spacing-md)] flex flex-col sm:flex-row gap-[var(--spacing-sm)] justify-center lg:justify-start">
