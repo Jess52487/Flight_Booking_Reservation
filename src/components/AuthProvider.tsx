@@ -98,9 +98,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const isPublic = PUBLIC_ROUTES.includes(pathname);
       if (!user && !isPublic) {
         router.push("/login");
+      } else if (user && profile?.onboarding_complete && pathname.startsWith("/onboarding")) {
+        router.push("/manage");
       }
     }
-  }, [user, loading, pathname, router]);
+  }, [user, profile, loading, pathname, router]);
 
   const signOut = async () => {
     setLoading(true);

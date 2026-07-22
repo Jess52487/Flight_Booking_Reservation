@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/Button";
-import { NavBar } from "@/components/NavBar";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/lib/supabase";
@@ -72,7 +71,6 @@ export default function ManagePage() {
 
   return (
     <div className="relative min-h-screen bg-[var(--color-background)] overflow-x-hidden">
-      <NavBar />
       
       {/* Background Atmospheric Shader */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-[var(--color-primary-container)]/30 via-[var(--color-surface)] to-[var(--color-secondary-container)]/20"></div>

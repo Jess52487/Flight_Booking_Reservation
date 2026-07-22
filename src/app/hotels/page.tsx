@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { GlassCard } from "@/components/GlassCard";
-import { NavBar } from "@/components/NavBar";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/components/AuthProvider";
 
@@ -82,7 +81,7 @@ export default function HotelsPage() {
 
   return (
     <div className="flex pt-20 h-screen overflow-hidden bg-[var(--color-background)] font-inter text-[var(--color-on-surface)]">
-      <NavBar />
+      
 
       {/* Floating Atmosphere Elements */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40">

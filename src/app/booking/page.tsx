@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { NavBar } from "@/components/NavBar";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/Button";
 
@@ -22,56 +21,13 @@ export default function BookingSeatSelectionPage() {
 
   return (
     <div className="text-[var(--color-on-surface)] font-inter min-h-screen flex flex-col bg-[var(--color-background)]">
-      <NavBar />
 
       {/* Background Environment */}
       <div className="fixed inset-0 pointer-events-none -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[var(--color-primary-container)]/20 via-[var(--color-background)] to-transparent"></div>
       </div>
 
-      <div className="flex flex-1 pt-20">
-        {/* SideNavBar */}
-        <aside className="hidden md:flex h-[calc(100vh-80px)] w-64 sticky top-20 bg-[var(--color-surface)]/10 backdrop-blur-2xl border-r border-white/20 flex-col py-[var(--spacing-md)] z-40">
-          <div className="px-[var(--spacing-md)] mb-[var(--spacing-lg)]">
-            <div className="flex items-center gap-[var(--spacing-sm)] mb-[var(--spacing-sm)]">
-              <div className="w-10 h-10 rounded-full bg-[var(--color-secondary-container)] flex items-center justify-center border border-white/20 overflow-hidden">
-                <img
-                  className="w-full h-full object-cover"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100"
-                  alt="Commander Profile"
-                />
-              </div>
-              <div>
-                <p className="font-outfit text-[var(--color-secondary)] text-[16px] font-bold leading-tight">Commander</p>
-                <p className="font-inter text-xs font-semibold text-[var(--color-on-surface-variant)] uppercase tracking-widest">Elite Voyager</p>
-              </div>
-            </div>
-          </div>
-          <nav className="flex-1 space-y-[var(--spacing-xs)]">
-            <Link href="/" className="text-[var(--color-on-surface-variant)] hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all duration-500 ease-in-out">
-              <span className="material-symbols-outlined">rocket_launch</span>
-              <span className="font-inter text-sm font-medium">Expeditions</span>
-            </Link>
-            <Link href="/hotels" className="text-[var(--color-on-surface-variant)] hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all duration-500 ease-in-out">
-              <span className="material-symbols-outlined">bed</span>
-              <span className="font-inter text-sm font-medium">Stay</span>
-            </Link>
-            <Link href="/booking" className="bg-[var(--color-secondary-container)]/30 text-[var(--color-secondary)] border-l-4 border-[var(--color-tertiary)] px-4 py-3 flex items-center gap-3 transition-all duration-500 ease-in-out">
-              <span className="material-symbols-outlined">confirmation_number</span>
-              <span className="font-inter text-sm font-medium">Bookings</span>
-            </Link>
-            <Link href="/assistant" className="text-[var(--color-on-surface-variant)] hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all duration-500 ease-in-out">
-              <span className="material-symbols-outlined">smart_toy</span>
-              <span className="font-inter text-sm font-medium">Concierge</span>
-            </Link>
-          </nav>
-          <div className="mt-auto px-[var(--spacing-md)]">
-            <Button variant="primary" className="w-full uppercase tracking-widest text-xs py-3 shadow-[0_0_15px_rgba(251,188,0,0.5)]">
-              Book New Flight
-            </Button>
-          </div>
-        </aside>
-
+      <div className="flex flex-1 pt-4">
         {/* Main Content Canvas */}
         <main className="flex-1 p-[var(--spacing-md)] md:p-[var(--spacing-lg)] overflow-y-auto no-scrollbar">
           {/* Header Section */}

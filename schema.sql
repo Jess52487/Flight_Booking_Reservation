@@ -11,7 +11,8 @@ CREATE TABLE public.profiles (
   loyalty_creds INTEGER DEFAULT 42500,
   cabin_class TEXT DEFAULT 'economy',
   dietary_pref TEXT DEFAULT 'standard',
-  theme_pref TEXT DEFAULT 'dark'
+  theme_pref TEXT DEFAULT 'dark',
+  onboarding_complete BOOLEAN DEFAULT false
 );
 
 -- 2. Bookings Table (Stores flight bookings)

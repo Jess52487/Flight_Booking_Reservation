@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { GlassCard } from "@/components/GlassCard";
-import { NavBar } from "@/components/NavBar";
 
 interface Message {
   id: string;
@@ -84,7 +83,6 @@ export default function SupportPage() {
 
   return (
     <div className="relative min-h-[calc(100vh-80px)] flex justify-center items-center p-[var(--spacing-md)] bg-[var(--color-background)] overflow-hidden">
-      <NavBar />
       
       {/* Global Background Shader Simulation */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary-container)]/20 via-transparent to-transparent"></div>
