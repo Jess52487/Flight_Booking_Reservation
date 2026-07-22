@@ -3,16 +3,23 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "./AuthProvider";
 
 export function NavBar() {
   const pathname = usePathname();
+  const { user, signOut } = useAuth();
 
-  const navLinks = [
-    { name: "Flights", href: "/" },
-    { name: "Hotels", href: "/hotels" },
-    { name: "Manage", href: "/manage" },
-    { name: "Support", href: "/support" },
-  ];
+  const navLinks = user
+    ? [
+        { name: "Flights", href: "/" },
+        { name: "Hotels", href: "/hotels" },
+        { name: "Manage", href: "/manage" },
+        { name: "Support", href: "/support" },
+      ]
+    : [
+        { name: "Flights", href: "/" },
+        { name: "Support", href: "/support" },
+      ];
 
   return (
     <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/20 shadow-[0px_20px_40px_rgba(0,0,0,0.3)]">
@@ -22,8 +29,6 @@ export function NavBar() {
         </Link>
         <nav className="hidden md:flex gap-[var(--spacing-md)] items-center">
           {navLinks.map((link) => {
-            // Check if the current pathname matches the link's href. 
-            // For root ("/") we want exact match, otherwise we check startsWith so nested routes still highlight
             const isActive = link.href === "/" 
               ? pathname === "/" || pathname === "/search" 
               : pathname?.startsWith(link.href);
@@ -44,12 +49,23 @@ export function NavBar() {
           })}
         </nav>
         <div className="flex items-center gap-[var(--spacing-md)]">
-          <Link href="/notifications" className="text-[var(--color-secondary)] scale-95 active:scale-90 transition-transform">
-            <span className="material-symbols-outlined">notifications</span>
-          </Link>
-          <Link href="/login" className="text-[var(--color-secondary)] scale-95 active:scale-90 transition-transform flex items-center">
-            <span className="material-symbols-outlined">account_circle</span>
-          </Link>
+          {user ? (
+            <>
+              <Link href="/notifications" className="text-[var(--color-secondary)] scale-95 active:scale-90 transition-transform">
+                <span className="material-symbols-outlined">notifications</span>
+              </Link>
+              <button 
+                onClick={signOut} 
+                className="text-red-400 hover:text-red-300 font-inter text-xs font-bold uppercase tracking-widest border border-red-500/30 px-3 py-1.5 rounded-lg bg-red-500/5 hover:bg-red-500/10 active:scale-95 transition-all cursor-pointer"
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <Link href="/login" className="bg-[var(--color-secondary)] hover:bg-[var(--color-secondary)]/90 text-black px-4 py-2 rounded-lg font-inter text-xs font-bold uppercase tracking-widest hover:-translate-y-0.5 active:scale-95 transition-all">
+              Sign In
+            </Link>
+          )}
         </div>
       </div>
     </header>

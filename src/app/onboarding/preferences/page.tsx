@@ -146,8 +146,8 @@ export default function PreferencesOnboardingPage() {
               Back to Core Profile
             </Link>
             <div className="flex items-center gap-[var(--spacing-md)] w-full md:w-auto">
-              <Link href="/onboarding/welcome" className="flex-1 md:flex-none text-center px-[var(--spacing-xl)] py-3 rounded-full bg-white/10 border border-white/20 font-inter text-sm font-semibold text-[var(--color-secondary)] hover:bg-white/15 transition-all">Skip</Link>
-              <Link href="/onboarding/welcome" className="flex-1 md:flex-none text-center px-[var(--spacing-xl)] py-3 rounded-full bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold shadow-[0_10px_20px_rgba(251,188,0,0.3)] hover:shadow-[0_15px_30px_rgba(251,188,0,0.5)] transition-all hover:-translate-y-0.5 active:scale-95">Continue to Lodging</Link>
+              <Link href="/manage" className="flex-1 md:flex-none text-center px-[var(--spacing-xl)] py-3 rounded-full bg-white/10 border border-white/20 font-inter text-sm font-semibold text-[var(--color-secondary)] hover:bg-white/15 transition-all">Skip</Link>
+              <Link href="/manage" className="flex-1 md:flex-none text-center px-[var(--spacing-xl)] py-3 rounded-full bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold shadow-[0_10px_20px_rgba(251,188,0,0.3)] hover:shadow-[0_15px_30px_rgba(251,188,0,0.5)] transition-all hover:-translate-y-0.5 active:scale-95">Complete Setup</Link>
             </div>
           </div>
         </div>

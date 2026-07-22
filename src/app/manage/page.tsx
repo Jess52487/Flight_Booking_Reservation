@@ -147,6 +147,9 @@ export default function ManagePage() {
         <section className="flex-grow space-y-[var(--spacing-md)] z-10 pb-20">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-[var(--spacing-sm)]">
             <div>
+              <p className="font-inter text-xs text-[var(--color-tertiary)] uppercase tracking-widest font-bold mb-1">
+                Welcome Back, Commander {profile?.username || "Voyager"}
+              </p>
               <h1 className="font-outfit text-4xl font-bold text-[var(--color-on-surface)]">Manage Bookings</h1>
               <p className="font-inter text-base text-[var(--color-on-surface-variant)]">Review, modify, or cancel your upcoming itineraries.</p>
             </div>

@@ -3,8 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { GlassCard } from "@/components/GlassCard";
+import { useAuth } from "@/components/AuthProvider";
 
 export default function WelcomeOnboardingPage() {
+  const { profile } = useAuth();
+  const commanderName = profile?.username || "Voyager";
+  const loyaltyCreds = profile?.loyalty_creds || 42500;
+
   return (
     <div className="bg-[var(--color-background)] text-[var(--color-on-background)] font-inter min-h-screen flex flex-col selection:bg-[var(--color-tertiary)]/30 overflow-x-hidden relative w-full">
       <header className="fixed top-0 left-0 right-0 z-50 bg-[rgba(255,255,255,0.08)] border-b border-white/10 backdrop-blur-md">
@@ -48,9 +53,13 @@ export default function WelcomeOnboardingPage() {
               Your destination starts here. Experience a faster, smarter way to book flights and plan unforgettable journeys.
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link href="/booking" className="bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold px-8 py-4 rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.4)] hover:shadow-[0_0_35px_rgba(251,188,0,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 group relative overflow-hidden uppercase tracking-widest">
-                <span className="relative z-10">BOOK NEW FLIGHT</span>
+              <Link href="/onboarding/preferences" className="bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold px-8 py-4 rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.4)] hover:shadow-[0_0_35px_rgba(251,188,0,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 group relative overflow-hidden uppercase tracking-widest">
+                <span className="relative z-10">SET UP PREFERENCES</span>
                 <span className="material-symbols-outlined relative z-10 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </Link>
+              <Link href="/booking" className="bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] text-[var(--color-secondary)] font-inter text-sm font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-2 uppercase tracking-widest">
+                <span className="material-symbols-outlined">flight_takeoff</span>
+                <span className="">BOOK FLIGHT</span>
               </Link>
               <Link href="/hotels" className="bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] text-[var(--color-secondary)] font-inter text-sm font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-2 uppercase tracking-widest">
                 <span className="material-symbols-outlined">rocket_launch</span>
@@ -75,7 +84,7 @@ export default function WelcomeOnboardingPage() {
                     <img alt="User Profile" className="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV" />
                   </div>
                   <div>
-                    <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)]">Commander</h3>
+                    <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)]">{commanderName}</h3>
                     <p className="font-inter text-sm font-semibold text-[var(--color-tertiary)] flex items-center gap-1">
                       <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
                       Elite Voyager
@@ -99,7 +108,7 @@ export default function WelcomeOnboardingPage() {
                 </div>
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-[var(--spacing-sm)]">
                   <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Loyalty</p>
-                  <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">42.5k AeroHub Creds</p>
+                  <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">{(loyaltyCreds / 1000).toFixed(1)}k AeroHub Creds</p>
                 </div>
                 <div className="col-span-2 bg-white/5 border border-white/10 rounded-2xl p-[var(--spacing-sm)] flex items-center justify-between">
                   <div>
