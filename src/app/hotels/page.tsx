@@ -1,12 +1,20 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { GlassCard } from "@/components/GlassCard";
 import { NavBar } from "@/components/NavBar";
 
 export default function HotelsPage() {
+  const [isSearching, setIsSearching] = useState(false);
   const cardsRef = useRef<HTMLDivElement>(null);
+
+  const handleSearch = () => {
+    setIsSearching(true);
+    setTimeout(() => {
+      setIsSearching(false);
+    }, 2000);
+  };
 
   useEffect(() => {
     // Replicate the micro-interaction for liquid cards
@@ -163,9 +171,22 @@ export default function HotelsPage() {
                   <span className="font-inter text-[14px] font-medium tracking-[0.05em]">Flexible Lodgings Selected</span>
                 </div>
               </div>
-              <button className="w-full md:w-auto bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-outfit text-[24px] font-bold px-[var(--spacing-xl)] py-3 rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.3)] hover:shadow-[0_0_30px_rgba(251,188,0,0.5)] transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-[var(--spacing-md)] uppercase tracking-wider text-sm">
-                Search Escapes
-                <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+              <button 
+                onClick={handleSearch}
+                disabled={isSearching}
+                className="w-full md:w-auto bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-outfit text-[24px] font-bold px-[var(--spacing-xl)] py-3 rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.3)] hover:shadow-[0_0_30px_rgba(251,188,0,0.5)] transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-[var(--spacing-md)] uppercase tracking-wider text-sm disabled:opacity-80 disabled:cursor-not-allowed"
+              >
+                {isSearching ? (
+                  <>
+                    <span className="material-symbols-outlined animate-spin text-[20px]">progress_activity</span>
+                    Computing Escapes...
+                  </>
+                ) : (
+                  <>
+                    Search Escapes
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
