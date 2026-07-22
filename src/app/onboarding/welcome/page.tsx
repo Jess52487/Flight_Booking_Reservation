@@ -45,7 +45,7 @@ export default function WelcomeOnboardingPage() {
               <span className="text-[var(--color-tertiary)]">Commander.</span>
             </h1>
             <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto lg:mx-0">
-              Your journey through the aether is ready. We've synchronized your preferences and calibrated the vessel for your upcoming expedition to the outer rims.
+              Your destination starts here. Experience a faster, smarter way to book flights and plan unforgettable journeys.
             </p>
             <div className="mt-[var(--spacing-md)] flex flex-col sm:flex-row gap-[var(--spacing-sm)] justify-center lg:justify-start">
               <Link href="/booking" className="bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold px-[var(--spacing-lg)] py-4 rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.4)] hover:shadow-[0_0_35px_rgba(251,188,0,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-[var(--spacing-xs)] group relative overflow-hidden uppercase tracking-widest">
