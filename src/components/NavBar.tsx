@@ -7,7 +7,7 @@ import { useAuth } from "./AuthProvider";
 
 export function NavBar() {
   const pathname = usePathname();
-  const { user, signOut } = useAuth();
+  const { user, profile, signOut } = useAuth();
 
   const navLinks = user
     ? [
@@ -53,6 +53,10 @@ export function NavBar() {
             <>
               <Link href="/notifications" className="text-[var(--color-secondary)] scale-95 active:scale-90 transition-transform">
                 <span className="material-symbols-outlined">notifications</span>
+              </Link>
+              <Link href="/onboarding/welcome" className="text-[var(--color-secondary)] hover:text-[var(--color-secondary)]/80 transition-all flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[24px]">account_circle</span>
+                <span className="font-inter text-xs font-semibold text-[var(--color-on-surface)] hidden sm:inline">{profile?.username || "Commander"}</span>
               </Link>
               <button 
                 onClick={signOut} 

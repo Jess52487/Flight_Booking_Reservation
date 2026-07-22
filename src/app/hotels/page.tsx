@@ -90,62 +90,8 @@ export default function HotelsPage() {
         <div className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-[var(--color-primary-container)] rounded-full blur-[150px]"></div>
       </div>
 
-      {/* SideNavBar */}
-      <aside className="hidden md:flex flex-col h-full py-[var(--spacing-md)] bg-[var(--color-surface)]/10 backdrop-blur-2xl border-r border-white/20 w-64 fixed left-0 top-0 pt-24 z-40">
-        <div className="px-[var(--spacing-md)] mb-[var(--spacing-lg)]">
-          <div className="flex items-center gap-3 mb-[var(--spacing-xs)]">
-            <div className="w-10 h-10 rounded-full bg-[var(--color-secondary-container)]/30 flex items-center justify-center border border-white/20 overflow-hidden">
-              <img
-                className="w-full h-full object-cover"
-                alt="Profile"
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100"
-              />
-            </div>
-            <div>
-              <div className="font-inter text-[14px] font-medium text-[var(--color-secondary)]">Commander</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-tertiary)]">Elite Voyager</div>
-            </div>
-          </div>
-        </div>
-        <nav className="flex-grow">
-          <ul className="space-y-2">
-            <li>
-              <Link href="/" className="text-[var(--color-on-surface-variant)] hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all duration-500 ease-in-out">
-                <span className="material-symbols-outlined">rocket_launch</span>
-                <span className="font-inter text-[14px] font-medium">Expeditions</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/hotels" className="bg-[var(--color-secondary-container)]/30 text-[var(--color-secondary)] border-l-4 border-[var(--color-tertiary)] px-4 py-3 flex items-center gap-3 transition-all duration-500 ease-in-out">
-                <span className="material-symbols-outlined">bed</span>
-                <span className="font-inter text-[14px] font-medium">Stay</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/manage" className="text-[var(--color-on-surface-variant)] hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all duration-500 ease-in-out">
-                <span className="material-symbols-outlined">confirmation_number</span>
-                <span className="font-inter text-[14px] font-medium">Bookings</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/assistant" className="text-[var(--color-on-surface-variant)] hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all duration-500 ease-in-out">
-                <span className="material-symbols-outlined">smart_toy</span>
-                <span className="font-inter text-[14px] font-medium">Concierge</span>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <div className="px-[var(--spacing-md)] mt-auto w-full">
-          <Link href="/booking" className="block w-full">
-            <button className="w-full py-4 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-bold rounded-xl shadow-[0_0_15px_rgba(251,188,0,0.4)] hover:shadow-[0_0_25px_rgba(251,188,0,0.7)] scale-95 active:scale-90 transition-all uppercase tracking-tighter text-[12px]">
-              Book New Flight
-            </button>
-          </Link>
-        </div>
-      </aside>
-
       {/* Main Content Area */}
-      <main className="flex-1 md:ml-64 overflow-y-auto no-scrollbar relative z-10">
+      <main className="flex-1 overflow-y-auto no-scrollbar relative z-10">
         
         {/* Hero Section */}
         <section className="px-[var(--spacing-xl)] py-[var(--spacing-lg)] relative">
