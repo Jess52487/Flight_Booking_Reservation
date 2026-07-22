@@ -16,11 +16,11 @@ export default function LandingWelcomePage() {
       </div>
 
       {/* Content Canvas */}
-      <main className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full">
-        <div className="max-w-[var(--spacing-container-max)] w-full grid grid-cols-1 lg:grid-cols-12 gap-[var(--spacing-lg)] items-center">
+      <main className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full max-w-7xl mx-auto">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Content: Welcome*/}
-          <div className="lg:col-span-7 flex flex-col gap-[var(--spacing-md)] text-center lg:text-left w-full min-w-0">
-            <div className="inline-flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-sm)] py-1 bg-[var(--color-secondary-container)]/20 border border-[var(--color-secondary)]/30 rounded-full w-fit mx-auto lg:mx-0">
+          <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left w-full min-w-0">
+            <div className="inline-flex items-center gap-2 px-4 py-1 bg-[var(--color-secondary-container)]/20 border border-[var(--color-secondary)]/30 rounded-full w-fit mx-auto lg:mx-0">
               <span className="material-symbols-outlined text-[var(--color-secondary)] text-[18px]">verified</span>
               <span className="font-inter text-[12px] font-bold text-[var(--color-secondary)] uppercase tracking-widest">Enabling Galactic Protocol</span>
             </div>
@@ -31,12 +31,12 @@ export default function LandingWelcomePage() {
             <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto lg:mx-0 break-normal whitespace-normal">
               Your destination starts here. Experience a faster, smarter way to book flights and plan unforgettable journeys.
             </p>
-            <div className="mt-[var(--spacing-md)] flex flex-col sm:flex-row gap-[var(--spacing-sm)] justify-center lg:justify-start">
-              <Link href="/booking" className="bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold px-[var(--spacing-lg)] py-4 rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.4)] hover:shadow-[0_0_35px_rgba(251,188,0,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-[var(--spacing-xs)] group relative overflow-hidden uppercase tracking-widest">
+            <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Link href="/booking" className="bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold px-8 py-4 rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.4)] hover:shadow-[0_0_35px_rgba(251,188,0,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 group relative overflow-hidden uppercase tracking-widest">
                 <span className="relative z-10">BOOK NEW FLIGHT</span>
                 <span className="material-symbols-outlined relative z-10 group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </Link>
-              <Link href="/hotels" className="bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] text-[var(--color-secondary)] font-inter text-sm font-bold px-[var(--spacing-lg)] py-4 rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-[var(--spacing-xs)] uppercase tracking-widest">
+              <Link href="/hotels" className="bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] text-[var(--color-secondary)] font-inter text-sm font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-2 uppercase tracking-widest">
                 <span className="material-symbols-outlined">rocket_launch</span>
                 <span className="">VIEW EXPEDITIONS</span>
               </Link>
