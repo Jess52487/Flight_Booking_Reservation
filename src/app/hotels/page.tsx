@@ -111,26 +111,64 @@ export default function HotelsPage() {
             </p>
           </div>
 
-          {/* Search Bar */}
-          <GlassCard className="max-w-5xl mx-auto p-2 rounded-full flex flex-wrap md:flex-nowrap items-center gap-2 mb-20 !bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
-            <div className="flex-1 flex items-center px-[var(--spacing-sm)] gap-2 group focus-within:ring-1 focus-within:ring-[var(--color-secondary)] rounded-full py-2">
-              <span className="material-symbols-outlined text-[var(--color-secondary)]">location_on</span>
-              <input className="bg-transparent border-none focus:ring-0 text-[var(--color-on-surface)] w-full placeholder:text-[var(--color-on-surface-variant)]/50 font-inter text-[16px] outline-none" placeholder="Where to?" type="text" />
+          {/* Search Card */}
+          <div className="w-full max-w-5xl bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] shadow-[0_20px_40px_rgba(0,0,0,0.3)] rounded-[24px] p-[var(--spacing-md)] md:p-[var(--spacing-xl)] relative overflow-hidden group mb-20 liquid-panel-interactive">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-[var(--spacing-md)] relative z-10">
+              {/* Destination */}
+              <div className="flex flex-col gap-[var(--spacing-xs)]">
+                <label className="font-inter text-[12px] font-semibold text-[var(--color-secondary)] uppercase tracking-[0.1em] px-[var(--spacing-xs)]">Destination</label>
+                <div className="relative">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-outline)]">location_on</span>
+                  <input className="w-full bg-white/5 border border-white/20 rounded-xl py-3 pl-11 pr-4 text-on-surface placeholder:text-[var(--color-outline)] focus:outline-none focus:border-[var(--color-secondary)] focus:ring-1 focus:ring-[var(--color-secondary)]/30 backdrop-blur-md transition-all font-inter text-[16px]" placeholder="Shackleton Crater, Moon" type="text"/>
+                </div>
+              </div>
+              {/* Check-in */}
+              <div className="flex flex-col gap-[var(--spacing-xs)]">
+                <label className="font-inter text-[12px] font-semibold text-[var(--color-secondary)] uppercase tracking-[0.1em] px-[var(--spacing-xs)]">Check-in</label>
+                <div className="relative">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-outline)]">calendar_month</span>
+                  <input className="w-full bg-white/5 border border-white/20 rounded-xl py-3 pl-11 pr-4 text-on-surface placeholder:text-[var(--color-outline)] focus:outline-none focus:border-[var(--color-secondary)] focus:ring-1 focus:ring-[var(--color-secondary)]/30 backdrop-blur-md transition-all font-inter text-[16px]" placeholder="Oct 24, 2026" type="text"/>
+                </div>
+              </div>
+              {/* Check-out */}
+              <div className="flex flex-col gap-[var(--spacing-xs)]">
+                <label className="font-inter text-[12px] font-semibold text-[var(--color-secondary)] uppercase tracking-[0.1em] px-[var(--spacing-xs)]">Check-out</label>
+                <div className="relative">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-outline)]">calendar_month</span>
+                  <input className="w-full bg-white/5 border border-white/20 rounded-xl py-3 pl-11 pr-4 text-on-surface placeholder:text-[var(--color-outline)] focus:outline-none focus:border-[var(--color-secondary)] focus:ring-1 focus:ring-[var(--color-secondary)]/30 backdrop-blur-md transition-all font-inter text-[16px]" placeholder="Oct 31, 2026" type="text"/>
+                </div>
+              </div>
+              {/* Guests */}
+              <div className="flex flex-col gap-[var(--spacing-xs)]">
+                <label className="font-inter text-[12px] font-semibold text-[var(--color-secondary)] uppercase tracking-[0.1em] px-[var(--spacing-xs)]">Guests</label>
+                <div className="relative">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-outline)]">group</span>
+                  <select className="w-full bg-white/5 border border-white/20 rounded-xl py-3 pl-11 pr-4 text-on-surface focus:outline-none focus:border-[var(--color-secondary)] focus:ring-1 focus:ring-[var(--color-secondary)]/30 backdrop-blur-md transition-all font-inter text-[16px] appearance-none [&>option]:bg-[var(--color-surface)]">
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4+ Guests</option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <div className="w-px h-8 bg-white/20 hidden md:block"></div>
-            <div className="flex-1 flex items-center px-[var(--spacing-sm)] gap-2 group focus-within:ring-1 focus-within:ring-[var(--color-secondary)] rounded-full py-2">
-              <span className="material-symbols-outlined text-[var(--color-secondary)]">calendar_month</span>
-              <input className="bg-transparent border-none focus:ring-0 text-[var(--color-on-surface)] w-full placeholder:text-[var(--color-on-surface-variant)]/50 font-inter text-[16px] outline-none" placeholder="Dates" type="text" />
+            <div className="mt-[var(--spacing-xl)] flex flex-col md:flex-row items-center justify-between gap-[var(--spacing-md)] relative z-10">
+              <div className="flex gap-[var(--spacing-sm)]">
+                <div className="flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-md)] py-[var(--spacing-xs)] rounded-full bg-[var(--color-secondary)]/10 border border-[var(--color-secondary)]/30 text-[var(--color-secondary)] animate-pulse">
+                  <span className="material-symbols-outlined text-[18px]">auto_awesome</span>
+                  <span className="font-inter text-[14px] font-medium tracking-[0.05em]">AI Optimization Active</span>
+                </div>
+                <div className="hidden sm:flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-md)] py-[var(--spacing-xs)] rounded-full bg-white/5 border border-white/10 text-[var(--color-on-surface-variant)]">
+                  <span className="font-inter text-[14px] font-medium tracking-[0.05em]">Flexible Lodgings Selected</span>
+                </div>
+              </div>
+              <button className="w-full md:w-auto bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-outfit text-[24px] font-bold px-[var(--spacing-xl)] py-3 rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.3)] hover:shadow-[0_0_30px_rgba(251,188,0,0.5)] transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-[var(--spacing-md)] uppercase tracking-wider text-sm">
+                Search Escapes
+                <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+              </button>
             </div>
-            <div className="w-px h-8 bg-white/20 hidden md:block"></div>
-            <div className="flex-1 flex items-center px-[var(--spacing-sm)] gap-2 group focus-within:ring-1 focus-within:ring-[var(--color-secondary)] rounded-full py-2">
-              <span className="material-symbols-outlined text-[var(--color-secondary)]">group</span>
-              <input className="bg-transparent border-none focus:ring-0 text-[var(--color-on-surface)] w-full placeholder:text-[var(--color-on-surface-variant)]/50 font-inter text-[16px] outline-none" placeholder="Guests" type="text" />
-            </div>
-            <button className="bg-[var(--color-secondary)] text-[var(--color-on-secondary)] px-[var(--spacing-lg)] py-3 rounded-full font-bold uppercase tracking-tight text-[12px] hover:brightness-110 transition-all">
-              Search
-            </button>
-          </GlassCard>
+          </div>
 
           {/* Filters Strip */}
           <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-[var(--spacing-sm)] mb-[var(--spacing-lg)]">
