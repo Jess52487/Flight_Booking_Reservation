@@ -9,6 +9,13 @@ export default function LandingPage() {
   const [isSearching, setIsSearching] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    const onboarded = localStorage.getItem("onboarded");
+    if (!onboarded) {
+      router.push("/onboarding/welcome");
+    }
+  }, [router]);
+
   const handleSearch = () => {
     setIsSearching(true);
     setTimeout(() => {
