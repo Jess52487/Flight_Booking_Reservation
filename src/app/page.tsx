@@ -7,7 +7,7 @@ import { NavBar } from "@/components/NavBar";
 
 export default function LandingWelcomePage() {
   return (
-    <div className="bg-[var(--color-background)] text-[var(--color-on-background)] font-inter min-h-screen flex flex-col selection:bg-[var(--color-tertiary)]/30 overflow-x-hidden relative">
+    <div className="bg-[var(--color-background)] text-[var(--color-on-background)] font-inter min-h-screen flex flex-col selection:bg-[var(--color-tertiary)]/30 overflow-x-hidden relative w-full">
       <NavBar />
 
       {/* Background Environment */}
@@ -17,7 +17,7 @@ export default function LandingWelcomePage() {
 
       {/* Content Canvas */}
       <main className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full max-w-7xl mx-auto">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="w-full flex flex-col lg:grid lg:grid-cols-12 gap-10 items-center">
           {/* Left Content: Welcome*/}
           <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left w-full min-w-0">
             <div className="inline-flex items-center gap-2 px-4 py-1 bg-[var(--color-secondary-container)]/20 border border-[var(--color-secondary)]/30 rounded-full w-fit mx-auto lg:mx-0">

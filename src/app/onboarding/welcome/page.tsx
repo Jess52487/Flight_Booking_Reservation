@@ -6,7 +6,7 @@ import { GlassCard } from "@/components/GlassCard";
 
 export default function WelcomeOnboardingPage() {
   return (
-    <div className="bg-[var(--color-background)] text-[var(--color-on-background)] font-inter min-h-screen flex flex-col selection:bg-[var(--color-tertiary)]/30 overflow-x-hidden relative">
+    <div className="bg-[var(--color-background)] text-[var(--color-on-background)] font-inter min-h-screen flex flex-col selection:bg-[var(--color-tertiary)]/30 overflow-x-hidden relative w-full">
       <header className="fixed top-0 left-0 right-0 z-50 bg-[rgba(255,255,255,0.08)] border-b border-white/10 backdrop-blur-md">
         <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-sm)] md:px-[var(--spacing-xl)] h-16 flex items-center justify-between">
           <Link href="/" className="font-outfit text-2xl text-[var(--color-secondary)] font-bold tracking-tight">
@@ -33,7 +33,7 @@ export default function WelcomeOnboardingPage() {
 
       {/* Content Canvas */}
       <main className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full max-w-7xl mx-auto">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="w-full flex flex-col lg:grid lg:grid-cols-12 gap-10 items-center">
           {/* Left Content: Welcome*/}
           <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left w-full min-w-0">
             <div className="inline-flex items-center gap-2 px-4 py-1 bg-[var(--color-secondary-container)]/20 border border-[var(--color-secondary)]/30 rounded-full w-fit mx-auto lg:mx-0">
