@@ -14,7 +14,7 @@ export default function ManagePage() {
   const [dbBookings, setDbBookings] = useState<any[]>([]);
   const [dbStays, setDbStays] = useState<any[]>([]);
   const [dbLoading, setDbLoading] = useState(true);
-  const { user, loading: authLoading } = useAuth();
+  const { user, profile, loading: authLoading } = useAuth();
 
   useEffect(() => {
     if (!user) return;
