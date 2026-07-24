@@ -65,20 +65,40 @@ export default function SupportPage() {
 
     setMessages(prev => [...prev, newUserMsg]);
     setInputValue("");
-
     // Simulate AI response
+    const userText = inputValue; // copy user query before clearing
     setTimeout(() => {
       const aiResponseTime = new Date();
-      const aiTimeString = `${aiResponseTime.getHours().toString().padStart(2, '0')}:${aiResponseTime.getMinutes().toString().padStart(2, '0')}`;
+      const aiTimeText = `${aiResponseTime.getHours().toString().padStart(2, '0')}:${aiResponseTime.getMinutes().toString().padStart(2, '0')}`;
       
+      const query = userText.toLowerCase();
+      let aiText = "I am routing your request to a specialized human concierge. Please hold while I establish the connection...";
+      let hasWidget = false;
+
+      if (query.includes("baggage") || query.includes("lost") || query.includes("item")) {
+        aiText = "Trace protocol is active. Your baggage tag #AE9924X has been located at the sorting facility and is marked for priority dispatch.";
+        hasWidget = true;
+      } else if (query.includes("refund") || query.includes("cancel")) {
+        aiText = "Refund protocols have been processed successfully. Since you hold Elite Voyager credentials, the ticket cost has been credited back to your Loyalty Credentials balance.";
+      } else if (query.includes("lounge") || query.includes("access")) {
+        aiText = "Your Elite Voyager clearance grants you entry to all AeroHub Starway Lounges (hubs include Neo-Tokyo, Europa, and Earth). Just scan your boarding badge at the entry gates.";
+      } else if (query.includes("human") || query.includes("call") || query.includes("agent")) {
+        aiText = "Establishing encrypted audio channel to our command center... A live agent will connect with your terminal shortly.";
+      } else if (query.includes("hotel") || query.includes("stay") || query.includes("room")) {
+        aiText = "Your stay details have been retrieved. The reservations are synchronized with your shuttle arrival, and early check-in is authorized.";
+      } else {
+        aiText = `Understood, Commander. Analyzing your request regarding "${userText}". I have logged these specifications into your voyager log files. Let me know if you need specific navigation support.`;
+      }
+
       const newAiMsg: Message = {
         id: (Date.now() + 1).toString(),
         sender: "ai",
-        text: "I am routing your request to a specialized human concierge. Please hold while I establish the connection...",
-        time: aiTimeString,
+        text: aiText,
+        time: aiTimeText,
+        hasWidget,
       };
       setMessages(prev => [...prev, newAiMsg]);
-    }, 1500);
+    }, 1200);
   };
 
   return (
@@ -88,9 +108,9 @@ export default function SupportPage() {
       <div className="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary-container)]/20 via-transparent to-transparent"></div>
 
       <div className="max-w-5xl w-full h-[80vh] min-h-[500px] rounded-[24px] flex flex-col overflow-hidden relative z-10">
-        <GlassCard className="flex flex-col h-full !p-0 shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10">
+        <GlassCard className="flex flex-col h-full !p-0 shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10 overflow-hidden">
           {/* Chat Header */}
-          <div className="px-[var(--spacing-xl)] py-[var(--spacing-md)] border-b border-white/10 flex items-center justify-between bg-white/5">
+          <div className="px-[var(--spacing-xl)] py-[var(--spacing-md)] border-b border-white/10 flex items-center justify-between bg-white/5 shrink-0">
             <div className="flex items-center gap-[var(--spacing-md)]">
               <div className="w-12 h-12 rounded-full bg-[var(--color-secondary-container)]/30 flex items-center justify-center relative overflow-hidden border border-[var(--color-secondary)]/30">
                 <span className="material-symbols-outlined text-[var(--color-secondary)] text-2xl animate-pulse" style={{ fontVariationSettings: "'FILL' 1" }}>
@@ -106,7 +126,12 @@ export default function SupportPage() {
               </div>
             </div>
             <div className="flex gap-[var(--spacing-xs)]">
-              <button className="px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all text-[var(--color-secondary)] font-inter text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+              <button 
+                onClick={() => {
+                  setInputValue("Connect with human agent");
+                }}
+                className="px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all text-[var(--color-secondary)] font-inter text-xs font-bold uppercase tracking-widest flex items-center gap-2 cursor-pointer"
+              >
                 <span className="material-symbols-outlined text-sm">phone_in_talk</span>
                 Call Human
               </button>
@@ -114,7 +139,7 @@ export default function SupportPage() {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-grow overflow-y-auto p-[var(--spacing-xl)] space-y-[var(--spacing-md)] no-scrollbar" ref={chatContainerRef}>
+          <div className="flex-grow overflow-y-auto p-[var(--spacing-xl)] space-y-[var(--spacing-md)] pr-4 scrollbar-thin scrollbar-thumb-white/10" ref={chatContainerRef}>
             {messages.map((msg) => (
               <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
                 <div className={`max-w-[85%] md:max-w-[70%] backdrop-blur-md px-[var(--spacing-md)] py-[var(--spacing-sm)] border ${

@@ -85,7 +85,7 @@ export function NavBar() {
       {/* Profile Details Modal */}
       {showProfileModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/75 backdrop-blur-md overflow-y-auto">
-          <div className="relative w-full max-w-xl my-8 bg-[var(--color-surface)] border border-white/20 rounded-[28px] p-8 md:p-10 shadow-2xl flex flex-col max-h-[85vh] overflow-hidden text-[var(--color-on-surface)]">
+          <div className="relative w-full max-w-xl my-8 bg-[var(--color-surface)] border border-white/20 rounded-[28px] p-8 md:p-10 shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto text-[var(--color-on-surface)]">
             {/* Ambient shader */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
             
@@ -101,7 +101,7 @@ export function NavBar() {
             </div>
  
             {/* Scrollable content container to prevent cutoff */}
-            <div className="flex-1 overflow-y-auto pr-2 space-y-8 relative z-10 no-scrollbar">
+            <div className="flex-1 overflow-y-auto pr-2 space-y-8 relative z-10">
               {/* Avatar & Basic Info */}
               <div className="flex items-center gap-6 pb-8 border-b border-white/10 min-w-0">
                 <div className="w-20 h-20 rounded-full border-2 border-[var(--color-tertiary)] p-1 bg-white/5 flex items-center justify-center shrink-0">
