@@ -59,77 +59,84 @@ export function NavBar() {
                 </Link>
                 <button 
                   onClick={() => setShowProfileModal(true)} 
-                  className="text-[var(--color-secondary)] hover:text-[var(--color-secondary)]/80 scale-95 active:scale-90 transition-all flex items-center gap-1.5 cursor-pointer outline-none"
+                  className="text-[var(--color-secondary)] hover:text-[var(--color-secondary)]/80 scale-95 active:scale-90 transition-all flex items-center gap-1.5 cursor-pointer outline-none max-w-[200px]"
                 >
-                  <span className="material-symbols-outlined text-[24px]">account_circle</span>
-                  <span className="font-inter text-xs font-semibold text-[var(--color-on-surface)] hidden sm:inline">{profile?.username || "Commander"}</span>
+                  <span className="material-symbols-outlined text-[24px] shrink-0">account_circle</span>
+                  <span className="font-inter text-xs font-semibold text-[var(--color-on-surface)] hidden sm:inline truncate">
+                    {profile?.username ? `Commander ${profile.username}` : "Commander"}
+                  </span>
                 </button>
                 <button 
                   onClick={signOut} 
-                  className="text-red-400 hover:text-red-300 font-inter text-xs font-bold uppercase tracking-widest border border-red-500/30 px-3 py-1.5 rounded-lg bg-red-500/5 hover:bg-red-500/10 active:scale-95 transition-all cursor-pointer"
+                  className="text-red-400 hover:text-red-300 font-inter text-xs font-bold uppercase tracking-widest border border-red-500/30 px-3 py-1.5 rounded-lg bg-red-500/5 hover:bg-red-500/10 active:scale-95 transition-all cursor-pointer shrink-0"
                 >
                   Sign Out
                 </button>
               </>
             ) : (
-              <Link href="/login" className="bg-[var(--color-secondary)] hover:bg-[var(--color-secondary)]/90 text-black px-4 py-2 rounded-lg font-inter text-xs font-bold uppercase tracking-widest hover:-translate-y-0.5 active:scale-95 transition-all">
+              <Link href="/login" className="bg-[var(--color-secondary)] hover:bg-[var(--color-secondary)]/90 text-black px-4 py-2 rounded-lg font-inter text-xs font-bold uppercase tracking-widest hover:-translate-y-0.5 active:scale-95 transition-all shrink-0">
                 Sign In
               </Link>
             )}
           </div>
         </div>
       </header>
-
+ 
       {/* Profile Details Modal */}
       {showProfileModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
-          <div className="relative w-full max-w-md bg-[var(--color-surface)] border border-white/20 rounded-[24px] p-6 shadow-2xl overflow-hidden text-[var(--color-on-surface)]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/75 backdrop-blur-md overflow-y-auto">
+          <div className="relative w-full max-w-xl my-8 bg-[var(--color-surface)] border border-white/20 rounded-[28px] p-8 md:p-10 shadow-2xl flex flex-col max-h-[85vh] overflow-hidden text-[var(--color-on-surface)]">
             {/* Ambient shader */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
             
             {/* Header */}
-            <div className="flex justify-between items-center mb-6 relative z-10">
-              <h3 className="font-outfit text-2xl font-bold text-[var(--color-secondary)]">Voyager Profile</h3>
+            <div className="flex justify-between items-center mb-8 relative z-10 shrink-0">
+              <h3 className="font-outfit text-3xl font-bold text-[var(--color-secondary)]">Voyager Profile</h3>
               <button 
                 onClick={() => setShowProfileModal(false)}
-                className="text-white/60 hover:text-white transition-colors cursor-pointer outline-none"
+                className="text-white/60 hover:text-white transition-colors cursor-pointer outline-none p-1.5 hover:bg-white/5 rounded-full"
               >
-                <span className="material-symbols-outlined">close</span>
+                <span className="material-symbols-outlined text-2xl">close</span>
               </button>
             </div>
-
-            {/* Avatar & Basic Info */}
-            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-white/10 relative z-10">
-              <div className="w-16 h-16 rounded-full border-2 border-[var(--color-tertiary)] p-1 bg-white/5 flex items-center justify-center">
-                <span className="material-symbols-outlined text-[var(--color-secondary)] text-[48px]">account_circle</span>
-              </div>
-              <div>
-                <h4 className="font-outfit text-xl font-bold text-white">{profile?.username || "Commander"}</h4>
-                <p className="font-inter text-xs text-[var(--color-on-surface-variant)]">{user?.email}</p>
-                <div className="mt-1 flex items-center gap-1.5 bg-[var(--color-tertiary)]/10 border border-[var(--color-tertiary)]/20 px-2.5 py-0.5 rounded-full w-fit">
-                  <span className="material-symbols-outlined text-[var(--color-tertiary)] text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
-                  <span className="font-inter text-[10px] font-bold text-[var(--color-tertiary)] uppercase tracking-wider">Elite Voyager</span>
+ 
+            {/* Scrollable content container to prevent cutoff */}
+            <div className="flex-1 overflow-y-auto pr-2 space-y-8 relative z-10 no-scrollbar">
+              {/* Avatar & Basic Info */}
+              <div className="flex items-center gap-6 pb-8 border-b border-white/10 min-w-0">
+                <div className="w-20 h-20 rounded-full border-2 border-[var(--color-tertiary)] p-1 bg-white/5 flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[var(--color-secondary)] text-[56px]">account_circle</span>
+                </div>
+                <div className="min-w-0 flex-1 space-y-1">
+                  <h4 className="font-outfit text-2xl font-bold text-white truncate break-words">
+                    {profile?.username ? `Commander ${profile.username}` : "Commander"}
+                  </h4>
+                  <p className="font-inter text-sm text-[var(--color-on-surface-variant)] truncate">{user?.email}</p>
+                  <div className="mt-2 flex items-center gap-2 bg-[var(--color-tertiary)]/10 border border-[var(--color-tertiary)]/20 px-3 py-1 rounded-full w-fit">
+                    <span className="material-symbols-outlined text-[var(--color-tertiary)] text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
+                    <span className="font-inter text-[11px] font-bold text-[var(--color-tertiary)] uppercase tracking-wider">Elite Voyager</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Stats / Details */}
-            <div className="space-y-4 relative z-10">
-              <div className="flex justify-between items-center py-2 border-b border-white/5">
-                <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Loyalty Balance</span>
-                <span className="font-outfit text-base font-bold text-[var(--color-tertiary)]">{profile?.loyalty_creds?.toLocaleString() || "42,500"} Creds</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-white/5">
-                <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Preferred Cabin</span>
-                <span className="font-inter text-sm font-semibold text-white capitalize">{profile?.cabin_class || "Economy"}</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-white/5">
-                <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Dietary Profile</span>
-                <span className="font-inter text-sm font-semibold text-white capitalize">{profile?.dietary_pref || "Standard"}</span>
-              </div>
-              <div className="flex justify-between items-center py-2">
-                <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">System Theme</span>
-                <span className="font-inter text-sm font-semibold text-white capitalize">{profile?.theme_pref || "Dark"}</span>
+              {/* Stats / Details */}
+              <div className="space-y-6">
+                <div className="flex justify-between items-center py-3 border-b border-white/5">
+                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Loyalty Balance</span>
+                  <span className="font-outfit text-lg font-bold text-[var(--color-tertiary)]">{profile?.loyalty_creds?.toLocaleString() || "42,500"} Creds</span>
+                </div>
+                <div className="flex justify-between items-center py-3 border-b border-white/5">
+                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Preferred Cabin</span>
+                  <span className="font-inter text-sm font-semibold text-white capitalize">{profile?.cabin_class || "Economy"}</span>
+                </div>
+                <div className="flex justify-between items-center py-3 border-b border-white/5">
+                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Dietary Profile</span>
+                  <span className="font-inter text-sm font-semibold text-white capitalize">{profile?.dietary_pref || "Standard"}</span>
+                </div>
+                <div className="flex justify-between items-center py-3">
+                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">System Theme</span>
+                  <span className="font-inter text-sm font-semibold text-white capitalize">{profile?.theme_pref || "Dark"}</span>
+                </div>
               </div>
             </div>
           </div>

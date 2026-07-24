@@ -24,6 +24,9 @@ CREATE TABLE public.bookings (
   destination TEXT NOT NULL,
   departure_date DATE NOT NULL,
   status TEXT DEFAULT 'Upcoming',
+  seat_number TEXT,
+  cabin_class TEXT DEFAULT 'Economy',
+  price NUMERIC DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, now()) NOT NULL
 );
 

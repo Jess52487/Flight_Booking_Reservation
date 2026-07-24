@@ -79,63 +79,63 @@ export default function PreferencesOnboardingPage() {
           </div>
 
           {/* Content Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--spacing-gutter)]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1 */}
             <button 
               onClick={() => toggleCard("suites")}
-              className={`glass-panel group p-[var(--spacing-md)] rounded-[24px] text-left transition-all duration-300 hover:scale-[1.02] border focus:outline-none bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] ${
+              className={`glass-panel group p-8 rounded-[28px] text-left transition-all duration-300 hover:scale-[1.02] border focus:outline-none bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] ${
                 selectedCards.includes("suites") ? "border-[var(--color-tertiary)] shadow-[0_0_20px_rgba(251,188,0,0.2)]" : "border-white/10"
               }`}
             >
-              <div className="w-full aspect-[4/3] rounded-xl mb-[var(--spacing-md)] bg-white/5 overflow-hidden relative">
+              <div className="w-full aspect-[4/3] rounded-xl mb-6 bg-white/5 overflow-hidden relative">
                 <img className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://images.unsplash.com/photo-1542314831-c6a4d27ce66b?auto=format&fit=crop&q=80&w=400" alt="Suites" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/80 to-transparent"></div>
                 <span className="absolute bottom-3 left-3 material-symbols-outlined text-[var(--color-tertiary)] text-[32px]">hotel_class</span>
               </div>
-              <h3 className="font-outfit text-[24px] font-bold text-[var(--color-secondary)] mb-[var(--spacing-xs)]">Orbital Suites</h3>
+              <h3 className="font-outfit text-[24px] font-bold text-[var(--color-secondary)] mb-3">Orbital Suites</h3>
               <p className="font-inter text-sm text-[var(--color-on-surface-variant)]">Luxury in zero-gravity. Pure serenity with unmatched planetary views.</p>
             </button>
 
             {/* Card 2 */}
             <button 
               onClick={() => toggleCard("hypersonic")}
-              className={`glass-panel group p-[var(--spacing-md)] rounded-[24px] text-left transition-all duration-300 hover:scale-[1.02] border focus:outline-none bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] ${
+              className={`glass-panel group p-8 rounded-[28px] text-left transition-all duration-300 hover:scale-[1.02] border focus:outline-none bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] ${
                 selectedCards.includes("hypersonic") ? "border-[var(--color-tertiary)] shadow-[0_0_20px_rgba(251,188,0,0.2)]" : "border-white/10"
               }`}
             >
-              <div className="w-full aspect-[4/3] rounded-xl mb-[var(--spacing-md)] bg-white/5 overflow-hidden relative">
+              <div className="w-full aspect-[4/3] rounded-xl mb-6 bg-white/5 overflow-hidden relative">
                 <img className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&q=80&w=400" alt="Hypersonic" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/80 to-transparent"></div>
                 <span className="absolute bottom-3 left-3 material-symbols-outlined text-[var(--color-tertiary)] text-[32px]">rocket_launch</span>
               </div>
-              <h3 className="font-outfit text-[24px] font-bold text-[var(--color-secondary)] mb-[var(--spacing-xs)]">Hypersonic Expeditions</h3>
+              <h3 className="font-outfit text-[24px] font-bold text-[var(--color-secondary)] mb-3">Hypersonic Expeditions</h3>
               <p className="font-inter text-sm text-[var(--color-on-surface-variant)]">High-speed point-to-point travel for the modern, time-conscious voyager.</p>
             </button>
 
             {/* Card 3 */}
             <button 
               onClick={() => toggleCard("escapes")}
-              className={`glass-panel group p-[var(--spacing-md)] rounded-[24px] text-left transition-all duration-300 hover:scale-[1.02] border focus:outline-none bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] ${
+              className={`glass-panel group p-8 rounded-[28px] text-left transition-all duration-300 hover:scale-[1.02] border focus:outline-none bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] ${
                 selectedCards.includes("escapes") ? "border-[var(--color-tertiary)] shadow-[0_0_20px_rgba(251,188,0,0.2)]" : "border-white/10"
               }`}
             >
-              <div className="w-full aspect-[4/3] rounded-xl mb-[var(--spacing-md)] bg-white/5 overflow-hidden relative">
+              <div className="w-full aspect-[4/3] rounded-xl mb-6 bg-white/5 overflow-hidden relative">
                 <img className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&q=80&w=400" alt="Escapes" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/80 to-transparent"></div>
                 <span className="absolute bottom-3 left-3 material-symbols-outlined text-[var(--color-tertiary)] text-[32px]">nights_stay</span>
               </div>
-              <h3 className="font-outfit text-[24px] font-bold text-[var(--color-secondary)] mb-[var(--spacing-xs)]">Lunar Escapes</h3>
+              <h3 className="font-outfit text-[24px] font-bold text-[var(--color-secondary)] mb-3">Lunar Escapes</h3>
               <p className="font-inter text-sm text-[var(--color-on-surface-variant)]">A weekend on the Moon. Explore the craters and silent valleys of our satellite.</p>
             </button>
           </div>
 
           {/* AI Assistance Section */}
-          <GlassCard className="p-[var(--spacing-lg)] rounded-[24px] flex flex-col gap-[var(--spacing-md)] border-white/10">
-            <div className="flex items-center gap-[var(--spacing-sm)]">
-              <span className="material-symbols-outlined text-[var(--color-tertiary)]" style={{ fontVariationSettings: "'FILL' 1" }}>smart_toy</span>
-              <h2 className="font-outfit text-[24px] font-bold text-[var(--color-secondary)]">AI Assistance Level</h2>
+          <GlassCard className="p-8 md:p-10 rounded-[28px] flex flex-col gap-6 border-white/10">
+            <div className="flex items-center gap-4">
+              <span className="material-symbols-outlined text-[var(--color-tertiary)] text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>smart_toy</span>
+              <h2 className="font-outfit text-[28px] font-bold text-[var(--color-secondary)]">AI Assistance Level</h2>
             </div>
-            <div className="space-y-[var(--spacing-sm)]">
+            <div className="space-y-6">
               <input 
                 className="w-full cursor-pointer accent-[var(--color-tertiary)] h-1 bg-white/10 rounded-full" 
                 max="100" 
@@ -146,15 +146,15 @@ export default function PreferencesOnboardingPage() {
               />
               <div className="flex justify-between font-inter text-xs text-[var(--color-on-surface-variant)]/60 px-1">
                 <div className="text-left">
-                  <span className={`block font-semibold ${sliderValue < 33 ? "text-[var(--color-secondary)]" : "text-[var(--color-on-surface)]"}`}>Minimal</span>
+                  <span className={`block font-semibold text-sm ${sliderValue < 33 ? "text-[var(--color-secondary)]" : "text-[var(--color-on-surface)]"}`}>Minimal</span>
                   <span>Manual controls only</span>
                 </div>
                 <div className="text-center">
-                  <span className={`block font-semibold ${(sliderValue >= 33 && sliderValue < 66) ? "text-[var(--color-secondary)]" : "text-[var(--color-on-surface)]"}`}>Co-Pilot</span>
+                  <span className={`block font-semibold text-sm ${(sliderValue >= 33 && sliderValue < 66) ? "text-[var(--color-secondary)]" : "text-[var(--color-on-surface)]"}`}>Co-Pilot</span>
                   <span>Guided suggestions</span>
                 </div>
                 <div className="text-right">
-                  <span className={`block font-semibold ${sliderValue >= 66 ? "text-[var(--color-tertiary)]" : "text-[var(--color-on-surface)]"}`}>Full Concierge</span>
+                  <span className={`block font-semibold text-sm ${sliderValue >= 66 ? "text-[var(--color-tertiary)]" : "text-[var(--color-on-surface)]"}`}>Full Concierge</span>
                   <span>Autonomous management</span>
                 </div>
               </div>
@@ -162,16 +162,16 @@ export default function PreferencesOnboardingPage() {
           </GlassCard>
 
           {/* Navigation Footer */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-[var(--spacing-md)] pt-[var(--spacing-md)]">
-            <Link href="/onboarding/welcome" className="font-inter text-sm font-bold text-[var(--color-tertiary)] flex items-center gap-1 uppercase tracking-widest hover:opacity-80 transition-opacity">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 pt-8">
+            <Link href="/onboarding/welcome" className="font-inter text-sm font-bold text-[var(--color-tertiary)] flex items-center gap-2 uppercase tracking-widest hover:opacity-80 transition-opacity">
               <span className="material-symbols-outlined">chevron_left</span>
               Back to Core Profile
             </Link>
-            <div className="flex items-center gap-[var(--spacing-md)] w-full md:w-auto">
-              <Link href="/manage" className="flex-1 md:flex-none text-center px-[var(--spacing-xl)] py-3 rounded-full bg-white/10 border border-white/20 font-inter text-sm font-semibold text-[var(--color-secondary)] hover:bg-white/15 transition-all">Skip</Link>
+            <div className="flex items-center gap-6 w-full md:w-auto">
+              <Link href="/manage" className="flex-1 md:flex-none text-center px-[var(--spacing-xl)] py-3.5 rounded-full bg-white/10 border border-white/20 font-inter text-sm font-semibold text-[var(--color-secondary)] hover:bg-white/15 transition-all">Skip</Link>
               <button 
                 onClick={handleCompleteSetup}
-                className="flex-1 md:flex-none text-center px-[var(--spacing-xl)] py-3 rounded-full bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold shadow-[0_10px_20px_rgba(251,188,0,0.3)] hover:shadow-[0_15px_30px_rgba(251,188,0,0.5)] transition-all hover:-translate-y-0.5 active:scale-95 cursor-pointer outline-none"
+                className="flex-1 md:flex-none text-center px-[var(--spacing-xl)] py-3.5 rounded-full bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold shadow-[0_10px_20px_rgba(251,188,0,0.3)] hover:shadow-[0_15px_30px_rgba(251,188,0,0.5)] transition-all hover:-translate-y-0.5 active:scale-95 cursor-pointer outline-none"
               >
                 Complete Setup
               </button>

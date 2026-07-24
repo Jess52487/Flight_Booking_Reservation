@@ -7,7 +7,7 @@ import { useAuth } from "@/components/AuthProvider";
 
 export default function WelcomeOnboardingPage() {
   const { profile } = useAuth();
-  const commanderName = profile?.username || "Voyager";
+  const commanderName = profile?.username ? `Commander ${profile.username}` : "Commander";
   const loyaltyCreds = profile?.loyalty_creds || 42500;
 
   return (
@@ -45,9 +45,9 @@ export default function WelcomeOnboardingPage() {
               <span className="material-symbols-outlined text-[var(--color-secondary)] text-[18px]">verified</span>
               <span className="font-inter text-[12px] font-bold text-[var(--color-secondary)] uppercase tracking-widest">Enabling Galactic Protocol</span>
             </div>
-            <h1 className="font-outfit text-4xl md:text-[56px] text-[var(--color-secondary)] leading-tight font-bold tracking-tight">
+            <h1 className="font-outfit text-4xl md:text-[56px] text-[var(--color-secondary)] leading-tight font-bold tracking-tight break-words">
               Welcome Home,<br />
-              <span className="text-[var(--color-tertiary)]">Commander.</span>
+              <span className="text-[var(--color-tertiary)]">{commanderName}.</span>
             </h1>
             <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-2xl mx-auto md:mx-0 break-normal whitespace-normal">
               Your destination starts here. Experience a faster, smarter way to book flights and plan unforgettable journeys.
@@ -74,17 +74,17 @@ export default function WelcomeOnboardingPage() {
             <div className="absolute -bottom-12 -left-8 w-40 h-40 bg-[var(--color-tertiary)]/10 rounded-full blur-3xl"></div>
             
             {/* The "Liquid Glass" Identity Card */}
-            <div className="bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-[32px] p-[var(--spacing-md)] md:p-[var(--spacing-lg)] relative overflow-hidden shadow-2xl animate-float">
+            <div className="bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-[32px] p-[var(--spacing-md)] md:p-[var(--spacing-lg)] relative overflow-hidden shadow-2xl animate-float min-h-[320px] flex flex-col justify-between">
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
               
               {/* Card Header */}
-              <div className="flex justify-between items-start mb-[var(--spacing-lg)] relative z-10">
-                <div className="flex items-center gap-[var(--spacing-md)]">
-                  <div className="w-16 h-16 rounded-full border-2 border-[var(--color-tertiary)] p-1">
+              <div className="flex justify-between items-start mb-[var(--spacing-lg)] relative z-10 gap-2">
+                <div className="flex items-center gap-[var(--spacing-md)] min-w-0">
+                  <div className="w-16 h-16 rounded-full border-2 border-[var(--color-tertiary)] p-1 shrink-0">
                     <img alt="User Profile" className="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV" />
                   </div>
-                  <div>
-                    <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)]">{commanderName}</h3>
+                  <div className="min-w-0">
+                    <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)] truncate">{commanderName}</h3>
                     <p className="font-inter text-sm font-semibold text-[var(--color-tertiary)] flex items-center gap-1">
                       <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
                       Elite Voyager

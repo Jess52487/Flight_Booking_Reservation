@@ -96,10 +96,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!loading) {
       const isPublic = PUBLIC_ROUTES.includes(pathname);
+      const isOnboarding = pathname.startsWith("/onboarding");
       if (!user && !isPublic) {
         router.push("/login");
-      } else if (user && profile?.onboarding_complete && pathname.startsWith("/onboarding")) {
-        router.push("/manage");
+      } else if (user && profile) {
+        if (profile.onboarding_complete) {
+          if (isOnboarding) {
+            router.push("/manage");
+          }
+        } else {
+          if (!isOnboarding && !isPublic) {
+            router.push("/onboarding/welcome");
+          }
+        }
       }
     }
   }, [user, profile, loading, pathname, router]);

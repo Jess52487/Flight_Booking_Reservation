@@ -82,12 +82,12 @@ export default function SupportPage() {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-80px)] flex justify-center items-center p-[var(--spacing-md)] bg-[var(--color-background)] overflow-hidden">
+    <div className="relative min-h-[calc(100vh-80px)] flex justify-center items-center p-[var(--spacing-md)] bg-[var(--color-background)] overflow-y-auto">
       
       {/* Global Background Shader Simulation */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary-container)]/20 via-transparent to-transparent"></div>
 
-      <div className="max-w-5xl w-full h-[80vh] min-h-[600px] rounded-[24px] flex flex-col overflow-hidden relative z-10 mt-16">
+      <div className="max-w-5xl w-full h-[80vh] min-h-[500px] rounded-[24px] flex flex-col overflow-hidden relative z-10">
         <GlassCard className="flex flex-col h-full !p-0 shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10">
           {/* Chat Header */}
           <div className="px-[var(--spacing-xl)] py-[var(--spacing-md)] border-b border-white/10 flex items-center justify-between bg-white/5">

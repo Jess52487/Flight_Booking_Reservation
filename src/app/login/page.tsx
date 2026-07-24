@@ -86,15 +86,15 @@ export default function LoginPage() {
           </div>
 
           {/* Form */}
-          <form className="flex flex-col gap-[var(--spacing-md)]" onSubmit={handleLogin}>
+          <form className="flex flex-col gap-8" onSubmit={handleLogin}>
             {error && (
               <div className="bg-red-500/10 border border-red-500/30 text-red-200 text-sm py-3 px-4 rounded-xl font-inter text-center">
                 {error}
               </div>
             )}
 
-            <div className="flex flex-col gap-[var(--spacing-xs)]">
-              <label className="font-inter text-sm font-medium text-[var(--color-on-surface)]/70 ml-1">
+            <div className="flex flex-col gap-3.5">
+              <label className="font-inter text-sm font-semibold text-[var(--color-on-surface)]/70 ml-1">
                 Email Terminal
               </label>
               <div className="flex items-center bg-white/5 border border-white/10 rounded-xl px-[var(--spacing-sm)] transition-all duration-300 focus-within:border-[var(--color-secondary)] focus-within:ring-1 focus-within:ring-[var(--color-secondary)]/30 focus-within:scale-[1.02]">
@@ -110,9 +110,9 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-[var(--spacing-xs)]">
+            <div className="flex flex-col gap-3.5">
               <div className="flex justify-between items-center px-1">
-                <label className="font-inter text-sm font-medium text-[var(--color-on-surface)]/70">
+                <label className="font-inter text-sm font-semibold text-[var(--color-on-surface)]/70">
                   Access Key
                 </label>
                 <Link href="#" className="font-inter text-xs font-semibold text-[var(--color-secondary)] hover:text-[var(--color-primary)] transition-colors">
@@ -142,7 +142,7 @@ export default function LoginPage() {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full py-4 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-outfit text-xl font-bold rounded-xl shadow-[0_0_15px_rgba(251,188,0,0.3)] hover:shadow-[0_0_25px_rgba(251,188,0,0.6)] active:scale-95 transition-all uppercase tracking-widest relative overflow-hidden group disabled:opacity-50"
+              className="w-full py-4.5 mt-4 bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-outfit text-xl font-bold rounded-xl shadow-[0_0_15px_rgba(251,188,0,0.3)] hover:shadow-[0_0_25px_rgba(251,188,0,0.6)] active:scale-95 transition-all uppercase tracking-widest relative overflow-hidden group disabled:opacity-50"
             >
               <span className="relative z-10">{loading ? "Logging in..." : "Initiate Sign In"}</span>
               <div className="absolute inset-0 bg-white/15 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
@@ -150,31 +150,31 @@ export default function LoginPage() {
           </form>
 
           {/* Divider */}
-          <div className="flex items-center gap-[var(--spacing-md)]">
+          <div className="flex items-center gap-[var(--spacing-md)] my-2">
             <div className="h-[1px] flex-1 bg-white/10"></div>
-            <span className="font-inter text-xs font-semibold tracking-widest text-[var(--color-on-surface-variant)] uppercase">
+            <span className="font-inter text-xs font-semibold tracking-widest text-[var(--color-on-surface-variant)]/80 uppercase">
               OR CONNECT VIA
             </span>
             <div className="h-[1px] flex-1 bg-white/10"></div>
           </div>
 
           {/* Social Logins */}
-          <div className="grid grid-cols-2 gap-[var(--spacing-md)]">
-            <button className="flex items-center justify-center gap-[var(--spacing-xs)] py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all hover:-translate-y-1">
+          <div className="grid grid-cols-2 gap-6">
+            <button className="flex items-center justify-center gap-3.5 py-4.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all hover:-translate-y-1">
               <svg className="w-5 h-5 text-[var(--color-on-surface)]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.908 3.152-1.928 4.176-1.224 1.224-3.136 2.592-7.104 2.592-6.272 0-11.232-5.088-11.232-11.36s4.96-11.36 11.232-11.36c3.424 0 5.856 1.32 7.6 2.992l2.312-2.312c-1.976-1.88-4.528-3.312-8.312-3.312-7.832 0-14.4 6.368-14.4 14.4s6.568 14.4 14.4 14.4c4.224 0 7.6-1.392 10.152-4.072 2.624-2.624 3.488-6.296 3.488-9.104 0-.872-.08-1.712-.224-2.52h-11.32z"></path>
               </svg>
-              <span className="font-inter text-sm font-medium">Google</span>
+              <span className="font-inter text-sm font-semibold">Google</span>
             </button>
-            <button className="flex items-center justify-center gap-[var(--spacing-xs)] py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all hover:-translate-y-1">
+            <button className="flex items-center justify-center gap-3.5 py-4.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all hover:-translate-y-1">
               <svg className="w-5 h-5 text-[var(--color-on-surface)]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.05 20.28c-.96.95-2.04 1.43-3.24 1.43-1.15 0-2.15-.43-3-.43s-1.85.43-3 .43c-1.2 0-2.28-.48-3.24-1.43C2.5 18.25 1 15.35 1 12.35c0-2.9 1.25-5.3 3.15-7.1 1-.95 2.1-1.45 3.3-1.45 1.15 0 2 .45 2.85.45.85 0 1.7-.45 2.85-.45 1.2 0 2.3.5 3.3 1.45 1.45 1.4 2.45 3.3 2.55 3.45-.1.05-2.6 1.15-2.6 4.15 0 3.05 2.5 4.15 2.6 4.15-.1.35-.55 1.55-1.6 3.1zM12 3.1c0-2.3 1.9-4.1 4.2-4.1.1 0 .2 0 .3.05-.05 2.3-1.9 4.1-4.2 4.1-.1 0-.2 0-.3-.05z"></path>
               </svg>
-              <span className="font-inter text-sm font-medium">Apple</span>
+              <span className="font-inter text-sm font-semibold">Apple</span>
             </button>
           </div>
 
-          <div className="text-center pt-[var(--spacing-md)]">
+          <div className="text-center pt-[var(--spacing-md)] mt-2">
             <p className="font-inter text-sm text-[var(--color-on-surface-variant)]">
               New to the fleet?{" "}
               <Link href="/signup" className="text-[var(--color-secondary)] font-bold hover:underline ml-1">
