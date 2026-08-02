@@ -14,10 +14,10 @@ function BookingSeatSelection() {
 
   // Read URL query params
   const flightNo = searchParams.get("flightNo") || "AA-242";
-  const origin = searchParams.get("origin") || "London (LHR)";
-  const destination = searchParams.get("destination") || "New York (JFK)";
+  const origin = searchParams.get("origin") || "Lagos (LOS)";
+  const destination = searchParams.get("destination") || "Abuja (ABV)";
   const departureDateRaw = searchParams.get("date") || "2026-10-24";
-  const rawPrice = searchParams.get("price") || "4820";
+  const rawPrice = searchParams.get("price") || "115000";
   const cabinClass = searchParams.get("class") || "Ether Business";
 
   const price = parseFloat(rawPrice);
@@ -89,23 +89,16 @@ function BookingSeatSelection() {
   };
 
   return (
-    <div className="text-[var(--color-on-surface)] font-inter min-h-screen flex flex-col bg-[var(--color-background)]">
-      {/* Background Environment */}
-      <div className="fixed inset-0 pointer-events-none -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[var(--color-primary-container)]/20 via-[var(--color-background)] to-transparent"></div>
-      </div>
+    <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-on-background)] font-inter flex flex-col relative w-full overflow-x-hidden pt-20">
+      {/* Background shader */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,_#1a2a44_0%,_#111415_80%)] pointer-events-none -z-10"></div>
 
-      <div className="flex flex-1 pt-4">
-        {/* Main Content Canvas */}
-        <main className="flex-1 p-[var(--spacing-md)] md:p-[var(--spacing-lg)] overflow-y-auto no-scrollbar">
-          {/* Header Section */}
-          <div className="mb-[var(--spacing-lg)] animate-in slide-in-from-top duration-700">
-            <h1 className="font-outfit text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--color-secondary)] mb-[var(--spacing-xs)] break-words leading-tight">
-              Flight {flightNo}: {origin} to {destination}
-            </h1>
-            <p className="font-inter text-base text-[var(--color-on-surface-variant)]">
-              Experience the stratosphere in unparalleled luxury. Select your gateway to the horizon.
-            </p>
+      <div className="flex-grow flex flex-col items-center justify-start px-4 md:px-8 py-10 w-full max-w-[1600px] mx-auto z-10">
+        <main className="w-full space-y-8">
+          {/* Header Description */}
+          <div className="text-center space-y-2">
+            <h1 className="font-outfit text-3xl md:text-5xl text-[var(--color-secondary)] font-bold tracking-tight">Seat Verification</h1>
+            <p className="font-inter text-sm text-[var(--color-on-surface-variant)]">Confirm details for flight <span className="text-white font-semibold">{flightNo}</span> on <span className="text-white font-semibold">{departureDateRaw}</span></p>
           </div>
 
           {/* Bento Dashboard */}
@@ -212,7 +205,7 @@ function BookingSeatSelection() {
                     />
                     {/* Marker */}
                     <circle cx="300" cy="30" r="6" fill="var(--color-tertiary)" className="animate-pulse shadow-lg">
-                      <title>Current: ${price}</title>
+                      <title>Current: ₦{price.toLocaleString()}</title>
                     </circle>
                   </svg>
                   <div className="flex justify-between mt-4 font-inter text-[10px] font-semibold uppercase tracking-widest text-[var(--color-on-surface-variant)]">
@@ -249,11 +242,11 @@ function BookingSeatSelection() {
                     </div>
                     <div className="flex justify-between border-b border-white/10 pb-3">
                       <span className="font-inter text-sm text-[var(--color-on-surface-variant)]">Lounge Access</span>
-                      <span className="font-inter text-sm text-[var(--color-secondary)] font-bold">LHR T5 Skyway</span>
+                      <span className="font-inter text-sm text-[var(--color-secondary)] font-bold">LOS VIP Lounge</span>
                     </div>
                     <div className="flex justify-between items-end mt-8 pt-4">
                       <span className="font-inter text-sm text-[var(--color-on-surface-variant)] uppercase tracking-widest font-semibold">Total Fare</span>
-                      <span className="font-outfit text-4xl text-[var(--color-tertiary)] font-bold">${price.toLocaleString()}</span>
+                      <span className="font-outfit text-4xl text-[var(--color-tertiary)] font-bold">₦{price.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>

@@ -8,40 +8,69 @@ import Link from "next/link";
 
 function SearchResults() {
   const searchParams = useSearchParams();
-  const origin = searchParams.get("origin") || "London (LHR)";
-  const destination = searchParams.get("destination") || "New York (JFK)";
+  const origin = searchParams.get("origin") || "Lagos (LOS)";
+  const destination = searchParams.get("destination") || "Abuja (ABV)";
   const date = searchParams.get("date") || "2026-10-24";
 
-  // Mock list of matching flights based on the route
-  const mockFlights = [
-    {
-      flightNo: "AA-102",
-      departureTime: "08:30 AM",
-      arrivalTime: "11:45 AM",
-      duration: "8h 15m",
-      class: "Eco Explorer",
-      price: 650,
-      icon: "rocket",
-    },
-    {
-      flightNo: "AA-242",
-      departureTime: "01:15 PM",
-      arrivalTime: "04:30 PM",
-      duration: "8h 15m",
-      class: "Ether Business",
-      price: 2480,
-      icon: "rocket_launch",
-    },
-    {
-      flightNo: "AA-992",
-      departureTime: "09:00 PM",
-      arrivalTime: "12:15 AM",
-      duration: "8h 15m",
-      class: "Celestial First",
-      price: 4820,
-      icon: "star",
-    },
+  // Dynamic seeded flight generator based on inputs
+  const getSeed = (str: string) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return Math.abs(hash);
+  };
+
+  const seed = getSeed(origin + destination + date);
+  const getRand = (max: number, offset: number = 0) => {
+    return ((seed * (offset + 7)) % max);
+  };
+
+  const airlines = [
+    { name: "Air Peace Galactic", code: "APK", icon: "rocket_launch" },
+    { name: "Ibom Astro", code: "IBA", icon: "rocket" },
+    { name: "Arik Interstellar", code: "ARK", icon: "star" },
+    { name: "Green Africa Space", code: "QGW", icon: "travel_explore" }
   ];
+
+  const departureTimes = ["07:15 AM", "11:30 AM", "03:45 PM", "08:00 PM"];
+  const cabinClasses = ["Eco Explorer", "Ether Business", "Celestial First"];
+
+  // Base price in Naira for domestic flight
+  const basePrice = 115000;
+
+  const mockFlights = Array.from({ length: 3 }).map((_, idx) => {
+    const airline = airlines[getRand(airlines.length, idx)];
+    const depTime = departureTimes[getRand(departureTimes.length, idx)];
+    const durationMin = 50 + getRand(40, idx); // 50 to 90 mins
+    const durationStr = `${Math.floor(durationMin / 60)}h ${durationMin % 60}m`;
+    
+    // Arrival Time calculation
+    const [time, modifier] = depTime.split(" ");
+    const [hours, minutes] = time.split(":").map(Number);
+    let arrHours = hours + Math.floor((minutes + durationMin) / 60);
+    const arrMinutes = (minutes + durationMin) % 60;
+    let arrModifier = modifier;
+    if (arrHours >= 12) {
+      if (arrHours > 12) arrHours -= 12;
+      arrModifier = modifier === "AM" ? "PM" : "AM";
+    }
+    const arrTime = `${arrHours.toString().padStart(2, '0')}:${arrMinutes.toString().padStart(2, '0')} ${arrModifier}`;
+
+    const flightClass = cabinClasses[idx];
+    const multiplier = idx === 0 ? 1 : idx === 1 ? 2.3 : 4.6;
+    const price = Math.round((basePrice + getRand(25000, idx)) * multiplier);
+
+    return {
+      flightNo: `${airline.code}-${100 + getRand(899, idx)}`,
+      departureTime: depTime,
+      arrivalTime: arrTime,
+      duration: durationStr,
+      class: `${airline.name} (${flightClass})`,
+      price,
+      icon: airline.icon,
+    };
+  });
 
   return (
     <div className="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-start p-[var(--spacing-md)] md:p-[var(--spacing-xl)]">
@@ -124,7 +153,7 @@ function SearchResults() {
                       {flight.class}
                     </span>
                     <span className="font-outfit text-3xl font-bold text-[var(--color-tertiary)]">
-                      ${flight.price}
+                      ₦{flight.price.toLocaleString()}
                     </span>
                   </div>
                   <Link href={bookingUrl}>

@@ -7,8 +7,8 @@ import { useAuth } from "@/components/AuthProvider";
 
 export default function LandingWelcomePage() {
   const { profile } = useAuth();
-  const [origin, setOrigin] = useState("London (LHR)");
-  const [destination, setDestination] = useState("New York (JFK)");
+  const [origin, setOrigin] = useState("Lagos (LOS)");
+  const [destination, setDestination] = useState("Abuja (ABV)");
   const [departureDate, setDepartureDate] = useState("2026-10-24");
 
   const displayName = profile?.username ? `Commander ${profile.username}` : "Commander";
@@ -19,6 +19,17 @@ export default function LandingWelcomePage() {
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#1a2a44_0%,_#111415_100%)]"></div>
       </div>
+
+      {/* Nigerian Airports Datalist */}
+      <datalist id="nigerian-airports">
+        <option value="Lagos (LOS)" />
+        <option value="Abuja (ABV)" />
+        <option value="Port Harcourt (PHC)" />
+        <option value="Kano (KAN)" />
+        <option value="Enugu (ENU)" />
+        <option value="Benin (BNI)" />
+        <option value="Kaduna (KAD)" />
+      </datalist>
 
       {/* Content Canvas */}
       <section className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full max-w-[1600px] mx-auto">
@@ -48,8 +59,9 @@ export default function LandingWelcomePage() {
                     <input 
                       value={origin}
                       onChange={(e) => setOrigin(e.target.value)}
+                      list="nigerian-airports"
                       className="w-full bg-white/5 border border-white/20 rounded-xl py-2.5 pl-10 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-secondary)] transition-all font-inter text-sm" 
-                      placeholder="E.g. London (LHR)" 
+                      placeholder="E.g. Lagos (LOS)" 
                       required
                     />
                   </div>
@@ -59,10 +71,11 @@ export default function LandingWelcomePage() {
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/40 text-sm">flight_land</span>
                     <input 
-                      value={origin === "London (LHR)" && destination === "New York (JFK)" ? "New York (JFK)" : destination}
+                      value={origin === "Lagos (LOS)" && destination === "Abuja (ABV)" ? "Abuja (ABV)" : destination}
                       onChange={(e) => setDestination(e.target.value)}
+                      list="nigerian-airports"
                       className="w-full bg-white/5 border border-white/20 rounded-xl py-2.5 pl-10 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-secondary)] transition-all font-inter text-sm" 
-                      placeholder="E.g. New York (JFK)" 
+                      placeholder="E.g. Abuja (ABV)" 
                       required
                     />
                   </div>
@@ -136,7 +149,7 @@ export default function LandingWelcomePage() {
                 <div className="col-span-2 bg-white/5 border border-white/10 rounded-2xl p-[var(--spacing-sm)] flex items-center justify-between">
                   <div>
                     <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Primary Destination</p>
-                    <p className="font-outfit text-xl font-bold text-[var(--color-tertiary)]">Neo-Tokyo Skyport</p>
+                    <p className="font-outfit text-xl font-bold text-[var(--color-tertiary)]">Abuja Skyport</p>
                   </div>
                   <span className="material-symbols-outlined text-[var(--color-secondary)]/40 text-[40px]">flight_takeoff</span>
                 </div>
