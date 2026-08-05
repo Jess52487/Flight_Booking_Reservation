@@ -27,8 +27,9 @@ export function NavBar() {
     <>
       <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/20 shadow-[0px_20px_40px_rgba(0,0,0,0.3)]">
         <div className="flex justify-between items-center px-[var(--spacing-md)] py-[var(--spacing-sm)] max-w-[1600px] mx-auto">
-          <Link href="/" className="text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
-            AeroHub
+          <Link href="/" className="flex items-center gap-2.5 text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
+            <img src="/logo.png" alt="AeroHub Logo" className="w-8 h-8 object-contain rounded-lg" />
+            <span>AeroHub</span>
           </Link>
           <nav className="hidden md:flex gap-[var(--spacing-md)] items-center">
             {navLinks.map((link) => {

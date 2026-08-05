@@ -15,33 +15,7 @@ export default function SupportPage() {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [inputValue, setInputValue] = useState("");
   
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      sender: "ai",
-      text: "Hello Commander. I am the AeroHub Support Core. How can I assist you with your travel, account, or Galactic rewards today?",
-      time: "10:15",
-    },
-    {
-      id: "2",
-      sender: "user",
-      text: "I lost my baggage on my flight to Neo-Tokyo.",
-      time: "10:16",
-    },
-    {
-      id: "3",
-      sender: "ai",
-      text: "I'm sorry to hear that. I'm running a trace on your baggage tags for flight AA301...",
-      time: "10:16",
-    },
-    {
-      id: "4",
-      sender: "ai",
-      text: "Trace complete. Your baggage is currently at the Neo-Tokyo Central sorting facility and is scheduled for delivery to your hotel within 2 hours.",
-      time: "10:17",
-      hasWidget: true,
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -140,48 +114,60 @@ export default function SupportPage() {
 
           {/* Messages Area */}
           <div className="flex-grow overflow-y-auto p-[var(--spacing-xl)] space-y-[var(--spacing-md)] pr-4 scrollbar-thin scrollbar-thumb-white/10" ref={chatContainerRef}>
-            {messages.map((msg) => (
-              <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
-                <div className={`max-w-[85%] md:max-w-[70%] backdrop-blur-md px-[var(--spacing-md)] py-[var(--spacing-sm)] border ${
-                  msg.sender === "user" 
-                    ? "bg-[var(--color-surface-bright)]/80 rounded-t-[20px] rounded-bl-[20px] border-white/10" 
-                    : "bg-[var(--color-secondary-container)]/20 rounded-t-[20px] rounded-br-[20px] border-[var(--color-secondary)]/20"
-                }`}>
-                  <p className="font-inter text-base text-[var(--color-on-surface)]">
-                    {msg.text}
-                  </p>
-
-                  {/* Dynamic Support Widget */}
-                  {msg.hasWidget && (
-                    <div className="mt-[var(--spacing-md)] bg-white/5 border border-[var(--color-secondary)]/30 p-[var(--spacing-md)] rounded-xl relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-                      <div className="flex justify-between items-start mb-[var(--spacing-sm)] relative z-10">
-                        <div>
-                          <span className="font-inter text-xs text-[var(--color-secondary)] uppercase tracking-widest font-semibold">Baggage Tracker</span>
-                          <h4 className="font-outfit text-xl font-bold text-[var(--color-on-surface)]">Tag #AE9924X</h4>
-                        </div>
-                        <div className="bg-[var(--color-tertiary)] text-[var(--color-on-tertiary)] font-inter text-xs font-bold px-2 py-1 rounded">IN TRANSIT</div>
-                      </div>
-                      
-                      <div className="flex items-center gap-[var(--spacing-md)] mb-[var(--spacing-md)] relative z-10 pt-4">
-                        <div className="flex-grow h-1 bg-white/10 rounded-full relative">
-                          <div className="absolute left-0 top-0 h-full w-[90%] bg-[var(--color-tertiary)] shadow-[0_0_8px_rgba(251,188,0,0.5)]"></div>
-                          <div className="absolute left-[90%] -top-1.5 w-4 h-4 bg-[var(--color-secondary)] rounded-full shadow-[0_0_12px_rgba(137,208,237,0.6)]"></div>
-                        </div>
-                      </div>
-
-                      <button className="w-full bg-[var(--color-secondary)] text-[var(--color-on-secondary-fixed)] font-inter text-sm font-bold py-[var(--spacing-sm)] rounded-lg hover:shadow-[0_0_20px_rgba(137,208,237,0.4)] transition-all flex items-center justify-center gap-2 relative z-10 uppercase tracking-widest">
-                        <span className="material-symbols-outlined text-sm">location_on</span>
-                        Track on Map
-                      </button>
-                    </div>
-                  )}
-                  <span className={`block font-inter text-[10px] text-[var(--color-on-surface-variant)] mt-2 ${msg.sender === "user" ? "text-right" : "text-left"}`}>
-                    {msg.time}
-                  </span>
+            {messages.length === 0 ? (
+              <div className="h-full flex flex-col items-center justify-center text-center p-[var(--spacing-xl)] space-y-[var(--spacing-md)] my-auto select-none">
+                <div className="w-20 h-20 rounded-full bg-[var(--color-secondary)]/10 border border-[var(--color-secondary)]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(137,208,237,0.2)]">
+                  <span className="material-symbols-outlined text-[var(--color-secondary)] text-4xl animate-pulse">support_agent</span>
                 </div>
+                <h3 className="font-outfit text-3xl font-bold text-white leading-tight">AeroHub Concierge Core</h3>
+                <p className="font-inter text-base text-[var(--color-on-surface-variant)] max-w-md mx-auto">
+                  Welcome back, Commander. If you have questions regarding lost baggage, ticket refunds, or lounge clearance, enter your query below or choose a quick prompt to begin.
+                </p>
               </div>
-            ))}
+            ) : (
+              messages.map((msg) => (
+                <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
+                  <div className={`max-w-[85%] md:max-w-[70%] backdrop-blur-md px-[var(--spacing-md)] py-[var(--spacing-sm)] border ${
+                    msg.sender === "user" 
+                      ? "bg-[var(--color-surface-bright)]/80 rounded-t-[20px] rounded-bl-[20px] border-white/10" 
+                      : "bg-[var(--color-secondary-container)]/20 rounded-t-[20px] rounded-br-[20px] border-[var(--color-secondary)]/20"
+                  }`}>
+                    <p className="font-inter text-base text-[var(--color-on-surface)]">
+                      {msg.text}
+                    </p>
+
+                    {/* Dynamic Support Widget */}
+                    {msg.hasWidget && (
+                      <div className="mt-[var(--spacing-md)] bg-white/5 border border-[var(--color-secondary)]/30 p-[var(--spacing-md)] rounded-xl relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+                        <div className="flex justify-between items-start mb-[var(--spacing-sm)] relative z-10">
+                          <div>
+                            <span className="font-inter text-xs text-[var(--color-secondary)] uppercase tracking-widest font-semibold">Baggage Tracker</span>
+                            <h4 className="font-outfit text-xl font-bold text-[var(--color-on-surface)]">Tag #AE9924X</h4>
+                          </div>
+                          <div className="bg-[var(--color-tertiary)] text-[var(--color-on-tertiary)] font-inter text-xs font-bold px-2 py-1 rounded">IN TRANSIT</div>
+                        </div>
+                        
+                        <div className="flex items-center gap-[var(--spacing-md)] mb-[var(--spacing-md)] relative z-10 pt-4">
+                          <div className="flex-grow h-1 bg-white/10 rounded-full relative">
+                            <div className="absolute left-0 top-0 h-full w-[90%] bg-[var(--color-tertiary)] shadow-[0_0_8px_rgba(251,188,0,0.5)]"></div>
+                            <div className="absolute left-[90%] -top-1.5 w-4 h-4 bg-[var(--color-secondary)] rounded-full shadow-[0_0_12px_rgba(137,208,237,0.6)]"></div>
+                          </div>
+                        </div>
+
+                        <button className="w-full bg-[var(--color-secondary)] text-[var(--color-on-secondary-fixed)] font-inter text-sm font-bold py-[var(--spacing-sm)] rounded-lg hover:shadow-[0_0_20px_rgba(137,208,237,0.4)] transition-all flex items-center justify-center gap-2 relative z-10 uppercase tracking-widest">
+                          <span className="material-symbols-outlined text-sm">location_on</span>
+                          Track on Map
+                        </button>
+                      </div>
+                    )}
+                    <span className={`block font-inter text-[10px] text-[var(--color-on-surface-variant)] mt-2 ${msg.sender === "user" ? "text-right" : "text-left"}`}>
+                      {msg.time}
+                    </span>
+                  </div>
+                </div>
+              ))
+            )}
 
             {/* Suggestion Chips */}
             <div className="flex flex-wrap gap-[var(--spacing-sm)] pt-[var(--spacing-md)] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">

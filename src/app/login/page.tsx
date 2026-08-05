@@ -55,8 +55,9 @@ export default function LoginPage() {
       {/* Simplified Header */}
       <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10">
         <div className="max-w-[1600px] mx-auto w-full flex justify-between items-center px-[var(--spacing-md)] py-[var(--spacing-sm)]">
-          <Link href="/" className="text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
-            AeroHub
+          <Link href="/" className="flex items-center gap-2.5 text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
+            <img src="/logo.png" alt="AeroHub Logo" className="w-8 h-8 object-contain rounded-lg" />
+            <span>AeroHub</span>
           </Link>
           <div className="hidden md:flex gap-[var(--spacing-md)]">
             <Link href="#" className="font-inter text-sm font-semibold text-[var(--color-on-surface-variant)] hover:text-[var(--color-secondary)] transition-colors">Support</Link>
@@ -72,10 +73,8 @@ export default function LoginPage() {
           
           {/* Branding/Icon */}
           <div className="flex flex-col items-center gap-[var(--spacing-xs)]">
-            <div className="w-16 h-16 rounded-2xl bg-[var(--color-secondary-container)]/40 border border-white/20 flex items-center justify-center mb-[var(--spacing-sm)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
-              <span className="material-symbols-outlined text-[var(--color-secondary)] text-4xl animate-pulse" style={{ fontVariationSettings: "'FILL' 1" }}>
-                rocket_launch
-              </span>
+            <div className="w-20 h-20 rounded-2xl border border-white/20 flex items-center justify-center mb-[var(--spacing-sm)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] overflow-hidden">
+              <img src="/logo.png" alt="AeroHub Logo" className="w-full h-full object-cover" />
             </div>
             <h1 className="font-outfit text-3xl font-bold text-[var(--color-on-surface)] text-center">
               Welcome Back, Voyager
@@ -149,30 +148,6 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Divider */}
-          <div className="flex items-center gap-[var(--spacing-md)] my-2">
-            <div className="h-[1px] flex-1 bg-white/10"></div>
-            <span className="font-inter text-xs font-semibold tracking-widest text-[var(--color-on-surface-variant)]/80 uppercase">
-              OR CONNECT VIA
-            </span>
-            <div className="h-[1px] flex-1 bg-white/10"></div>
-          </div>
-
-          {/* Social Logins */}
-          <div className="grid grid-cols-2 gap-6">
-            <button className="flex items-center justify-center gap-3.5 py-4.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all hover:-translate-y-1">
-              <svg className="w-5 h-5 text-[var(--color-on-surface)]" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.908 3.152-1.928 4.176-1.224 1.224-3.136 2.592-7.104 2.592-6.272 0-11.232-5.088-11.232-11.36s4.96-11.36 11.232-11.36c3.424 0 5.856 1.32 7.6 2.992l2.312-2.312c-1.976-1.88-4.528-3.312-8.312-3.312-7.832 0-14.4 6.368-14.4 14.4s6.568 14.4 14.4 14.4c4.224 0 7.6-1.392 10.152-4.072 2.624-2.624 3.488-6.296 3.488-9.104 0-.872-.08-1.712-.224-2.52h-11.32z"></path>
-              </svg>
-              <span className="font-inter text-sm font-semibold">Google</span>
-            </button>
-            <button className="flex items-center justify-center gap-3.5 py-4.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all hover:-translate-y-1">
-              <svg className="w-5 h-5 text-[var(--color-on-surface)]" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.05 20.28c-.96.95-2.04 1.43-3.24 1.43-1.15 0-2.15-.43-3-.43s-1.85.43-3 .43c-1.2 0-2.28-.48-3.24-1.43C2.5 18.25 1 15.35 1 12.35c0-2.9 1.25-5.3 3.15-7.1 1-.95 2.1-1.45 3.3-1.45 1.15 0 2 .45 2.85.45.85 0 1.7-.45 2.85-.45 1.2 0 2.3.5 3.3 1.45 1.45 1.4 2.45 3.3 2.55 3.45-.1.05-2.6 1.15-2.6 4.15 0 3.05 2.5 4.15 2.6 4.15-.1.35-.55 1.55-1.6 3.1zM12 3.1c0-2.3 1.9-4.1 4.2-4.1.1 0 .2 0 .3.05-.05 2.3-1.9 4.1-4.2 4.1-.1 0-.2 0-.3-.05z"></path>
-              </svg>
-              <span className="font-inter text-sm font-semibold">Apple</span>
-            </button>
-          </div>
 
           <div className="text-center pt-[var(--spacing-md)] mt-2">
             <p className="font-inter text-sm text-[var(--color-on-surface-variant)]">

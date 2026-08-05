@@ -47,8 +47,9 @@ export default function SignupPage() {
     <div className="relative min-h-screen bg-[var(--color-background)] overflow-x-hidden text-[var(--color-on-surface)] select-none">
       <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 px-[var(--spacing-md)] py-[var(--spacing-sm)]">
         <div className="max-w-[1600px] mx-auto flex justify-between items-center">
-          <Link href="/" className="text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
-            AeroHub
+          <Link href="/" className="flex items-center gap-2.5 text-2xl font-outfit font-bold text-[var(--color-secondary)] tracking-tight">
+            <img src="/logo.png" alt="AeroHub Logo" className="w-8 h-8 object-contain rounded-lg" />
+            <span>AeroHub</span>
           </Link>
           <nav className="hidden md:flex gap-[var(--spacing-md)] items-center">
             <Link href="/" className="font-inter text-sm font-semibold text-[var(--color-on-surface-variant)] hover:text-[var(--color-secondary)] transition-colors">Flights</Link>

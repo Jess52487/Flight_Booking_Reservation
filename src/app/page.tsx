@@ -1,180 +1,261 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 import { useAuth } from "@/components/AuthProvider";
+import { FlightSearchConsole } from "@/components/FlightSearchConsole";
 
 export default function LandingWelcomePage() {
   const { profile } = useAuth();
-  const [origin, setOrigin] = useState("Lagos (LOS)");
-  const [destination, setDestination] = useState("Abuja (ABV)");
-  const [departureDate, setDepartureDate] = useState("2026-10-24");
-
   const displayName = profile?.username ? `Commander ${profile.username}` : "Commander";
 
+  // Animation variants for framer motion scroll
+  const cardVariants = {
+    offscreen: {
+      y: 50,
+      opacity: 0
+    },
+    onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        bounce: 0.4,
+        duration: 0.8
+      }
+    }
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <div className="bg-[var(--color-background)] text-[var(--color-on-background)] font-inter min-h-screen flex flex-col selection:bg-[var(--color-tertiary)]/30 overflow-x-hidden relative w-full">
+    <div className="bg-[var(--color-background)] text-[var(--color-on-background)] font-inter min-h-screen flex flex-col selection:bg-[var(--color-tertiary)]/30 overflow-x-hidden relative w-full pb-20">
       {/* Background Environment */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#1a2a44_0%,_#111415_100%)]"></div>
       </div>
 
-      {/* Nigerian Airports Datalist */}
-      <datalist id="nigerian-airports">
-        <option value="Lagos (LOS)" />
-        <option value="Abuja (ABV)" />
-        <option value="Port Harcourt (PHC)" />
-        <option value="Kano (KAN)" />
-        <option value="Enugu (ENU)" />
-        <option value="Benin (BNI)" />
-        <option value="Kaduna (KAD)" />
-      </datalist>
-
-      {/* Content Canvas */}
-      <section className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 py-10 mt-16 w-full max-w-[1600px] mx-auto">
-        <div className="w-full flex flex-col md:grid md:grid-cols-12 gap-10 items-center">
-          {/* Left Content: Welcome*/}
-          <div className="md:col-span-7 flex flex-col gap-6 text-center md:text-left w-full min-w-0">
-            <div className="inline-flex items-center gap-2 px-4 py-1 bg-[var(--color-secondary-container)]/20 border border-[var(--color-secondary)]/30 rounded-full w-fit mx-auto lg:mx-0">
+      {/* Hero Content Canvas */}
+      <section className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 pt-24 pb-12 w-full max-w-[1600px] mx-auto">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Left Content: Welcome & Pitch */}
+          <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left w-full min-w-0">
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+              className="inline-flex items-center gap-2 px-4 py-1 bg-[var(--color-secondary-container)]/20 border border-[var(--color-secondary)]/30 rounded-full w-fit mx-auto lg:mx-0"
+            >
               <span className="material-symbols-outlined text-[var(--color-secondary)] text-[18px]">verified</span>
               <span className="font-inter text-[12px] font-bold text-[var(--color-secondary)] uppercase tracking-widest">Enabling Galactic Protocol</span>
-            </div>
-            <h1 className="font-outfit text-4xl md:text-[56px] text-[var(--color-secondary)] leading-tight font-bold tracking-tight break-words">
+            </motion.div>
+
+            <motion.h1 
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0, x: -50 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
+              }}
+              className="font-outfit text-4xl md:text-6xl text-[var(--color-secondary)] leading-tight font-bold tracking-tight break-words"
+            >
               Welcome Home,<br />
               <span className="text-[var(--color-tertiary)]">{displayName}.</span>
-            </h1>
-            <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-2xl mx-auto md:mx-0 break-normal whitespace-normal">
-              Your destination starts here. Experience a faster, smarter way to book flights and plan unforgettable journeys.
-            </p>
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              window.location.href = `/search?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&date=${encodeURIComponent(departureDate)}`;
-            }} className="mt-6 flex flex-col gap-4 w-full max-w-3xl bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1">
-                  <label className="font-inter text-xs font-semibold text-[var(--color-secondary)] uppercase tracking-[0.1em] text-left">Origin</label>
-                  <div className="relative">
-                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/40 text-sm">flight_takeoff</span>
-                    <input 
-                      value={origin}
-                      onChange={(e) => setOrigin(e.target.value)}
-                      list="nigerian-airports"
-                      className="w-full bg-white/5 border border-white/20 rounded-xl py-2.5 pl-10 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-secondary)] transition-all font-inter text-sm" 
-                      placeholder="E.g. Lagos (LOS)" 
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label className="font-inter text-xs font-semibold text-[var(--color-secondary)] uppercase tracking-[0.1em] text-left">Destination</label>
-                  <div className="relative">
-                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/40 text-sm">flight_land</span>
-                    <input 
-                      value={origin === "Lagos (LOS)" && destination === "Abuja (ABV)" ? "Abuja (ABV)" : destination}
-                      onChange={(e) => setDestination(e.target.value)}
-                      list="nigerian-airports"
-                      className="w-full bg-white/5 border border-white/20 rounded-xl py-2.5 pl-10 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-secondary)] transition-all font-inter text-sm" 
-                      placeholder="E.g. Abuja (ABV)" 
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
-                <div className="flex flex-col gap-1">
-                  <label className="font-inter text-xs font-semibold text-[var(--color-secondary)] uppercase tracking-[0.1em] text-left">Departure Date</label>
-                  <div className="relative">
-                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/40 text-sm">calendar_month</span>
-                    <input 
-                      type="date"
-                      value={departureDate}
-                      onChange={(e) => setDepartureDate(e.target.value)}
-                      className="w-full bg-white/5 border border-white/20 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-[var(--color-secondary)] transition-all font-inter text-sm" 
-                      required
-                    />
-                  </div>
-                </div>
-                <button type="submit" className="bg-[var(--color-tertiary)] text-[var(--color-on-tertiary-fixed)] font-inter text-sm font-bold h-[45px] rounded-xl shadow-[0_0_20px_rgba(251,188,0,0.4)] hover:shadow-[0_0_35px_rgba(251,188,0,0.6)] hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 uppercase tracking-widest w-full cursor-pointer">
-                  <span>Search Flights</span>
-                  <span className="material-symbols-outlined text-sm">search</span>
-                </button>
-              </div>
-            </form>
+            </motion.h1>
+
+            <motion.p 
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { delay: 0.3, duration: 0.6 } }
+              }}
+              className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-2xl mx-auto lg:mx-0 break-normal"
+            >
+              AeroHub Galactic streamlines flight bookings and travel coordination across standard and interstellar flight paths. Experience a faster, localized way to navigate the horizon.
+            </motion.p>
+
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.6 } }
+              }}
+              className="flex flex-wrap gap-4 justify-center lg:justify-start mt-4"
+            >
+              <a 
+                href="#booking-console"
+                className="bg-[var(--color-secondary)] text-[var(--color-on-secondary)] hover:bg-[var(--color-secondary)]/90 font-outfit text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5"
+              >
+                Launch Flight Console
+              </a>
+              <a 
+                href="#problem-solution"
+                className="bg-white/5 border border-white/20 text-white hover:bg-white/10 font-outfit text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-xl transition-all"
+              >
+                Learn More
+              </a>
+            </motion.div>
           </div>
 
-          {/* Right*/}
-          <div className="md:col-span-5 relative w-full">
+          {/* Right Content: Framer Motion Animated Card */}
+          <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end">
             <div className="absolute -top-12 -right-8 w-32 h-32 bg-[var(--color-secondary)]/10 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-12 -left-8 w-40 h-40 bg-[var(--color-tertiary)]/10 rounded-full blur-3xl"></div>
             
-            {/* The "Liquid Glass" Identity Card */}
-            <div className="bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-[32px] p-[var(--spacing-md)] md:p-[var(--spacing-lg)] relative overflow-hidden shadow-2xl animate-float min-h-[320px] flex flex-col justify-between">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
-              
-              {/* Card Header */}
-              <div className="flex justify-between items-start mb-[var(--spacing-lg)] relative z-10 gap-2">
-                <div className="flex items-center gap-[var(--spacing-md)] min-w-0">
-                  <div className="w-16 h-16 rounded-full border-2 border-[var(--color-tertiary)] p-1 shrink-0">
-                    <img alt="User Profile" className="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV" />
+            <motion.div 
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={cardVariants}
+              className="w-full max-w-[420px]"
+            >
+              {/* The "Liquid Glass" Identity Card */}
+              <div className="bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-[32px] p-8 relative overflow-hidden shadow-2xl min-h-[320px] flex flex-col justify-between">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+                
+                {/* Card Header */}
+                <div className="flex justify-between items-start mb-8 relative z-10 gap-2">
+                  <div className="flex items-center gap-4 min-w-0">
+                    <div className="w-16 h-16 rounded-full border-2 border-[var(--color-tertiary)] p-1 shrink-0">
+                      <img alt="User Profile" className="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)] truncate">{displayName}</h3>
+                      <p className="font-inter text-sm font-semibold text-[var(--color-tertiary)] flex items-center gap-1">
+                        <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
+                        Elite Voyager
+                      </p>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)] truncate">{displayName}</h3>
-                    <p className="font-inter text-sm font-semibold text-[var(--color-tertiary)] flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
-                      Elite Voyager
-                    </p>
+                  <div className="text-right shrink-0">
+                    <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-tighter block">Identity Hash</span>
+                    <p className="font-inter text-sm font-semibold text-[var(--color-secondary)]/60">AE-992-QX</p>
                   </div>
                 </div>
-                <div className="text-right shrink-0">
-                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-tighter block">Identity Hash</span>
-                  <p className="font-inter text-sm font-semibold text-[var(--color-secondary)]/60">AE-992-QX</p>
+
+                {/* Card Content / Stats Bento */}
+                <div className="grid grid-cols-2 gap-4 relative z-10">
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
+                    <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Status</p>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-[var(--color-tertiary)] animate-pulse"></div>
+                      <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">Ready for Launch</p>
+                    </div>
+                  </div>
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
+                    <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Loyalty</p>
+                    <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">42.5k AeroHub Creds</p>
+                  </div>
+                  <div className="col-span-2 bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between">
+                    <div>
+                      <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Primary Destination</p>
+                      <p className="font-outfit text-lg font-bold text-[var(--color-tertiary)]">Abuja Skyport</p>
+                    </div>
+                    <span className="material-symbols-outlined text-[var(--color-secondary)]/40 text-[36px]">flight_takeoff</span>
+                  </div>
+                </div>
+
+                {/* Progress Path Visualization */}
+                <div className="mt-6 relative z-10">
+                  <div className="flex justify-between font-inter text-xs text-[var(--color-on-surface-variant)] mb-1">
+                    <span>Syncing Data</span>
+                    <span>100%</span>
+                  </div>
+                  <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-full bg-[var(--color-secondary)] w-full relative">
+                      <div className="absolute top-0 right-0 h-full w-24 bg-[var(--color-tertiary)] blur-sm"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-
-              {/* Card Content / Stats Bento */}
-              <div className="grid grid-cols-2 gap-[var(--spacing-sm)] relative z-10">
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-[var(--spacing-sm)]">
-                  <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Status</p>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[var(--color-tertiary)] animate-pulse"></div>
-                    <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">Ready for Launch</p>
-                  </div>
-                </div>
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-[var(--spacing-sm)]">
-                  <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Loyalty</p>
-                  <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">42.5k AeroHub Creds</p>
-                </div>
-                <div className="col-span-2 bg-white/5 border border-white/10 rounded-2xl p-[var(--spacing-sm)] flex items-center justify-between">
-                  <div>
-                    <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Primary Destination</p>
-                    <p className="font-outfit text-xl font-bold text-[var(--color-tertiary)]">Abuja Skyport</p>
-                  </div>
-                  <span className="material-symbols-outlined text-[var(--color-secondary)]/40 text-[40px]">flight_takeoff</span>
-                </div>
-              </div>
-
-              {/* Progress Path Visualization */}
-              <div className="mt-[var(--spacing-lg)] relative z-10">
-                <div className="flex justify-between font-inter text-xs text-[var(--color-on-surface-variant)] mb-1">
-                  <span>Syncing Data</span>
-                  <span>100%</span>
-                </div>
-                <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-[var(--color-secondary)] w-full relative">
-                    <div className="absolute top-0 right-0 h-full w-24 bg-[var(--color-tertiary)] blur-sm"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Decorative "Rocket Launch" Icon */}
-            <div className="absolute -bottom-6 -right-6 bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-full p-[var(--spacing-md)] shadow-xl z-20 animate-float" style={{ animationDelay: "1s" }}>
-              <span className="material-symbols-outlined text-[32px] text-[var(--color-secondary)]">rocket_launch</span>
-            </div>
+            </motion.div>
           </div>
+
         </div>
+      </section>
+
+      {/* Problem & Solution Section */}
+      <section id="problem-solution" className="relative z-10 px-4 md:px-8 py-20 w-full max-w-[1400px] mx-auto border-t border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          
+          {/* The Problem Card */}
+          <motion.div 
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={cardVariants}
+            className="flex"
+          >
+            <GlassCard className="p-8 rounded-[28px] border border-white/10 flex flex-col justify-between w-full bg-red-950/10 hover:border-red-500/30 transition-all">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center border border-red-500/20 text-red-400">
+                  <span className="material-symbols-outlined text-2xl">warning</span>
+                </div>
+                <h3 className="font-outfit text-2xl font-bold text-red-200">The Problem</h3>
+                <p className="font-inter text-base text-[var(--color-on-surface-variant)] leading-relaxed">
+                  Interstellar travel reservation is highly fragmented and outdated. Voyagers struggle with opaque ticket pricing, inconsistent flight details, and complex terminal parameters. Lack of localized integrations and 24/7 luggage sync leads to lost baggage and critical delay spikes.
+                </p>
+              </div>
+              <div className="mt-6 flex items-center gap-2 text-red-400/80 font-semibold text-sm">
+                <span>Core Friction Point Identified</span>
+                <span className="material-symbols-outlined text-sm">report_problem</span>
+              </div>
+            </GlassCard>
+          </motion.div>
+
+          {/* The Solution Card */}
+          <motion.div 
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={cardVariants}
+            className="flex"
+          >
+            <GlassCard className="p-8 rounded-[28px] border border-white/10 flex flex-col justify-between w-full bg-emerald-950/10 hover:border-emerald-500/30 transition-all">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 text-emerald-400">
+                  <span className="material-symbols-outlined text-2xl">verified_user</span>
+                </div>
+                <h3 className="font-outfit text-2xl font-bold text-emerald-200">The Solution</h3>
+                <p className="font-inter text-base text-[var(--color-on-surface-variant)] leading-relaxed">
+                  AeroHub Galactic introduces a unified booking ecosystem. Real-time dynamically seeded flight algorithms present pricing options instantly, localized in Naira (₦). Fully interactive seat-selection grids, AI support cores, and automated baggage trackers provide total control back to the voyager.
+                </p>
+              </div>
+              <div className="mt-6 flex items-center gap-2 text-emerald-400/80 font-semibold text-sm">
+                <span>Intelligent Integration Active</span>
+                <span className="material-symbols-outlined text-sm">check_circle</span>
+              </div>
+            </GlassCard>
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* Booking Search Portal Console */}
+      <section id="booking-console" className="relative z-10 px-4 md:px-8 py-16 w-full max-w-[1000px] mx-auto border-t border-white/10">
+        <motion.div
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={cardVariants}
+          className="space-y-8"
+        >
+          <div className="text-center space-y-2">
+            <h2 className="font-outfit text-3xl font-bold text-[var(--color-secondary)]">Launch Flight Terminal</h2>
+            <p className="font-inter text-sm text-[var(--color-on-surface-variant)]">Input your flight itinerary parameters to scan available spacecraft launches.</p>
+          </div>
+          
+          {/* Modular Flight Search Console */}
+          <FlightSearchConsole className="shadow-[0_20px_40px_rgba(0,0,0,0.5)] border border-white/20" />
+        </motion.div>
       </section>
 
       {/* Footer */}
