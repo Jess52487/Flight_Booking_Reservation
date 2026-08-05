@@ -1,15 +1,37 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 import { useAuth } from "@/components/AuthProvider";
 import { FlightSearchConsole } from "@/components/FlightSearchConsole";
+import { supabase } from "@/lib/supabase";
 
 export default function LandingWelcomePage() {
   const { profile } = useAuth();
   const displayName = profile?.username ? `Commander ${profile.username}` : "Commander";
+  const [lastDestination, setLastDestination] = useState<string>("");
+
+  useEffect(() => {
+    if (!profile) return;
+    const fetchLastBooking = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("bookings")
+          .select("destination")
+          .eq("user_id", profile.id)
+          .order("created_at", { ascending: false })
+          .limit(1);
+        if (!error && data && data.length > 0) {
+          setLastDestination(data[0].destination);
+        }
+      } catch (err) {
+        console.error("Error fetching last booking:", err);
+      }
+    };
+    fetchLastBooking();
+  }, [profile]);
 
   // Animation variants for framer motion scroll
   const cardVariants = {
@@ -142,12 +164,16 @@ export default function LandingWelcomePage() {
                   </div>
                   <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
                     <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Loyalty</p>
-                    <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">42.5k AeroHub Creds</p>
+                    <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">
+                      {profile?.loyalty_creds ? `${(profile.loyalty_creds / 1000).toFixed(1)}k Creds` : "0.0k Creds"}
+                    </p>
                   </div>
                   <div className="col-span-2 bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between">
                     <div>
                       <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Primary Destination</p>
-                      <p className="font-outfit text-lg font-bold text-[var(--color-tertiary)]">Abuja Skyport</p>
+                      <p className="font-outfit text-lg font-bold text-[var(--color-tertiary)]">
+                        {lastDestination || "None"}
+                      </p>
                     </div>
                     <span className="material-symbols-outlined text-[var(--color-secondary)]/40 text-[36px]">flight_takeoff</span>
                   </div>

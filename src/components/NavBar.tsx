@@ -86,7 +86,7 @@ export function NavBar() {
       {/* Profile Details Modal */}
       {showProfileModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/75 backdrop-blur-md overflow-y-auto">
-          <div className="relative w-full max-w-xl my-8 bg-[var(--color-surface)] border border-white/20 rounded-[28px] p-8 md:p-10 shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto text-[var(--color-on-surface)]">
+          <div className="relative w-full max-w-2xl my-8 bg-[var(--color-surface)] border border-white/20 rounded-[28px] p-8 md:p-10 shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto text-[var(--color-on-surface)]">
             {/* Ambient shader */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
             
@@ -108,11 +108,11 @@ export function NavBar() {
                 <div className="w-20 h-20 rounded-full border-2 border-[var(--color-tertiary)] p-1 bg-white/5 flex items-center justify-center shrink-0">
                   <span className="material-symbols-outlined text-[var(--color-secondary)] text-[56px]">account_circle</span>
                 </div>
-                <div className="min-w-0 flex-1 space-y-1">
-                  <h4 className="font-outfit text-2xl font-bold text-white truncate break-words">
+                <div className="min-w-0 flex-1 space-y-2">
+                  <h4 className="font-outfit text-2xl font-bold text-white break-words">
                     {profile?.username ? `Commander ${profile.username}` : "Commander"}
                   </h4>
-                  <p className="font-inter text-sm text-[var(--color-on-surface-variant)] truncate">{user?.email}</p>
+                  <p className="font-inter text-sm text-[var(--color-on-surface-variant)] break-all">{user?.email}</p>
                   <div className="mt-2 flex items-center gap-2 bg-[var(--color-tertiary)]/10 border border-[var(--color-tertiary)]/20 px-3 py-1 rounded-full w-fit">
                     <span className="material-symbols-outlined text-[var(--color-tertiary)] text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
                     <span className="font-inter text-[11px] font-bold text-[var(--color-tertiary)] uppercase tracking-wider">Elite Voyager</span>
