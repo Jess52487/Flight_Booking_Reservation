@@ -89,8 +89,9 @@ function SearchResults() {
             </p>
           </div>
           <Link href="/">
-            <Button variant="secondary" className="text-xs uppercase tracking-widest px-4 py-2">
-              <span className="material-symbols-outlined text-sm mr-1">arrow_back</span> Change Search
+            <Button variant="secondary" className="text-xs uppercase tracking-widest px-4 py-2 flex items-center gap-2">
+              <span className="material-symbols-outlined text-sm">arrow_back</span>
+              <span>Change Search</span>
             </Button>
           </Link>
         </div>
@@ -119,26 +120,26 @@ function SearchResults() {
                     </span>
                   </div>
                   <div>
-                    <span className="text-xs font-semibold text-[var(--color-tertiary)] uppercase tracking-wider">
+                    <span className="block text-xs font-semibold text-[var(--color-tertiary)] uppercase tracking-wider mb-1">
                       {flight.flightNo}
                     </span>
-                    <div className="font-outfit text-xl font-bold text-white flex items-center gap-2">
-                      {flight.departureTime}
-                      <span className="material-symbols-outlined text-sm text-[var(--color-secondary)]">
+                    <div className="font-outfit text-xl font-bold text-white flex items-center gap-3">
+                      <span>{flight.departureTime}</span>
+                      <span className="material-symbols-outlined text-sm text-[var(--color-secondary)] mx-1">
                         arrow_forward
                       </span>
-                      {flight.arrivalTime}
+                      <span>{flight.arrivalTime}</span>
                     </div>
-                    <span className="text-xs text-[var(--color-on-surface-variant)]">
+                    <span className="block text-xs text-[var(--color-on-surface-variant)] mt-1">
                       Non-stop • {flight.duration}
                     </span>
                   </div>
                 </div>
 
                 {/* Route Representation */}
-                <div className="hidden lg:flex items-center gap-3 text-[var(--color-on-surface-variant)]/40">
+                <div className="hidden lg:flex items-center gap-4 text-[var(--color-on-surface-variant)]/40 px-4">
                   <span className="text-xs font-semibold">{origin.split(" ")[0]}</span>
-                  <div className="w-24 h-px border-t-2 border-dashed border-white/10 relative">
+                  <div className="w-24 h-px border-t-2 border-dashed border-white/10 relative mx-2">
                     <span className="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm text-[var(--color-secondary)]">
                       flight_takeoff
                     </span>
@@ -148,11 +149,11 @@ function SearchResults() {
 
                 {/* Class and Pricing */}
                 <div className="flex items-center justify-between md:justify-end gap-8 w-full md:w-auto border-t md:border-t-0 pt-4 md:pt-0 border-white/10">
-                  <div className="text-left md:text-right">
+                  <div className="text-left md:text-right flex flex-col gap-1">
                     <span className="block text-xs font-medium text-[var(--color-on-surface-variant)] uppercase tracking-widest">
                       {flight.class}
                     </span>
-                    <span className="font-outfit text-3xl font-bold text-[var(--color-tertiary)]">
+                    <span className="font-outfit text-3xl font-bold text-[var(--color-tertiary)] block mt-0.5">
                       ₦{flight.price.toLocaleString()}
                     </span>
                   </div>
