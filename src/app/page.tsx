@@ -41,21 +41,11 @@ export default function LandingWelcomePage() {
       </div>
 
       {/* Hero Content Canvas */}
-      <section className="relative z-10 flex-grow flex flex-col items-center justify-center px-4 md:px-8 pt-24 pb-12 w-full max-w-[1600px] mx-auto">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="relative z-10 flex-grow flex flex-col items-center justify-center px-6 md:px-12 pt-28 pb-16 w-full max-w-[1600px] mx-auto">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
           {/* Left Content: Welcome & Pitch */}
-          <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left w-full min-w-0">
-            <motion.div 
-              initial="hidden"
-              animate="visible"
-              variants={textVariants}
-              className="inline-flex items-center gap-2 px-4 py-1 bg-[var(--color-secondary-container)]/20 border border-[var(--color-secondary)]/30 rounded-full w-fit mx-auto lg:mx-0"
-            >
-              <span className="material-symbols-outlined text-[var(--color-secondary)] text-[18px]">verified</span>
-              <span className="font-inter text-[12px] font-bold text-[var(--color-secondary)] uppercase tracking-widest">Enabling Galactic Protocol</span>
-            </motion.div>
-
+          <div className="lg:col-span-7 flex flex-col gap-8 text-center lg:text-left w-full min-w-0">
             <motion.h1 
               initial="hidden"
               animate="visible"
@@ -76,7 +66,7 @@ export default function LandingWelcomePage() {
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: { delay: 0.3, duration: 0.6 } }
               }}
-              className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-2xl mx-auto lg:mx-0 break-normal"
+              className="font-inter text-lg md:text-xl text-[var(--color-on-surface-variant)] max-w-2xl mx-auto lg:mx-0 leading-relaxed break-normal"
             >
               AeroHub Galactic streamlines flight bookings and travel coordination across standard and interstellar flight paths. Experience a faster, localized way to navigate the horizon.
             </motion.p>
@@ -88,17 +78,17 @@ export default function LandingWelcomePage() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.6 } }
               }}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start mt-4"
+              className="flex flex-wrap gap-5 justify-center lg:justify-start mt-4"
             >
               <a 
                 href="#booking-console"
-                className="bg-[var(--color-secondary)] text-[var(--color-on-secondary)] hover:bg-[var(--color-secondary)]/90 font-outfit text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5"
+                className="bg-[var(--color-secondary)] text-[var(--color-on-secondary)] hover:bg-[var(--color-secondary)]/90 font-outfit text-sm font-bold uppercase tracking-widest px-8 py-4.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5"
               >
                 Launch Flight Console
               </a>
               <a 
                 href="#problem-solution"
-                className="bg-white/5 border border-white/20 text-white hover:bg-white/10 font-outfit text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-xl transition-all"
+                className="bg-white/5 border border-white/20 text-white hover:bg-white/10 font-outfit text-sm font-bold uppercase tracking-widest px-8 py-4.5 rounded-xl transition-all"
               >
                 Learn More
               </a>
@@ -183,8 +173,8 @@ export default function LandingWelcomePage() {
       </section>
 
       {/* Problem & Solution Section */}
-      <section id="problem-solution" className="relative z-10 px-4 md:px-8 py-20 w-full max-w-[1400px] mx-auto border-t border-white/10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <section id="problem-solution" className="relative z-10 px-6 md:px-12 py-24 w-full max-w-[1400px] mx-auto border-t border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           
           {/* The Problem Card */}
           <motion.div 
@@ -192,20 +182,20 @@ export default function LandingWelcomePage() {
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.2 }}
             variants={cardVariants}
-            className="flex"
+            className="flex w-full"
           >
-            <GlassCard className="p-8 rounded-[28px] border border-white/10 flex flex-col justify-between w-full bg-red-950/10 hover:border-red-500/30 transition-all">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center border border-red-500/20 text-red-400">
-                  <span className="material-symbols-outlined text-2xl">warning</span>
+            <GlassCard className="p-8 md:p-10 rounded-[28px] border border-white/10 flex flex-col justify-between w-full bg-red-950/10 hover:border-red-500/30 transition-all gap-8">
+              <div className="space-y-5">
+                <div className="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center border border-red-500/20 text-red-400">
+                  <span className="material-symbols-outlined text-3xl">warning</span>
                 </div>
-                <h3 className="font-outfit text-2xl font-bold text-red-200">The Problem</h3>
-                <p className="font-inter text-base text-[var(--color-on-surface-variant)] leading-relaxed">
-                  Interstellar travel reservation is highly fragmented and outdated. Voyagers struggle with opaque ticket pricing, inconsistent flight details, and complex terminal parameters. Lack of localized integrations and 24/7 luggage sync leads to lost baggage and critical delay spikes.
+                <h3 className="font-outfit text-3xl font-bold text-red-200">The Problem</h3>
+                <p className="font-inter text-base md:text-lg text-[var(--color-on-surface-variant)] leading-relaxed">
+                  Booking flights today is slow and confusing. Travelers often face hidden fees, incorrect flight details, and lost bags due to outdated systems.
                 </p>
               </div>
-              <div className="mt-6 flex items-center gap-2 text-red-400/80 font-semibold text-sm">
-                <span>Core Friction Point Identified</span>
+              <div className="mt-4 flex items-center gap-2 text-red-400/80 font-semibold text-sm">
+                <span>Core friction point identified</span>
                 <span className="material-symbols-outlined text-sm">report_problem</span>
               </div>
             </GlassCard>
@@ -217,20 +207,20 @@ export default function LandingWelcomePage() {
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.2 }}
             variants={cardVariants}
-            className="flex"
+            className="flex w-full"
           >
-            <GlassCard className="p-8 rounded-[28px] border border-white/10 flex flex-col justify-between w-full bg-emerald-950/10 hover:border-emerald-500/30 transition-all">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 text-emerald-400">
-                  <span className="material-symbols-outlined text-2xl">verified_user</span>
+            <GlassCard className="p-8 md:p-10 rounded-[28px] border border-white/10 flex flex-col justify-between w-full bg-emerald-950/10 hover:border-emerald-500/30 transition-all gap-8">
+              <div className="space-y-5">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 text-emerald-400">
+                  <span className="material-symbols-outlined text-3xl">verified_user</span>
                 </div>
-                <h3 className="font-outfit text-2xl font-bold text-emerald-200">The Solution</h3>
-                <p className="font-inter text-base text-[var(--color-on-surface-variant)] leading-relaxed">
-                  AeroHub Galactic introduces a unified booking ecosystem. Real-time dynamically seeded flight algorithms present pricing options instantly, localized in Naira (₦). Fully interactive seat-selection grids, AI support cores, and automated baggage trackers provide total control back to the voyager.
+                <h3 className="font-outfit text-3xl font-bold text-emerald-200">The Solution</h3>
+                <p className="font-inter text-base md:text-lg text-[var(--color-on-surface-variant)] leading-relaxed">
+                  AeroHub makes booking simple and clear. We offer upfront pricing, interactive seat maps, automated bag tracking, and 24/7 support in one place.
                 </p>
               </div>
-              <div className="mt-6 flex items-center gap-2 text-emerald-400/80 font-semibold text-sm">
-                <span>Intelligent Integration Active</span>
+              <div className="mt-4 flex items-center gap-2 text-emerald-400/80 font-semibold text-sm">
+                <span>Intelligent systems active</span>
                 <span className="material-symbols-outlined text-sm">check_circle</span>
               </div>
             </GlassCard>
@@ -239,22 +229,56 @@ export default function LandingWelcomePage() {
         </div>
       </section>
 
+      {/* Landing Page Features Showcase */}
+      <section className="relative z-10 px-6 md:px-12 py-20 w-full max-w-[1400px] mx-auto border-t border-white/10">
+        <div className="text-center space-y-4 mb-16">
+          <h2 className="font-outfit text-3xl md:text-5xl font-bold text-[var(--color-secondary)]">Why Choose AeroHub?</h2>
+          <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto">Modern technology designed to make flight management feel effortless.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <GlassCard className="p-8 border border-white/10 hover:scale-[1.03] transition-transform flex flex-col gap-5">
+            <span className="material-symbols-outlined text-[var(--color-secondary)] text-4xl">notifications_active</span>
+            <h4 className="font-outfit text-xl font-bold text-white">Real-time Updates</h4>
+            <p className="font-inter text-sm text-[var(--color-on-surface-variant)] leading-relaxed">Instant flight updates and gate changes directly on your terminal dashboard.</p>
+          </GlassCard>
+
+          <GlassCard className="p-8 border border-white/10 hover:scale-[1.03] transition-transform flex flex-col gap-5">
+            <span className="material-symbols-outlined text-[var(--color-tertiary)] text-4xl">luggage</span>
+            <h4 className="font-outfit text-xl font-bold text-white">Bag Tracking</h4>
+            <p className="font-inter text-sm text-[var(--color-on-surface-variant)] leading-relaxed">Trace baggage status 24/7. Know exactly when your luggage arrives at the carousel.</p>
+          </GlassCard>
+
+          <GlassCard className="p-8 border border-white/10 hover:scale-[1.03] transition-transform flex flex-col gap-5">
+            <span className="material-symbols-outlined text-[var(--color-secondary)] text-4xl">payments</span>
+            <h4 className="font-outfit text-xl font-bold text-white">Upfront Pricing</h4>
+            <p className="font-inter text-sm text-[var(--color-on-surface-variant)] leading-relaxed">Complete price transparency with zero hidden fees. View fares instantly.</p>
+          </GlassCard>
+
+          <GlassCard className="p-8 border border-white/10 hover:scale-[1.03] transition-transform flex flex-col gap-5">
+            <span className="material-symbols-outlined text-[var(--color-tertiary)] text-4xl">diversity_3</span>
+            <h4 className="font-outfit text-xl font-bold text-white">24/7 Concierge</h4>
+            <p className="font-inter text-sm text-[var(--color-on-surface-variant)] leading-relaxed">Get help immediately with our AI support agent or connect to a live assistant.</p>
+          </GlassCard>
+        </div>
+      </section>
+
       {/* Booking Search Portal Console */}
-      <section id="booking-console" className="relative z-10 px-4 md:px-8 py-16 w-full max-w-[1000px] mx-auto border-t border-white/10">
+      <section id="booking-console" className="relative z-10 px-6 md:px-12 py-20 w-full max-w-[1000px] mx-auto border-t border-white/10">
         <motion.div
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: true, amount: 0.2 }}
           variants={cardVariants}
-          className="space-y-8"
+          className="space-y-10"
         >
-          <div className="text-center space-y-2">
-            <h2 className="font-outfit text-3xl font-bold text-[var(--color-secondary)]">Launch Flight Terminal</h2>
-            <p className="font-inter text-sm text-[var(--color-on-surface-variant)]">Input your flight itinerary parameters to scan available spacecraft launches.</p>
+          <div className="text-center space-y-4">
+            <h2 className="font-outfit text-3xl md:text-4xl font-bold text-[var(--color-secondary)]">Launch Flight Terminal</h2>
+            <p className="font-inter text-base text-[var(--color-on-surface-variant)]">Input your flight itinerary parameters to scan available spacecraft launches.</p>
           </div>
           
           {/* Modular Flight Search Console */}
-          <FlightSearchConsole className="shadow-[0_20px_40px_rgba(0,0,0,0.5)] border border-white/20" />
+          <FlightSearchConsole className="shadow-[0_20px_40px_rgba(0,0,0,0.5)] border border-white/20 p-8 md:p-10" />
         </motion.div>
       </section>
 

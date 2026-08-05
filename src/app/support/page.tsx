@@ -115,12 +115,12 @@ export default function SupportPage() {
           {/* Messages Area */}
           <div className="flex-grow overflow-y-auto p-[var(--spacing-xl)] space-y-[var(--spacing-md)] pr-4 scrollbar-thin scrollbar-thumb-white/10" ref={chatContainerRef}>
             {messages.length === 0 ? (
-              <div className="h-full flex flex-col items-center justify-center text-center p-[var(--spacing-xl)] space-y-[var(--spacing-md)] my-auto select-none">
-                <div className="w-20 h-20 rounded-full bg-[var(--color-secondary)]/10 border border-[var(--color-secondary)]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(137,208,237,0.2)]">
-                  <span className="material-symbols-outlined text-[var(--color-secondary)] text-4xl animate-pulse">support_agent</span>
+              <div className="h-full flex flex-col items-center justify-center text-center p-8 md:p-12 space-y-6 my-auto select-none">
+                <div className="w-24 h-24 rounded-full bg-[var(--color-secondary)]/10 border border-[var(--color-secondary)]/20 flex items-center justify-center mb-4 shadow-[0_0_25px_rgba(137,208,237,0.35)]">
+                  <span className="material-symbols-outlined text-[var(--color-secondary)] text-5xl animate-pulse">support_agent</span>
                 </div>
-                <h3 className="font-outfit text-3xl font-bold text-white leading-tight">AeroHub Concierge Core</h3>
-                <p className="font-inter text-base text-[var(--color-on-surface-variant)] max-w-md mx-auto">
+                <h3 className="font-outfit text-3xl md:text-4xl font-bold text-white leading-tight mb-2">AeroHub Concierge Core</h3>
+                <p className="font-inter text-base md:text-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto leading-relaxed px-6">
                   Welcome back, Commander. If you have questions regarding lost baggage, ticket refunds, or lounge clearance, enter your query below or choose a quick prompt to begin.
                 </p>
               </div>
