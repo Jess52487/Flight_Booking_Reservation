@@ -120,7 +120,7 @@ export default function SupportPage() {
                   <span className="material-symbols-outlined text-[var(--color-secondary)] text-5xl animate-pulse">support_agent</span>
                 </div>
                 <h3 className="font-outfit text-3xl md:text-4xl font-bold text-white leading-tight mb-2">AeroHub Concierge Core</h3>
-                <p className="font-inter text-base md:text-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto leading-relaxed px-6">
+                <p className="font-inter text-base md:text-lg text-[var(--color-on-surface-variant)] max-w-3xl mx-auto leading-relaxed px-6">
                   Welcome back, Commander. If you have questions regarding lost baggage, ticket refunds, or lounge clearance, enter your query below or choose a quick prompt to begin.
                 </p>
               </div>

@@ -233,7 +233,7 @@ export default function LandingWelcomePage() {
       <section className="relative z-10 px-6 md:px-12 py-20 w-full max-w-[1400px] mx-auto border-t border-white/10">
         <div className="text-center space-y-4 mb-16">
           <h2 className="font-outfit text-3xl md:text-5xl font-bold text-[var(--color-secondary)]">Why Choose AeroHub?</h2>
-          <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto">Modern technology designed to make flight management feel effortless.</p>
+          <p className="font-inter text-lg text-[var(--color-on-surface-variant)] max-w-3xl mx-auto">Modern technology designed to make flight management feel effortless.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
