@@ -8,8 +8,8 @@ import { FlightSearchConsole } from "@/components/FlightSearchConsole";
 import { supabase } from "@/lib/supabase";
 
 export default function FlightsSearchPage() {
-  const { profile } = useAuth();
-  const displayName = profile?.username ? profile.username : "Friend";
+  const { user, profile } = useAuth();
+  const displayName = profile?.username || user?.user_metadata?.full_name || "Friend";
   const [lastDestination, setLastDestination] = useState<string>("");
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function FlightsSearchPage() {
                 <div className="flex justify-between items-start mb-8 relative z-10 gap-2">
                   <div className="flex items-center gap-4 min-w-0">
                     <div className="w-16 h-16 rounded-full border-2 border-[var(--color-tertiary)] p-1 shrink-0">
-                      <img alt="User Profile" className="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV" />
+                      <img alt="User Profile" className="w-full h-full rounded-full object-cover" src={user?.user_metadata?.avatar_url || "https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV"} />
                     </div>
                     <div className="min-w-0">
                       <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)] truncate">{displayName}</h3>
