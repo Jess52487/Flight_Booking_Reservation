@@ -97,16 +97,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!loading) {
       const isPublic = PUBLIC_ROUTES.includes(pathname);
       const isOnboarding = pathname.startsWith("/onboarding");
-      if (!user && !isPublic) {
-        router.push("/login");
-      } else if (user && profile) {
-        if (profile.onboarding_complete) {
-          if (isOnboarding) {
-            router.push("/manage");
-          }
-        } else {
-          if (!isOnboarding && !isPublic) {
-            router.push("/onboarding/welcome");
+      
+      if (!user) {
+        if (!isPublic) {
+          router.push("/login");
+        }
+      } else {
+        if (profile) {
+          if (profile.onboarding_complete) {
+            if (isPublic || isOnboarding) {
+              router.push("/flights");
+            }
+          } else {
+            if (isPublic || (!isOnboarding && !isPublic)) {
+              router.push("/onboarding/welcome");
+            }
           }
         }
       }

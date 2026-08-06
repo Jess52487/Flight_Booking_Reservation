@@ -6,32 +6,9 @@ import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 import { useAuth } from "@/components/AuthProvider";
 import { FlightSearchConsole } from "@/components/FlightSearchConsole";
-import { supabase } from "@/lib/supabase";
 
 export default function LandingWelcomePage() {
-  const { user, profile } = useAuth();
-  const displayName = profile?.username || user?.user_metadata?.full_name || "Friend";
-  const [lastDestination, setLastDestination] = useState<string>("");
-
-  useEffect(() => {
-    if (!profile) return;
-    const fetchLastBooking = async () => {
-      try {
-        const { data, error } = await supabase
-          .from("bookings")
-          .select("destination")
-          .eq("user_id", profile.id)
-          .order("created_at", { ascending: false })
-          .limit(1);
-        if (!error && data && data.length > 0) {
-          setLastDestination(data[0].destination);
-        }
-      } catch (err) {
-        console.error("Error fetching last booking:", err);
-      }
-    };
-    fetchLastBooking();
-  }, [profile]);
+  // Pure static marketing page - no dynamic user queries
 
   // Animation variants for framer motion scroll
   const cardVariants = {
@@ -77,10 +54,10 @@ export default function LandingWelcomePage() {
               }}
               className="font-outfit text-4xl md:text-6xl text-[var(--color-secondary)] leading-tight font-bold tracking-tight break-words"
             >
-              Welcome Home,<br />
-              <span className="text-[var(--color-tertiary)]">{displayName}.</span>
+              Welcome to AeroHub,<br />
+              <span className="text-[var(--color-tertiary)]">Your Travel Hub.</span>
             </motion.h1>
-
+ 
             <motion.p 
               initial="hidden"
               animate="visible"
@@ -90,9 +67,9 @@ export default function LandingWelcomePage() {
               }}
               className="font-inter text-lg md:text-xl text-[var(--color-on-surface-variant)] max-w-2xl mx-auto lg:mx-0 leading-relaxed break-normal"
             >
-              AeroHub Galactic streamlines flight bookings and travel coordination across standard and interstellar flight paths. Experience a faster, localized way to navigate the horizon.
+              AeroHub streamlines flight bookings and travel coordination. Experience a faster, simpler way to travel anywhere.
             </motion.p>
-
+ 
             <motion.div
               initial="hidden"
               animate="visible"
@@ -106,7 +83,7 @@ export default function LandingWelcomePage() {
                 href="/flights"
                 className="bg-[var(--color-secondary)] text-[var(--color-on-secondary)] hover:bg-[var(--color-secondary)]/90 font-outfit text-sm font-bold uppercase tracking-widest px-8 py-4.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5"
               >
-                Launch Flight Console
+                Search Flights
               </Link>
               <a 
                 href="#problem-solution"
@@ -116,7 +93,7 @@ export default function LandingWelcomePage() {
               </a>
             </motion.div>
           </div>
-
+ 
           {/* Right Content: Framer Motion Animated Card */}
           <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end">
             <div className="absolute -top-12 -right-8 w-32 h-32 bg-[var(--color-secondary)]/10 rounded-full blur-3xl"></div>
@@ -137,10 +114,10 @@ export default function LandingWelcomePage() {
                 <div className="flex justify-between items-start mb-8 relative z-10 gap-2">
                   <div className="flex items-center gap-4 min-w-0">
                     <div className="w-16 h-16 rounded-full border-2 border-[var(--color-tertiary)] p-1 shrink-0">
-                      <img alt="User Profile" className="w-full h-full rounded-full object-cover" src={user?.user_metadata?.avatar_url || "https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV"} />
+                      <img alt="User Profile" className="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV" />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)] truncate">{displayName}</h3>
+                      <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)] truncate">Jane Doe</h3>
                       <p className="font-inter text-sm font-semibold text-[var(--color-tertiary)] flex items-center gap-1">
                         <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
                         Elite Member
@@ -152,7 +129,7 @@ export default function LandingWelcomePage() {
                     <p className="font-inter text-sm font-semibold text-[var(--color-secondary)]/60">AE-992-QX</p>
                   </div>
                 </div>
-
+ 
                 {/* Card Content / Stats Bento */}
                 <div className="grid grid-cols-2 gap-4 relative z-10">
                   <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
@@ -165,20 +142,20 @@ export default function LandingWelcomePage() {
                   <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
                     <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Points</p>
                     <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">
-                      {profile?.loyalty_creds ? `${(profile.loyalty_creds / 1000).toFixed(1)}k Points` : "0.0k Points"}
+                      42.5k Points
                     </p>
                   </div>
                   <div className="col-span-2 bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between">
                     <div>
                       <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Last Destination</p>
                       <p className="font-outfit text-lg font-bold text-[var(--color-tertiary)]">
-                        {lastDestination || "None"}
+                        Abuja (ABV)
                       </p>
                     </div>
                     <span className="material-symbols-outlined text-[var(--color-secondary)]/40 text-[36px]">flight_takeoff</span>
                   </div>
                 </div>
-
+ 
                 {/* Progress Path Visualization */}
                 <div className="mt-6 relative z-10">
                   <div className="flex justify-between font-inter text-xs text-[var(--color-on-surface-variant)] mb-1">
