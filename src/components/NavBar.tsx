@@ -13,13 +13,13 @@ export function NavBar() {
 
   const navLinks = user
     ? [
-        { name: "Flights", href: "/" },
+        { name: "Flights", href: "/flights" },
         { name: "Hotels", href: "/hotels" },
         { name: "Manage", href: "/manage" },
         { name: "Support", href: "/support" },
       ]
     : [
-        { name: "Flights", href: "/" },
+        { name: "Flights", href: "/flights" },
         { name: "Support", href: "/support" },
       ];
 
@@ -33,8 +33,8 @@ export function NavBar() {
           </Link>
           <nav className="hidden md:flex gap-[var(--spacing-md)] items-center">
             {navLinks.map((link) => {
-              const isActive = link.href === "/" 
-                ? pathname === "/" || pathname === "/search" 
+              const isActive = link.href === "/flights" 
+                ? pathname === "/flights" || pathname === "/search" || pathname === "/booking"
                 : pathname?.startsWith(link.href);
 
               return (

@@ -102,12 +102,12 @@ export default function LandingWelcomePage() {
               }}
               className="flex flex-wrap gap-5 justify-center lg:justify-start mt-4"
             >
-              <a 
-                href="#booking-console"
+              <Link 
+                href="/flights"
                 className="bg-[var(--color-secondary)] text-[var(--color-on-secondary)] hover:bg-[var(--color-secondary)]/90 font-outfit text-sm font-bold uppercase tracking-widest px-8 py-4.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5"
               >
                 Launch Flight Console
-              </a>
+              </Link>
               <a 
                 href="#problem-solution"
                 className="bg-white/5 border border-white/20 text-white hover:bg-white/10 font-outfit text-sm font-bold uppercase tracking-widest px-8 py-4.5 rounded-xl transition-all"
@@ -289,24 +289,7 @@ export default function LandingWelcomePage() {
         </div>
       </section>
 
-      {/* Booking Search Portal Console */}
-      <section id="booking-console" className="relative z-10 px-6 md:px-12 py-20 w-full max-w-[1000px] mx-auto border-t border-white/10">
-        <motion.div
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={cardVariants}
-          className="space-y-10"
-        >
-          <div className="text-center space-y-4">
-            <h2 className="font-outfit text-3xl md:text-4xl font-bold text-[var(--color-secondary)]">Launch Flight Terminal</h2>
-            <p className="font-inter text-base text-[var(--color-on-surface-variant)]">Input your flight itinerary parameters to scan available spacecraft launches.</p>
-          </div>
-          
-          {/* Modular Flight Search Console */}
-          <FlightSearchConsole className="shadow-[0_20px_40px_rgba(0,0,0,0.5)] border border-white/20 p-8 md:p-10" />
-        </motion.div>
-      </section>
+
 
       {/* Footer */}
       <footer className="relative z-10 w-full bg-[var(--color-surface-container-lowest)]/40 backdrop-blur-md border-t border-white/10 mt-auto">
