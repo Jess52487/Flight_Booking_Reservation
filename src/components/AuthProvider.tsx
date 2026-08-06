@@ -97,6 +97,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!loading) {
       const isPublic = PUBLIC_ROUTES.includes(pathname);
       const isOnboarding = pathname.startsWith("/onboarding");
+      const isAuthPage = pathname === "/login" || pathname === "/signup";
       
       if (!user) {
         if (!isPublic) {
@@ -105,11 +106,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         if (profile) {
           if (profile.onboarding_complete) {
-            if (isPublic || isOnboarding) {
+            if (isAuthPage || isOnboarding) {
               router.push("/flights");
             }
           } else {
-            if (isPublic || (!isOnboarding && !isPublic)) {
+            if (isAuthPage || (!isOnboarding && !isPublic)) {
               router.push("/onboarding/welcome");
             }
           }
