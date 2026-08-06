@@ -104,7 +104,7 @@ export default function HotelsPage() {
           </div>
 
           {/* Search Card */}
-          <div className="w-full max-w-5xl bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] shadow-[0_20px_40px_rgba(0,0,0,0.3)] rounded-[24px] p-[var(--spacing-md)] md:p-[var(--spacing-xl)] relative overflow-hidden group mb-20 liquid-panel-interactive">
+          <div className="w-full max-w-5xl mx-auto bg-[rgba(255,255,255,0.08)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] shadow-[0_20px_40px_rgba(0,0,0,0.3)] rounded-[24px] p-[var(--spacing-md)] md:p-[var(--spacing-xl)] relative overflow-hidden group mb-20 liquid-panel-interactive">
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-[var(--spacing-md)] relative z-10">
               {/* Destination */}

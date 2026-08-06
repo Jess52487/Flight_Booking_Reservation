@@ -21,6 +21,17 @@ export function NavBar() {
     setShowProfileModal(true);
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatarInput(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSaveProfile = async () => {
     if (!user) return;
     setIsSaving(true);
@@ -171,7 +182,29 @@ export function NavBar() {
                         />
                       </div>
                       <div>
-                        <label className="block text-[10px] font-bold text-[var(--color-secondary)] uppercase tracking-wider mb-1">Picture URL</label>
+                        <label className="block text-[10px] font-bold text-[var(--color-secondary)] uppercase tracking-wider mb-1">Upload Profile Picture</label>
+                        <div className="flex items-center gap-3">
+                          <input 
+                            type="file" 
+                            accept="image/*" 
+                            onChange={handleFileChange} 
+                            className="hidden" 
+                            id="profile-upload-input" 
+                          />
+                          <label 
+                            htmlFor="profile-upload-input" 
+                            className="bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-xl cursor-pointer active:scale-95 transition-all flex items-center gap-2 border border-white/20"
+                          >
+                            <span className="material-symbols-outlined text-sm">upload</span>
+                            <span>Choose File</span>
+                          </label>
+                          <span className="text-xs text-[var(--color-on-surface-variant)] truncate max-w-[150px]">
+                            {avatarInput.startsWith("data:") ? "Custom Image loaded" : "No file chosen"}
+                          </span>
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-[10px] font-bold text-[var(--color-secondary)] uppercase tracking-wider mb-1">Or Paste Image URL</label>
                         <input 
                           type="text" 
                           value={avatarInput} 
