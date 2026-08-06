@@ -53,17 +53,17 @@ export default function SupportPage() {
         aiText = "Trace protocol is active. Your baggage tag #AE9924X has been located at the sorting facility and is marked for priority dispatch.";
         hasWidget = true;
       } else if (query.includes("refund") || query.includes("cancel")) {
-        aiText = "Refund protocols have been processed successfully. Since you hold Elite Voyager credentials, the ticket cost has been credited back to your Loyalty Credentials balance.";
+        aiText = "Refunds have been processed successfully. Your ticket cost has been credited back to your points balance.";
       } else if (query.includes("lounge") || query.includes("access")) {
-        aiText = "Your Elite Voyager clearance grants you entry to all AeroHub Starway Lounges (hubs include Neo-Tokyo, Europa, and Earth). Just scan your boarding badge at the entry gates.";
+        aiText = "You have entry to all AeroHub Airport Lounges. Just scan your ticket at the entry gates.";
       } else if (query.includes("human") || query.includes("call") || query.includes("agent")) {
-        aiText = "Establishing encrypted audio channel to our command center... A live agent will connect with your terminal shortly.";
+        aiText = "Calling support center... A live person will connect with you shortly.";
       } else if (query.includes("hotel") || query.includes("stay") || query.includes("room")) {
-        aiText = "Your stay details have been retrieved. The reservations are synchronized with your shuttle arrival, and early check-in is authorized.";
+        aiText = "Your hotel details are ready. We synced your check-in time with your flight arrival.";
       } else {
-        aiText = `Understood, Commander. Analyzing your request regarding "${userText}". I have logged these specifications into your voyager log files. Let me know if you need specific navigation support.`;
+        aiText = `Understood! I will look into "${userText}" for you. Let me know if you need help with anything else.`;
       }
-
+ 
       const newAiMsg: Message = {
         id: (Date.now() + 1).toString(),
         sender: "ai",
@@ -74,13 +74,13 @@ export default function SupportPage() {
       setMessages(prev => [...prev, newAiMsg]);
     }, 1200);
   };
-
+ 
   return (
     <div className="relative min-h-[calc(100vh-80px)] flex justify-center items-center p-[var(--spacing-md)] bg-[var(--color-background)] overflow-y-auto">
       
       {/* Global Background Shader Simulation */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary-container)]/20 via-transparent to-transparent"></div>
-
+ 
       <div className="max-w-5xl w-full h-[80vh] min-h-[500px] rounded-[24px] flex flex-col overflow-hidden relative z-10">
         <GlassCard className="flex flex-col h-full !p-0 shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10 overflow-hidden">
           {/* Chat Header */}
@@ -107,11 +107,11 @@ export default function SupportPage() {
                 className="px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all text-[var(--color-secondary)] font-inter text-xs font-bold uppercase tracking-widest flex items-center gap-2 cursor-pointer"
               >
                 <span className="material-symbols-outlined text-sm">phone_in_talk</span>
-                Call Human
+                Call Support
               </button>
             </div>
           </div>
-
+ 
           {/* Messages Area */}
           <div className="flex-grow overflow-y-auto p-[var(--spacing-xl)] space-y-[var(--spacing-md)] pr-4 scrollbar-thin scrollbar-thumb-white/10" ref={chatContainerRef}>
             {messages.length === 0 ? (
@@ -119,9 +119,9 @@ export default function SupportPage() {
                 <div className="w-24 h-24 rounded-full bg-[var(--color-secondary)]/10 border border-[var(--color-secondary)]/20 flex items-center justify-center mb-4 shadow-[0_0_25px_rgba(137,208,237,0.35)]">
                   <span className="material-symbols-outlined text-[var(--color-secondary)] text-5xl animate-pulse">support_agent</span>
                 </div>
-                <h3 className="font-outfit text-3xl md:text-4xl font-bold text-white leading-tight mb-2">AeroHub Concierge Core</h3>
+                <h3 className="font-outfit text-3xl md:text-4xl font-bold text-white leading-tight mb-2">AeroHub Support Center</h3>
                 <p className="font-inter text-base md:text-lg text-[var(--color-on-surface-variant)] max-w-3xl mx-auto leading-relaxed px-6">
-                  Welcome back, Commander. If you have questions regarding lost baggage, ticket refunds, or lounge clearance, enter your query below or choose a quick prompt to begin.
+                  Welcome back! If you have questions about lost baggage, refunds, or lounge entry, type below or select a question to begin.
                 </p>
               </div>
             ) : (

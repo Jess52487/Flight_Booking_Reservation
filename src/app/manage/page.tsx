@@ -146,14 +146,14 @@ export default function ManagePage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-[var(--spacing-sm)]">
             <div>
               <p className="font-inter text-xs text-[var(--color-tertiary)] uppercase tracking-widest font-bold mb-1">
-                Welcome Back, Commander {profile?.username || "Voyager"}
+                Welcome Back, {profile?.username || user?.user_metadata?.full_name || "Friend"}
               </p>
               <h1 className="font-outfit text-4xl font-bold text-[var(--color-on-surface)]">Manage Bookings</h1>
-              <p className="font-inter text-base text-[var(--color-on-surface-variant)]">Review, modify, or cancel your upcoming itineraries.</p>
+              <p className="font-inter text-base text-[var(--color-on-surface-variant)]">Review, modify, or cancel your upcoming travel plans.</p>
             </div>
             <div className="flex gap-[var(--spacing-xs)]">
               <span className="px-[var(--spacing-sm)] py-[var(--spacing-xs)] bg-white/5 border border-white/20 rounded-full font-inter text-xs text-[var(--color-secondary)] flex items-center gap-[var(--spacing-xs)] uppercase tracking-widest font-bold">
-                {filteredBookings.length} Itineraries Found
+                {filteredBookings.length} Travel Plans Found
               </span>
             </div>
           </div>

@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabase";
 
 export default function FlightsSearchPage() {
   const { profile } = useAuth();
-  const displayName = profile?.username ? `Commander ${profile.username}` : "Commander";
+  const displayName = profile?.username ? profile.username : "Friend";
   const [lastDestination, setLastDestination] = useState<string>("");
 
   useEffect(() => {
@@ -58,10 +58,10 @@ export default function FlightsSearchPage() {
           <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left w-full min-w-0">
             <div className="space-y-4">
               <h1 className="font-outfit text-4xl md:text-5xl text-[var(--color-secondary)] leading-tight font-bold tracking-tight">
-                Launch Flight Terminal
+                Search for Flights
               </h1>
-              <p className="font-inter text-base text-[var(--color-on-surface-variant)] leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Configure your flight itinerary parameters below to scan available spacecraft launches and select your seat map layout.
+              <p className="font-inter text-base text-[var(--color-on-surface-variant)] leading-relaxed max-w-3xl mx-auto lg:mx-0">
+                Choose where you want to go, pick your flight, and select your favorite seat.
               </p>
             </div>
             
@@ -94,12 +94,12 @@ export default function FlightsSearchPage() {
                       <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)] truncate">{displayName}</h3>
                       <p className="font-inter text-sm font-semibold text-[var(--color-tertiary)] flex items-center gap-1">
                         <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
-                        Elite Voyager
+                        Elite Member
                       </p>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-tighter block">Identity Hash</span>
+                    <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-tighter block">Account ID</span>
                     <p className="font-inter text-sm font-semibold text-[var(--color-secondary)]/60">AE-992-QX</p>
                   </div>
                 </div>
@@ -110,18 +110,18 @@ export default function FlightsSearchPage() {
                     <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Status</p>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-[var(--color-tertiary)] animate-pulse"></div>
-                      <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">Ready for Launch</p>
+                      <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">Ready to Fly</p>
                     </div>
                   </div>
                   <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
-                    <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Loyalty</p>
+                    <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Points</p>
                     <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">
-                      {profile?.loyalty_creds ? `${(profile.loyalty_creds / 1000).toFixed(1)}k Creds` : "0.0k Creds"}
+                      {profile?.loyalty_creds ? `${(profile.loyalty_creds / 1000).toFixed(1)}k Points` : "0.0k Points"}
                     </p>
                   </div>
                   <div className="col-span-2 bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between">
                     <div>
-                      <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Primary Destination</p>
+                      <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Last Destination</p>
                       <p className="font-outfit text-lg font-bold text-[var(--color-tertiary)]">
                         {lastDestination || "None"}
                       </p>
@@ -133,7 +133,7 @@ export default function FlightsSearchPage() {
                 {/* Progress Path Visualization */}
                 <div className="mt-6 relative z-10">
                   <div className="flex justify-between font-inter text-xs text-[var(--color-on-surface-variant)] mb-1">
-                    <span>Syncing Data</span>
+                    <span>Checking Status</span>
                     <span>100%</span>
                   </div>
                   <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">

@@ -1,15 +1,53 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "./AuthProvider";
-import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export function NavBar() {
   const pathname = usePathname();
   const { user, profile, signOut } = useAuth();
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [nameInput, setNameInput] = useState("");
+  const [avatarInput, setAvatarInput] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleOpenModal = () => {
+    setNameInput(profile?.username || user?.user_metadata?.full_name || "");
+    setAvatarInput(user?.user_metadata?.avatar_url || "https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV");
+    setShowProfileModal(true);
+  };
+
+  const handleSaveProfile = async () => {
+    if (!user) return;
+    setIsSaving(true);
+    try {
+      // 1. Update Auth metadata
+      const { error: authError } = await supabase.auth.updateUser({
+        data: { 
+          avatar_url: avatarInput,
+          full_name: nameInput
+        }
+      });
+      // 2. Update Profiles database table
+      const { error: profileError } = await supabase
+        .from("profiles")
+        .update({ username: nameInput })
+        .eq("id", user.id);
+
+      if (!authError && !profileError) {
+        window.location.reload();
+      }
+    } catch (err) {
+      console.error("Error saving profile:", err);
+    } finally {
+      setIsSaving(false);
+      setIsEditing(false);
+    }
+  };
 
   const navLinks = user
     ? [
@@ -59,12 +97,16 @@ export function NavBar() {
                   <span className="material-symbols-outlined">notifications</span>
                 </Link>
                 <button 
-                  onClick={() => setShowProfileModal(true)} 
-                  className="text-[var(--color-secondary)] hover:text-[var(--color-secondary)]/80 scale-95 active:scale-90 transition-all flex items-center gap-1.5 cursor-pointer outline-none max-w-[200px]"
+                  onClick={handleOpenModal} 
+                  className="text-[var(--color-secondary)] hover:text-[var(--color-secondary)]/80 scale-95 active:scale-90 transition-all flex items-center gap-2 cursor-pointer outline-none max-w-[200px]"
                 >
-                  <span className="material-symbols-outlined text-[24px] shrink-0">account_circle</span>
+                  <img 
+                    src={user?.user_metadata?.avatar_url || "https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV"} 
+                    alt="User profile" 
+                    className="w-7 h-7 rounded-full object-cover border border-white/20 shrink-0" 
+                  />
                   <span className="font-inter text-xs font-semibold text-[var(--color-on-surface)] hidden sm:inline truncate">
-                    {profile?.username ? `Commander ${profile.username}` : "Commander"}
+                    {profile?.username || user?.user_metadata?.full_name || "Friend"}
                   </span>
                 </button>
                 <button 
@@ -92,9 +134,12 @@ export function NavBar() {
             
             {/* Header */}
             <div className="flex justify-between items-center mb-8 relative z-10 shrink-0">
-              <h3 className="font-outfit text-3xl font-bold text-[var(--color-secondary)]">Voyager Profile</h3>
+              <h3 className="font-outfit text-3xl font-bold text-[var(--color-secondary)]">Your Profile</h3>
               <button 
-                onClick={() => setShowProfileModal(false)}
+                onClick={() => {
+                  setShowProfileModal(false);
+                  setIsEditing(false);
+                }}
                 className="text-white/60 hover:text-white transition-colors cursor-pointer outline-none p-1.5 hover:bg-white/5 rounded-full"
               >
                 <span className="material-symbols-outlined text-2xl">close</span>
@@ -106,36 +151,89 @@ export function NavBar() {
               {/* Avatar & Basic Info */}
               <div className="flex items-center gap-6 pb-8 border-b border-white/10 min-w-0">
                 <div className="w-20 h-20 rounded-full border-2 border-[var(--color-tertiary)] p-1 bg-white/5 flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-[var(--color-secondary)] text-[56px]">account_circle</span>
+                  <img 
+                    src={avatarInput || "https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV"} 
+                    alt="User avatar" 
+                    className="w-full h-full rounded-full object-cover" 
+                  />
                 </div>
                 <div className="min-w-0 flex-1 space-y-2">
-                  <h4 className="font-outfit text-2xl font-bold text-white break-words">
-                    {profile?.username ? `Commander ${profile.username}` : "Commander"}
-                  </h4>
-                  <p className="font-inter text-sm text-[var(--color-on-surface-variant)] break-all">{user?.email}</p>
-                  <div className="mt-2 flex items-center gap-2 bg-[var(--color-tertiary)]/10 border border-[var(--color-tertiary)]/20 px-3 py-1 rounded-full w-fit">
-                    <span className="material-symbols-outlined text-[var(--color-tertiary)] text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
-                    <span className="font-inter text-[11px] font-bold text-[var(--color-tertiary)] uppercase tracking-wider">Elite Voyager</span>
+                  {isEditing ? (
+                    <div className="space-y-3 w-full">
+                      <div>
+                        <label className="block text-[10px] font-bold text-[var(--color-secondary)] uppercase tracking-wider mb-1">Your Name</label>
+                        <input 
+                          type="text" 
+                          value={nameInput} 
+                          onChange={(e) => setNameInput(e.target.value)} 
+                          className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[var(--color-secondary)]" 
+                          placeholder="Enter your name" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] font-bold text-[var(--color-secondary)] uppercase tracking-wider mb-1">Picture URL</label>
+                        <input 
+                          type="text" 
+                          value={avatarInput} 
+                          onChange={(e) => setAvatarInput(e.target.value)} 
+                          className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[var(--color-secondary)]" 
+                          placeholder="Image URL" 
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <h4 className="font-outfit text-2xl font-bold text-white break-words">
+                        {profile?.username || user?.user_metadata?.full_name || "Friend"}
+                      </h4>
+                      <p className="font-inter text-sm text-[var(--color-on-surface-variant)] break-all">{user?.email}</p>
+                    </>
+                  )}
+                  <div className="mt-2 flex items-center gap-2">
+                    {isEditing ? (
+                      <div className="flex gap-2">
+                        <button 
+                          onClick={handleSaveProfile} 
+                          disabled={isSaving}
+                          className="bg-[var(--color-secondary)] hover:bg-[var(--color-secondary)]/90 text-black text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg active:scale-95 transition-all cursor-pointer"
+                        >
+                          {isSaving ? "Saving..." : "Save"}
+                        </button>
+                        <button 
+                          onClick={() => setIsEditing(false)} 
+                          className="bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg active:scale-95 transition-all cursor-pointer"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button 
+                        onClick={() => setIsEditing(true)} 
+                        className="bg-white/10 hover:bg-white/20 text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg active:scale-95 transition-all cursor-pointer"
+                      >
+                        Edit Profile
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
-
+ 
               {/* Stats / Details */}
               <div className="space-y-6">
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
-                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Loyalty Balance</span>
-                  <span className="font-outfit text-lg font-bold text-[var(--color-tertiary)]">{profile?.loyalty_creds?.toLocaleString() || "42,500"} Creds</span>
+                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Loyalty Points</span>
+                  <span className="font-outfit text-lg font-bold text-[var(--color-tertiary)]">{profile?.loyalty_creds?.toLocaleString() || "42,500"} Points</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
                   <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Preferred Cabin</span>
                   <span className="font-inter text-sm font-semibold text-white capitalize">{profile?.cabin_class || "Economy"}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/5">
-                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Dietary Profile</span>
+                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Dietary Choice</span>
                   <span className="font-inter text-sm font-semibold text-white capitalize">{profile?.dietary_pref || "Standard"}</span>
                 </div>
                 <div className="flex justify-between items-center py-3">
-                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">System Theme</span>
+                  <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-wider font-semibold">Theme</span>
                   <span className="font-inter text-sm font-semibold text-white capitalize">{profile?.theme_pref || "Dark"}</span>
                 </div>
               </div>

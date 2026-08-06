@@ -9,8 +9,8 @@ import { FlightSearchConsole } from "@/components/FlightSearchConsole";
 import { supabase } from "@/lib/supabase";
 
 export default function LandingWelcomePage() {
-  const { profile } = useAuth();
-  const displayName = profile?.username ? `Commander ${profile.username}` : "Commander";
+  const { user, profile } = useAuth();
+  const displayName = profile?.username || user?.user_metadata?.full_name || "Friend";
   const [lastDestination, setLastDestination] = useState<string>("");
 
   useEffect(() => {
@@ -137,18 +137,18 @@ export default function LandingWelcomePage() {
                 <div className="flex justify-between items-start mb-8 relative z-10 gap-2">
                   <div className="flex items-center gap-4 min-w-0">
                     <div className="w-16 h-16 rounded-full border-2 border-[var(--color-tertiary)] p-1 shrink-0">
-                      <img alt="User Profile" className="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV" />
+                      <img alt="User Profile" className="w-full h-full rounded-full object-cover" src={user?.user_metadata?.avatar_url || "https://lh3.googleusercontent.com/aida-public/AB6AXuABPluzZT45nJh2Stjb8yaK6oaFqCh2jmzdd8giITe0Jon-N2n0AlPF5mVmV2ffj4lww7FyG5geGLB5jlVrcLuTgedKjInyqwusq71sLlDBFKqEchA4ekIh1djQYxHeo_XLme5XxOujzeWkPNZlO1GYwVcGU7QO-zDb4dNAgXB3gVCd0jcD89or7EUnxkqMfvdqqajyjfz54Av1L4ekkmU_BnOWbRCntvU0KDaM80ws68evFL8goz2ya79aofSLiC3oEpTlhAFy3nOV"} />
                     </div>
                     <div className="min-w-0">
                       <h3 className="font-outfit text-xl font-bold text-[var(--color-secondary)] truncate">{displayName}</h3>
                       <p className="font-inter text-sm font-semibold text-[var(--color-tertiary)] flex items-center gap-1">
                         <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
-                        Elite Voyager
+                        Elite Member
                       </p>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-tighter block">Identity Hash</span>
+                    <span className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase tracking-tighter block">Account ID</span>
                     <p className="font-inter text-sm font-semibold text-[var(--color-secondary)]/60">AE-992-QX</p>
                   </div>
                 </div>
@@ -159,18 +159,18 @@ export default function LandingWelcomePage() {
                     <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Status</p>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-[var(--color-tertiary)] animate-pulse"></div>
-                      <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">Ready for Launch</p>
+                      <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">Ready to Fly</p>
                     </div>
                   </div>
                   <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
-                    <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Loyalty</p>
+                    <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Points</p>
                     <p className="font-inter text-sm font-bold text-[var(--color-secondary)]">
-                      {profile?.loyalty_creds ? `${(profile.loyalty_creds / 1000).toFixed(1)}k Creds` : "0.0k Creds"}
+                      {profile?.loyalty_creds ? `${(profile.loyalty_creds / 1000).toFixed(1)}k Points` : "0.0k Points"}
                     </p>
                   </div>
                   <div className="col-span-2 bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between">
                     <div>
-                      <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Primary Destination</p>
+                      <p className="font-inter text-xs text-[var(--color-on-surface-variant)] uppercase mb-1">Last Destination</p>
                       <p className="font-outfit text-lg font-bold text-[var(--color-tertiary)]">
                         {lastDestination || "None"}
                       </p>
@@ -182,7 +182,7 @@ export default function LandingWelcomePage() {
                 {/* Progress Path Visualization */}
                 <div className="mt-6 relative z-10">
                   <div className="flex justify-between font-inter text-xs text-[var(--color-on-surface-variant)] mb-1">
-                    <span>Syncing Data</span>
+                    <span>Checking Status</span>
                     <span>100%</span>
                   </div>
                   <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
